@@ -7,4 +7,4 @@
 
 The trello board for the project can be found [here](https://trello.com/b/40TmiuF2/4050-project).
 
-The unit guide for COMP4050 can be found [here](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide)
+The unit guide for COMP4050 can be found [here](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide).

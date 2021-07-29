@@ -1,0 +1,51 @@
+<div className="container">
+    <div className="card">
+        <div class="row no-gutters">
+            <div className="col-md-4">
+                <img className="jobImage card-img-top"
+                    src={"https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2522&q=80"} />
+            </div>
+
+            <div className="col-md-8">
+                <div className="card-body">
+                    <div className="descriptionContainer">
+                        <div>
+                            <h3 className="card-title">
+                                {job.title}
+                            </h3>
+                            <h6 className="card-subtitle mb-2 text-muted">
+                                Location: {job.location}
+                            </h6>
+                            <p className="card-text">
+                                {job.description}
+                            </p>
+                            <div className="sellerDetails">
+                                <p className="sellerName text-muted">{job.userID}</p>
+                                <p><span className="sellerRating text-muted">4.5/5</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <Link to="/">
+    <div class="wrap">
+        <button className="btn btn-primary">
+            Apply for Job
+        </button>
+    </div>
+    </Link>
+
+
+
+    <Link to="/">
+    <div class="wrap">
+        <button className="btn btn-danger">
+            Go Back
+        </button>
+    </div>
+    </Link>
+</div>

@@ -1,0 +1,17 @@
+.sidebarnav {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px
+}
+
+.titles {
+    font-size: 15px;
+    flex: 1;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.sidebarnav:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}

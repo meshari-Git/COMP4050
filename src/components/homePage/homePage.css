@@ -1,8 +1,8 @@
 .homePage {
- background-color: grey;
+  background-color: grey;
 }
 
-.dropdown{
+.dropdown {
   padding: 10px;
 }
 
@@ -20,7 +20,6 @@
   min-height: 18vh;
   border: 2px solid gray;
   border-radius: 5px;
-
 
   margin-top: 10px;
   margin-right: 10px;
@@ -40,7 +39,6 @@
 .homeJobLocation {
   color: black;
   margin-bottom: 5px;
-
 }
 
 .homeJobCost {

@@ -3,12 +3,12 @@ import DataRouter from "./components/dataRouter"
 import Footer from './components/Footer'
 
 function App() {
-    
-    return(
+
+    return (
         <div className="App">
-           <DataRouter/>
-           <Footer/>
-       </div>
+            <DataRouter />
+            <Footer />
+        </div>
     )
 }
 

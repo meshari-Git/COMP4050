@@ -1,49 +1,48 @@
-
 .jobImage {
-width: 300px;
-height: 300px;
-margin-right: 10px;
+  width: 300px;
+  height: 300px;
+  margin-right: 10px;
 }
 
 .jobTitle {
-color: black;
+  color: black;
 }
 .descriptionContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .jobContainer {
-    margin-top: 15px;
-    margin-left:15%;
-    margin-right:15%;
-    border-style: solid;
-    border-color:#333333;
-    border-radius: 10px;
-    background: lightgrey;
-    padding-top:1%;
-    padding-left:1%;
-  }
+  margin-top: 15px;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-style: solid;
+  border-color: #333333;
+  border-radius: 10px;
+  background: lightgrey;
+  padding-top: 1%;
+  padding-left: 1%;
+}
 
-  .sellerName {
-    font-size: 20;
-    color: black;
-  }
+.sellerName {
+  font-size: 20;
+  color: black;
+}
 .sellerDetails {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .sellerRating {
-    color: black;
+  color: black;
 }
 
 .backButton {
-    color: rebeccapurple;
-    border-radius: 25px;
-    margin-bottom: 2%;
+  color: rebeccapurple;
+  border-radius: 25px;
+  margin-bottom: 2%;
 }
 
 .editButton {
-    color: rebeccapurple;
-    border-radius: 25px;
-    float: right;
+  color: rebeccapurple;
+  border-radius: 25px;
+  float: right;
 }

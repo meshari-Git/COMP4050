@@ -1,55 +1,55 @@
 .header {
-    height: 100px;
+  height: 100px;
 }
 
-.userCoinsIcon{
-    margin: -2px 3px 0 5px;
-    height: 100%;
-    width: 18px;
+.userCoinsIcon {
+  margin: -2px 3px 0 5px;
+  height: 100%;
+  width: 18px;
 }
 
-.userProfileIcon{
-    margin: 0 10px 0 10px;
-    height: 3vh;
-    width: 3vh;
-    color: #1e2124;
+.userProfileIcon {
+  margin: 0 10px 0 10px;
+  height: 3vh;
+  width: 3vh;
+  color: #1e2124;
 }
 
-.userProfileIcon:hover{
-    fill: #17a2b8;
-    cursor: pointer;
+.userProfileIcon:hover {
+  fill: #17a2b8;
+  cursor: pointer;
 }
 
-.logoDiv{
-    fill:  rgb(235, 195, 64);
+.logoDiv {
+  fill: rgb(235, 195, 64);
 }
 
-.logoDiv:hover{
-    color: rgb(235, 195, 64) !important;
+.logoDiv:hover {
+  color: rgb(235, 195, 64) !important;
 }
 
-.coinContainer{
-    margin: 0 20px 0 20px;
+.coinContainer {
+  margin: 0 20px 0 20px;
 }
 
-.coinsText{
-    margin: 0 5px 0 0px;
+.coinsText {
+  margin: 0 5px 0 0px;
 }
 
-.login-button .logout-button .register-button{
-    margin: 0 5px 0 0px;
+.login-button .logout-button .register-button {
+  margin: 0 5px 0 0px;
 }
 
-.mainLogo{
-    margin: 0 10px 0 10px;
+.mainLogo {
+  margin: 0 10px 0 10px;
 }
 
-.footer{
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgb(235, 195, 64);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(235, 195, 64);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

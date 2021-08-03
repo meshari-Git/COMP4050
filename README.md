@@ -5,12 +5,28 @@
 - [Malachi Mashiah](https://www.linkedin.com/in/malachi-mashiah/)
 - [Jonah Skinner](https://www.linkedin.com/in/jonah-skinner/)
 
-The trello board for the project can be found [here](https://trello.com/b/40TmiuF2/4050-project).
+The [Trello board](https://trello.com/b/40TmiuF2/4050-project) for this project.
 
-The unit guide for COMP4050 can be found [here](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide).
+The [unit guide](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide) for COMP4050.
 
+# File Structure
 
-# Getting Started with Create React App
+📦 src
+ ┣ 📂 assets
+ ┃ ┣ 📂 css
+ ┃ ┗ 📂 img
+ ┣ 📂 authentication
+ ┣ 📂 components
+ ┃ ┣ 📂 JSX
+ ┣ 📂 hooks
+ ┣ 📂 tests
+ ┣ 📂 views
+ ┣ 📜 App.js
+ ┣ 📜 config.js
+ ┣ 📜 index.js
+ ┗ 📜 serviceWorker.js
+
+## Getting the Project Running
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -40,43 +56,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

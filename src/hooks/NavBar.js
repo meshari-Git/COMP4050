@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import { logout, isAuthenticated } from "../authentication/apiindex";
 
-const HeadingBar = ({ history }) => (
+const NavBar = ({ history }) => (
   // TODO: add logo here
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="logoDiv">
@@ -80,4 +80,4 @@ const HeadingBar = ({ history }) => (
   </nav>
 );
 
-export default withRouter(HeadingBar);
+export default withRouter(NavBar);

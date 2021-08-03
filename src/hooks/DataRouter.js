@@ -13,7 +13,7 @@ import Login from "../views/Login";
 import PrivateRoute from "./PrivateRoute";
 import { isAuthenticated } from "../authentication/apiindex";
 
-class Router extends Component {
+class DataRouter extends Component {
   constructor(props) {
     super(props);
     if (isAuthenticated()) {
@@ -128,4 +128,4 @@ class Router extends Component {
   }
 }
 
-export default Router;
+export default DataRouter;

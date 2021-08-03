@@ -1,9 +1,9 @@
 import React from "react";
-import "./changeInfo.css";
+import "../../assets/css/changeinfo.css";
 import { Link } from "react-router-dom";
 import { Component } from "react";
 
-class changeInfo extends Component {
+class ChangeInfo extends Component {
   render() {
     return (
       <div className="changeAddress-Page">
@@ -47,4 +47,4 @@ class changeInfo extends Component {
   }
 }
 
-export default changeInfo;
+export default ChangeInfo;

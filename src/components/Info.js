@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
-class info extends Component {
+class Info extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ class info extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3200/users?fetch=true")
+    fetch("http://localhost:3000/users?fetch=true")
       .then((resp) => resp.json())
       .then((data) => {
         data.forEach((value, index) => {
@@ -29,7 +29,7 @@ class info extends Component {
       });
 
     fetch(
-      "http://localhost:3200/rating?total=true&chosenUserID=" + this.props.uID
+      "http://localhost:3000/rating?total=true&chosenUserID=" + this.props.uID
     )
       .then((response) => response.json())
       .then((response) => {
@@ -60,4 +60,4 @@ class info extends Component {
   }
 }
 
-export default info;
+export default Info;

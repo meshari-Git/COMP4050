@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 
-class jobDataFill extends Component {
+class DataFill extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class jobDataFill extends Component {
     event.preventDefault();
 
     let url = new URL(
-      "http://localhost:3200/jobs?" +
+      "http://localhost:3000/jobs?" +
         (this.state.type === "/edit" ? "replace" : "add") +
         "=true"
     );
@@ -43,7 +43,7 @@ class jobDataFill extends Component {
     url.searchParams.set("location", this.location.value);
 
     fetch(url.href).then(() => {
-      fetch("http://localhost:3200/jobs?fetch=true&userID=" + this.props.userID)
+      fetch("http://localhost:3000/jobs?fetch=true&userID=" + this.props.userID)
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({
@@ -165,4 +165,4 @@ class jobDataFill extends Component {
   }
 }
 
-export default jobDataFill;
+export default DataFill;

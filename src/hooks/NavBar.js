@@ -1,8 +1,8 @@
 import React from "react";
-import "./headingBar.css";
+import "../assets/css/navbar.css";
 import { Link, withRouter } from "react-router-dom";
 
-import { logout, isAuthenticated } from "../auth/index";
+import { logout, isAuthenticated } from "../authentication/apiindex";
 
 const HeadingBar = ({ history }) => (
   // TODO: add logo here

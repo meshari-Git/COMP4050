@@ -1,11 +1,12 @@
-import React, { Component } from "../../../node_modules/react";
-import "./jobPage.css";
+import React, { Component } from "react";
+import "../assets/css/jobpage.css";
+
 import "bootstrap/dist/css/bootstrap.css";
-import { isAuthenticated } from "../../auth/index";
+import { isAuthenticated } from "../authentication/apiindex";
 
 import { Link } from "react-router-dom";
 
-class Job extends Component {
+class JobPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +23,7 @@ class Job extends Component {
     job.jobStatus = 2;
     job.chosenUserID = this.state.userID;
 
-    let url = new URL("http://localhost:3200/jobs?replace=true");
+    let url = new URL("http://localhost:3000/jobs?replace=true");
 
     url.searchParams.set("replaceID", job._id);
     url.searchParams.set("userID", job.userID);
@@ -34,7 +35,7 @@ class Job extends Component {
     url.searchParams.set("location", job.location);
 
     fetch(url.href).then(() => {
-      fetch("http://localhost:3200/jobs?fetch=true&_id=" + job._id)
+      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({
@@ -51,7 +52,7 @@ class Job extends Component {
     var job = this.state.job;
     job.jobStatus = 3;
 
-    let url = new URL("http://localhost:3200/jobs?replace=true");
+    let url = new URL("http://localhost:3000/jobs?replace=true");
 
     url.searchParams.set("replaceID", job._id);
     url.searchParams.set("userID", job.userID);
@@ -63,7 +64,7 @@ class Job extends Component {
     url.searchParams.set("location", job.location);
 
     fetch(url.href).then(() => {
-      fetch("http://localhost:3200/jobs?fetch=true&_id=" + job._id)
+      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({
@@ -75,13 +76,13 @@ class Job extends Component {
 
   declineChosenUser(event) {
     event.preventDefault();
-    //this.updateVariables();
+    this.updateVariables();
 
     var job = this.state.job;
     job.jobStatus = 1;
     job.chosenUserID = " ";
 
-    let url = new URL("http://localhost:3200/jobs?replace=true");
+    let url = new URL("http://localhost:3000/jobs?replace=true");
 
     url.searchParams.set("replaceID", job._id);
     url.searchParams.set("userID", job.userID);
@@ -93,7 +94,7 @@ class Job extends Component {
     url.searchParams.set("location", job.location);
 
     fetch(url.href).then(() => {
-      fetch("http://localhost:3200/jobs?fetch=true&_id=" + job._id)
+      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({
@@ -106,12 +107,12 @@ class Job extends Component {
   markAsCompleted(event) {
     event.preventDefault();
     this.updateVariables();
-    // http://localhost:3200/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
+    //http://localhost:3000/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
 
     var job = this.state.job;
     job.jobStatus = 4;
 
-    let url = new URL("http://localhost:3200/jobs?replace=true");
+    let url = new URL("http://localhost:3000/jobs?replace=true");
 
     url.searchParams.set("replaceID", job._id);
     url.searchParams.set("userID", job.userID);
@@ -123,14 +124,14 @@ class Job extends Component {
     url.searchParams.set("location", job.location);
 
     fetch(url.href).then(() => {
-      fetch("http://localhost:3200/jobs?fetch=true&_id=" + job._id)
+      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
         .then((resp) => resp.json())
         .then((data) => {
           this.setState({
             job: data,
           });
 
-          url = new URL("http://localhost:3200/rating?add=true");
+          url = new URL("http://localhost:3000/rating?add=true");
 
           url.searchParams.set("userID", job.userID);
           url.searchParams.set("chosenUserID", job.chosenUserID);
@@ -138,7 +139,7 @@ class Job extends Component {
           url.searchParams.set("rating", 1);
 
           fetch(url.href).then(() => {
-            fetch("http://localhost:3200/jobs?fetch=true&_id=" + job._id)
+            fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
               .then((resp) => resp.json())
               .then((data) => {
                 this.setState({
@@ -152,7 +153,7 @@ class Job extends Component {
 
   componentDidMount() {
     fetch(
-      "http://localhost:3200/users?fetch=true&_id=" +
+      "http://localhost:3000/users?fetch=true&_id=" +
         this.props.location.state.job.userID
     )
       .then((resp) => resp.json())
@@ -161,7 +162,7 @@ class Job extends Component {
       });
 
     fetch(
-      "http://localhost:3200/rating?total=true&chosenUserID=" +
+      "http://localhost:3000/rating?total=true&chosenUserID=" +
         this.props.location.state.job.userID
     )
       .then((resp) => resp.json())
@@ -170,7 +171,7 @@ class Job extends Component {
       });
 
     fetch(
-      "http://localhost:3200/users?fetch=true&_id=" +
+      "http://localhost:3000/users?fetch=true&_id=" +
         this.props.location.state.job.chosenUserID
     )
       .then((resp) => resp.json())
@@ -183,7 +184,7 @@ class Job extends Component {
       });
 
     fetch(
-      "http://localhost:3200/rating?total=true&chosenUserID=" +
+      "http://localhost:3000/rating?total=true&chosenUserID=" +
         this.props.location.state.job.chosenUserID
     )
       .then((resp) => resp.json())
@@ -194,7 +195,7 @@ class Job extends Component {
 
   render() {
     const job = this.props.location.state.job;
-    const seller = job.seller;
+    //const seller = job.seller;
     return (
       <div className="container">
         <div className="card">
@@ -207,7 +208,8 @@ class Job extends Component {
                   this.state.job._id +
                   "/400/400"
                 }
-              />
+                alt="Removing errors in alternative text"
+                />
             </div>
 
             <div className="col-md-8">
@@ -332,6 +334,8 @@ class Job extends Component {
                     <img
                       className="chosenImage card-img-top"
                       src={this.state.chosenPicture}
+                      alt="Removing errors in alternative text"
+
                     />
                   </div>
                   <div class="card-footer bg-transparent border-dark">
@@ -364,4 +368,4 @@ class Job extends Component {
   }
 }
 
-export default Job;
+export default JobPage;

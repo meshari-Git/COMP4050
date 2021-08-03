@@ -1,26 +1,29 @@
-import React, { Component } from "react";
-import "./userProfile.css";
+import React from "react";
+import "../assets/css/profile.css";
 // @ts-ignore
 //import profilePic from '../../resources/userProfile/default-user.jpg'
-import "./sideBar.css";
-import "./sideBarNav.css";
-import "./userInfo.css";
+import "../assets/css/sidebar.css";
+import "../assets/css/sidebarnav.css";
+import "../assets/css/userinfo.css";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import { isAuthenticated } from "../../auth/index";
+import { isAuthenticated } from "../authentication/apiindex";
 
 const Profile = () => {
+  // const {
+  //   user: { _id, name, email, address, balance, about, role },
+  // } = isAuthenticated();
   const {
-    user: { _id, name, email, address, balance, about, role },
+    user: { name, email, address, balance},
   } = isAuthenticated();
 
-  let rating = 0;
+  // let rating = 0;
 
-  fetch("http://localhost:3200/rating?total=true&chosenUserID=" + _id)
-    .then((resp) => resp.json())
-    .then((data) => {
-      rating = data.total;
-    });
+  // fetch("http://localhost:3000/rating?total=true&chosenUserID=" + _id)
+  //   .then((resp) => resp.json())
+  //   .then((data) => {
+  //     rating = data.total;
+  //   });
 
   return (
     <div className="Profile-page">

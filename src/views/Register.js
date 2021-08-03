@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
-import { register } from "../auth/index";
+import { register } from "../authentication/apiindex";
 
 const Register = () => {
   const [values, setValues] = useState({

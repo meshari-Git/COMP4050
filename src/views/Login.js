@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Redirect } from "react-router-dom";
-import { login, authenticate, isAuthenticated } from "../auth/index";
+import { login, authenticate, isAuthenticated } from "../authentication/apiindex";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -24,6 +24,7 @@ const Login = () => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     login({ email, password }).then((data) => {
+      console.log(data.error)
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {

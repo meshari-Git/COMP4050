@@ -2,10 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class history extends Component {
-  constructor(props) {
-    super(props);
-  }
+class CurrentJobs extends Component {
 
   render() {
     let jobList = this.props.jobs.map((job) => {
@@ -32,11 +29,11 @@ class history extends Component {
     });
     return (
       <div className="container">
-        <h3 className="text-left py-3 ">Your Past Jobs</h3>
+        <h3 className="text-left py-3">Your Current Jobs</h3>
         <div className="row">{jobList}</div>
       </div>
     );
   }
 }
 
-export default history;
+export default CurrentJobs;

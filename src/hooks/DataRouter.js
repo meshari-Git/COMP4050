@@ -1,30 +1,35 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import UserProfile from "./userProfile/userProfile";
-import Header from "./HeadingBar";
-import ChangeInfo from "./userProfile/changeInfo";
-import HomePage from "./homePage/homePage";
-import Dashboard from "./dashboard/dashboard";
-import JobPage from "./jobPage/jobPage";
-import JobDataFill from "./dataFill/dataFillPage";
-import Register from "../user/Register";
-import Login from "../user/Login";
-import PrivateRoute from "../auth/PrivateRoute";
-import { isAuthenticated } from "../auth/index";
+import Profile from "../components/Profile";
+import Header from "./NavBar";
+import ChangeInfo from "../components/JSX/ChangeInfo.jsx";
+import HomePage from "../views/HomePage";
+import DashBoard from "../views/DashBoardPage";
+import JobPage from "../views/JobPage";
+import DataFill from "../components/JSX/DataFill";
+import Register from "../views/Register";
+import Login from "../views/Login";
+import PrivateRoute from "./PrivateRoute";
+import { isAuthenticated } from "../authentication/apiindex";
 
-class dataRouter extends Component {
+class Router extends Component {
   constructor(props) {
     super(props);
     if (isAuthenticated()) {
       const {
         user: { _id, name, email, address, balance, about, role },
       } = isAuthenticated();
+
       this.state = {
         location: null,
         userID: _id,
+        email: email,
+        address: address,
         name: name,
         balance: balance,
+        about: about,
+        role: role,
         jobs: [],
       };
     } else {
@@ -43,7 +48,7 @@ class dataRouter extends Component {
   }
 
   updateJobs() {
-    fetch("http://localhost:3200/jobs?fetch=true")
+    fetch("http://localhost:3000/jobs?fetch=true")
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({
@@ -57,7 +62,7 @@ class dataRouter extends Component {
     this.setState({ location: e });
   }
 
-  /* */
+  /* Router for pages*/
 
   render() {
     return (
@@ -67,25 +72,25 @@ class dataRouter extends Component {
           name={this.state.name}
           balance={this.state.balance}
         />
-        <div className="app">
+        <div className="App">
           <Switch>
-            <Route path="/changeinfo">
+            <Route path="/ChangeInfo">
               <ChangeInfo />
             </Route>
 
             <Route path="/datafill">
-              <JobDataFill />
+              <DataFill />
             </Route>
 
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
-            <PrivateRoute component={UserProfile} path="/profile" exact />
+            <PrivateRoute component={Profile} path="/components/Profile.js" exact />
 
             <Route
               exact
               path="/add"
               render={(props) => (
-                <JobDataFill {...props} userID={this.state.userID} />
+                <DataFill {...props} userID={this.state.userID} />
               )}
             />
 
@@ -93,12 +98,12 @@ class dataRouter extends Component {
               exact
               path="/edit"
               render={(props) => (
-                <JobDataFill {...props} userID={this.state.userID} />
+                <DataFill {...props} userID={this.state.userID} />
               )}
             />
 
             <PrivateRoute
-              component={Dashboard}
+              component={DashBoard}
               path="/dashboard"
               jobs={this.state.jobs}
               userID={this.state.userID}
@@ -123,4 +128,4 @@ class dataRouter extends Component {
   }
 }
 
-export default dataRouter;
+export default Router;

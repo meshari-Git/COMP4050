@@ -1,25 +1,48 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import "./dashboard.css";
+import "../assets/css/dashboard.css";
 
-import ActiveListings from "./activeListings";
-import CurrentJobs from "./currentJobs";
-import History from "./history";
-import Info from "./info";
-import Datafill from "../dataFill/dataFillPage";
-import { isAuthenticated } from "../../auth/index";
+import ActiveListings from "../components/ActiveListings";
+import CurrentJobs from "../components/CurrentJobs";
+import History from "../components/History";
+import Info from "../components/Info";
+//import DataFill from "../JSX/DataFill";
+import { isAuthenticated } from "../authentication/apiindex";
 
-class dashboard extends Component {
+class DashBoard extends Component {
   constructor(props) {
     super(props);
+    if (isAuthenticated()) {
+      const {
+        user: { _id, name, email, address, balance, about, role },
+      } = isAuthenticated();
+      
+      this.state = {
+        location: null,
+        userID: _id,
+        email: email,
+        address: address,
+        name: name,
+        balance: balance,
+        about: about,
+        role: role,
+        jobs: [],
+      };
+    } else {
+      this.state = {
+        location: null,
+        userID: null,
+        name: null,
+        balance: null,
+        jobs: [],
+      };
+    }
   }
 
   render() {
     // Get user info if authenticated
-    const {
-      user: { _id, name, email, address, balance, role },
-    } = isAuthenticated();
+
 
     var uID = this.props.userID;
 
@@ -42,10 +65,10 @@ class dashboard extends Component {
 
     return (
       <div>
-        <div class="container">
-          <div class="row">
-            <div class="col-"></div>
-            <div class="col-lg">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg"></div>
+            <div className="col-lg">
               <Link
                 to={{ pathname: "/add", state: { prevLocation: "/dashboard" } }}
               >
@@ -58,7 +81,7 @@ class dashboard extends Component {
               <ActiveListings jobs={activeJobs} userID={this.props.userID} />
               <History jobs={pastJobs} userID={this.props.userID} />
             </div>
-            <div class="col-"></div>
+            <div className="col-lg"></div>
           </div>
         </div>
       </div>
@@ -66,4 +89,4 @@ class dashboard extends Component {
   }
 }
 
-export default dashboard;
+export default DashBoard;

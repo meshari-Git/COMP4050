@@ -1,5 +1,6 @@
-import React, { Component, useState } from "../../../node_modules/react";
-import "./myJobPage.css";
+import React, { Component, useState } from "react";
+import "../assets/css/jobPage.css";
+
 import { Link } from "react-router-dom";
 
 class MyJob extends Component {
@@ -12,7 +13,7 @@ class MyJob extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3200/users?fetch=true&_id=" + this.state.userID)
+    fetch("http://localhost:3000/users?fetch=true&_id=" + this.state.userID)
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({ name: data[0].name });

@@ -10,22 +10,58 @@ The [Trello board](https://trello.com/b/40TmiuF2/4050-project) for this project.
 The [unit guide](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide) for COMP4050.
 
 # File Structure
-
-📦 src
- ┣ 📂 assets
- ┃ ┣ 📂 css
- ┃ ┗ 📂 img
- ┣ 📂 authentication
- ┣ 📂 components
- ┃ ┣ 📂 JSX
- ┣ 📂 hooks
- ┣ 📂 tests
- ┣ 📂 views
- ┣ 📜 App.js
- ┣ 📜 config.js
- ┣ 📜 index.js
- ┗ 📜 serviceWorker.js
-
+  ```
+src/  
+┣ assets/  
+┃ ┣ css/  
+┃ ┃ ┣ app.css  
+┃ ┃ ┣ changeinfo.css  
+┃ ┃ ┣ dashboard.css  
+┃ ┃ ┣ homepage.css  
+┃ ┃ ┣ index.css  
+┃ ┃ ┣ jobpage.css  
+┃ ┃ ┣ myjobpage.css  
+┃ ┃ ┣ navbar.css  
+┃ ┃ ┣ profile.css  
+┃ ┃ ┣ sidebar.css  
+┃ ┃ ┣ sidebarnav.css  
+┃ ┃ ┗ userinfo.css  
+┃ ┗ img/  
+┃   ┣ cardTest.png  
+┃   ┗ default-user.jpg  
+┣ authentication/  
+┃ ┗ apiindex.js  
+┣ components/  
+┃ ┣ JSX/  
+┃ ┃ ┣ ChangeInfo.jsx  
+┃ ┃ ┗ DataFill.jsx  
+┃ ┣ ActiveListings.js  
+┃ ┣ CurrentJobs.js  
+┃ ┣ Footer.js  
+┃ ┣ History.js  
+┃ ┣ Info.js  
+┃ ┣ Layout.js  
+┃ ┣ MyJob.js  
+┃ ┗ Profile.js  
+┣ hooks/  
+┃ ┣ DataRouter.js  
+┃ ┣ NavBar.js  
+┃ ┗ PrivateRoute.js  
+┣ tests/  
+┃ ┣ App.test.js  
+┃ ┣ homePage.test.js  
+┃ ┗ test.html  
+┣ views/  
+┃ ┣ DashBoardPage.js  
+┃ ┣ HomePage.js  
+┃ ┣ JobPage.js  
+┃ ┣ Login.js  
+┃ ┗ Register.js  
+┣ App.js  
+┣ config.js  
+┣ index.js  
+┗ serviceWorker.js
+ ``` 
 ## Getting the Project Running
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

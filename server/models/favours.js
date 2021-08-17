@@ -3,7 +3,7 @@ const users = require("./users");
 
 let favourSchema = new mongoose.Schema({
     ownerID: {
-        type: users,
+        type: Number,
         required: true,
     },
     description: {
@@ -23,7 +23,7 @@ let favourSchema = new mongoose.Schema({
         required: true,
     },
     operatorID :{
-        type: users,
+        type: Number,
         required: true,
     },
     city :{

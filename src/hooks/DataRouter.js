@@ -110,6 +110,11 @@ class DataRouter extends Component {
               exact
             />
 
+
+            <Route path="/profile">
+              <Profile user={this.state.user}></Profile>
+            </Route>
+
             <Route
               exact
               path="/job"

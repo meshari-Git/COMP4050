@@ -27,7 +27,7 @@ let UserSchema = new mongoose.Schema({
     },
     postCode: {
         type: Number,
-        required: true,
+        required: false,
     },
     username: {
       type: String,

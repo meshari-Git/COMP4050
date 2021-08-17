@@ -14,3 +14,10 @@ mongoose.connection
 .once("open", () => console.log("Connected to database: ", URI))
 .on("error", (err) => console.log(err));
 
+const UserSchema = require("./models/users");
+const FavourSchema = require("./models/favours");
+
+module.exports = {
+  UserSchema,
+  FavourSchema
+}

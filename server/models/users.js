@@ -27,11 +27,12 @@ let UserSchema = new mongoose.Schema({
     },
     postCode: {
         type: Number,
-        required: true,
+        required: false,
     },
     username: {
       type: String,
       required: true,
+      unique: true,
     },
     city: {
         type: String,

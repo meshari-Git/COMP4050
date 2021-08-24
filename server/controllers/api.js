@@ -50,19 +50,23 @@ const verifyLogin = async request => {
 }
 
 //helper functions
-const getUser = async (email) => {
-    const user = await User.findOne({ email: email })
+const getUser = async (username) => {
+    const user = await User.findOne({ username: username })
     return user
+}
+const getEmail = async (email) => {
+    const Email = await User.findOne({ email: email })
+    return Email
 }
 
 //login end-point
 apiRouter.post('/api/login' , async (req, res) => {
-    const {email , password} = req.body
-    const user = await getUser(email)
+    const {email, username , password} = req.body
+    const user = await getUser(username)
+    const EMAIL = await getEmail(email)
 
 
-
-    if (user && await bcrypt.compare(password, user.password)) {
+    if (user && EMAIL && await bcrypt.compare(password, user.password)) {
         
         const userForToken = {
             id: user.id,
@@ -92,11 +96,14 @@ apiRouter.post('/api/registration', async (req, res) => {
 
     const {username, firstName, password, email, address, DOB, lastName, city, postcode } = req.body
 
-    const user = await getUser(email)
-    
+    const user = await getUser(user)
+    const EMAIL = await getEmail(email)
 
     if (user) {
         return res.status(409).json({error: "Username already in use, choose a different username"})
+    }
+    if (email) {
+        return res.status(409).json({error: "Email already in use"})
     }
 
     
@@ -121,6 +128,12 @@ apiRouter.post('/api/registration', async (req, res) => {
 
 })
 
+apiRouter.get('/api/account' , async (req, res) => {
+
+    const {username , email} = req.body
+    const user = await getUser(username)
+
+})
 
 
 module.exports = apiRouter

@@ -49,7 +49,7 @@ const NavBar = ({ history }) => {
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="logoDiv">
         <a className="navbar-logo navbar-brand" href="/">
-          <i class="fas fa-retweet"></i>
+          <i className="fas fa-retweet"></i>
           SwapStreet
         </a>
       </div>
@@ -80,7 +80,7 @@ const NavBar = ({ history }) => {
           </div>
           <li className="nav-item active">
             <Link className="nav-link" to="/">
-              <i class="fas fa-home"></i>Home
+              <i className="fas fa-home"></i>Home
               <span className="sr-only">(current)</span>
             </Link>
           </li>

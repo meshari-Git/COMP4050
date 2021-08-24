@@ -128,10 +128,22 @@ apiRouter.post('/api/registration', async (req, res) => {
 
 })
 
+//Personal Profile end-point 
 apiRouter.get('/api/account' , async (req, res) => {
 
     const {username , email} = req.body
-    const user = await getUser(username)
+    user = await User.findOne({username: username})
+    EMAIL  = await getEmail(email)
+    if(!user){
+       return res.status(404).json({error: "Login or create an account to access this page"})
+    }
+    user.then(result => {
+        res.json(result)
+    })
+    .catch(err => {
+        res.status(404).json({error: "Login to your account first"})
+    })
+
 
 })
 

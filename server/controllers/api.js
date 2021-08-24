@@ -96,7 +96,7 @@ apiRouter.post('/api/registration', async (req, res) => {
 
     const {username, firstName, password, email, address, DOB, lastName, city, postcode } = req.body
 
-    const user = await getUser(user)
+    const user = await getUser(username)
     const EMAIL = await getEmail(email)
 
     if (user) {

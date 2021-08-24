@@ -14,6 +14,7 @@ import {useState} from 'react'
 
 function Profile({ user, setUser }) {
 
+  //this is used to set the display style of job-card-modal
   const [modalDisplay, setModalDisplay] = useState('none')
 
   user = {
@@ -105,7 +106,7 @@ function Profile({ user, setUser }) {
               <td>David Jones</td>
               <td>20/1/20</td>
             </tr>
-            <tr>
+            <tr onClick={showJob}>
               <td>Save my cat</td>
               <td>1 tokens</td>
               <td>Searching for help...</td>
@@ -113,7 +114,7 @@ function Profile({ user, setUser }) {
               <td> - </td>
               <td>20/1/21</td>
             </tr>
-            <tr>
+            <tr onClick={showJob}>
               <td>Fix My Car</td>
               <td>20 tokens</td>
               <td>Completed</td>
@@ -121,7 +122,7 @@ function Profile({ user, setUser }) {
               <td>Steve Jobs</td>
               <td>18/1/20</td>
             </tr>
-            <tr>
+            <tr onClick={showJob}>
               <td>Make me breakfast</td>
               <td>25 tokens</td>
               <td>Completed</td>

@@ -62,16 +62,15 @@ const getEmail = async (email) => {
 
 //login end-point
 apiRouter.post('/api/login' , async (req, res) => {
-    const {email, username , password} = req.body
-    const user = await getUser(username)
+    const {email,  password} = req.body
+    //const user = await getUser(username)
     const EMAIL = await getEmail(email)
 
-
-    if (user && EMAIL && await bcrypt.compare(password, user.password)) {
+    if (EMAIL && await bcrypt.compare(password, EMAIL.password)) {
         
         const userForToken = {
-            id: user.id,
-            email: user.email            
+            id: EMAIL.id,
+            email: EMAIL.email            
         }
         
         let token = null
@@ -82,7 +81,7 @@ apiRouter.post('/api/login' , async (req, res) => {
             return res.status(401).json({error: "invalid token"})
         }
 
-        return res.status(200).json({token, username: user.username, email: user.email})
+        return res.status(200).json({token, username: EMAIL.username, email: EMAIL.email})
         
     } else {
         return res.status(401).json({error: "invalid email or password"})

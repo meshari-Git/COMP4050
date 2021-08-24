@@ -3,7 +3,8 @@ const database = require('../database')
 const User = database.UserSchema;
 const Favour = database.FavourSchema;
 const bcrypt = require('bcrypt')
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const favours = require('../models/favours');
 
 
 const apiRouter = express.Router()
@@ -40,7 +41,7 @@ const verifyLogin = async request => {
         return null
     }
 
-    const user = await getUser(decodedToken.email)
+    const user = await getUser(decodedToken.username)
 
     if (!user) {
         return null
@@ -132,17 +133,17 @@ apiRouter.post('/api/registration', async (req, res) => {
 apiRouter.get('/api/account' , async (req, res) => {
 
     const {username , email} = req.body
-    user = await User.findOne({username: username})
-    EMAIL  = await getEmail(email)
+    //const user = await verifyLogin(req)
+    const user = await getUser(username)
+    const EMAIL = await getEmail(email)
+
     if(!user){
-       return res.status(404).json({error: "Login or create an account to access this page"})
+       return res.status(401).json({error: "Login or create an account to access this page"})
     }
-    user.then(result => {
-        res.json(result)
-    })
-    .catch(err => {
-        res.status(404).json({error: "Login to your account first"})
-    })
+
+    return res.json(user)
+    
+    
 
 
 })
@@ -158,6 +159,29 @@ apiRouter.get("/api/", async (req , res) => {
 
 //Adding new Favour 
 apiRouter.post("/api/new-favour" , (req, res) => {
+    const {title, description, cost, status, city, streetAddress} = req.body
     
+    const user = verifyLogin(req)
+    if (!user){
+        // User is not logged-in
+        return res.status(401).json({error: "Login to access this page"})
+    }
+    const OwnerId = user._id
+
+    const newFavour = new Favour({
+        ownerID: OwnerId,
+        description: description,
+        title: title,
+        status: 0,
+        cost: cost,
+        city: city,
+        streetAddress: streetAddress
+    })
+
+    newFavour.save()
+    .then(result => {
+        res.status(201).json(result)
+    })
+
 })
 module.exports = apiRouter

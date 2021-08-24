@@ -6,25 +6,21 @@ let favourSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    description: {
-        type: String,
-        required: true,
-    },
     title:{
         type: String,
         required: true,
     },
-    status:{
-        type: Number,
-        rquired: true,
+    description: {
+        type: String,
+        required: true,
     },
     cost:{
         type: Number,
         required: true,
     },
-    operatorID :{
+    status:{
         type: Number,
-        required: false,
+        rquired: true,
     },
     city :{
         type: String,
@@ -34,7 +30,10 @@ let favourSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    operatorID :{
+        type: Number,
+        required: false,
+    }
 
-
-})
+});
 module.exports = mongoose.model("Favour", favourSchema, "favour");

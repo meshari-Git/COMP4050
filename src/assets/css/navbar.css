@@ -1,8 +1,159 @@
-.header {
-  height: 100px;
+
+body {
+  background: #fff;
 }
 
-.userCoinsIcon {
+i {
+  margin-right: 10px;
+}
+
+.navbar {
+  margin-bottom: 1em;
+}
+.navbar-logo {
+  padding: 15px;
+  color: #fff;
+}
+
+.navbar-mainbg {
+  background-color: #6d71f9;
+  padding: 0px;
+}
+
+#navbarSupportedContent {
+  overflow: hidden;
+  position: relative;
+}
+
+#navbarSupportedContent ul li a {
+  display: block;
+  position: relative;
+  padding: 20px 20px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#navbarSupportedContent > ul > li.active > a {
+  color: #272848;
+  background-color: transparent;
+  transition: all 0.9s;
+}
+#navbarSupportedContent a:not(:only-child):after {
+  display: inline-block;
+  position: absolute;
+  vertical-align: middle;
+  padding-right: 3px;
+  right: 20px;
+  top: 10px;
+  content: "\f105";
+  font-size: 14px;
+  font-weight: 900;
+  transition: 0.3s;
+}
+#navbarSupportedContent .active > a:not(:only-child):after {
+  transform: rotate(90deg);
+}
+
+.nav-selector {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  margin-top: 10px;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #fff;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+}
+.nav-selector .right,
+.nav-selector .left {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 10px;
+  background-color: #fff;
+}
+.nav-selector .right {
+  right: -25px;
+}
+.nav-selector .left {
+  left: -25px;
+}
+.nav-selector .right:before,
+.nav-selector .left:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #6d71f9;
+}
+.nav-selector .right:before {
+  bottom: 0;
+  right: -25px;
+}
+.nav-selector .left:before {
+  bottom: 0;
+  left: -25px;
+}
+@media (max-width: 991px) {
+  #navbarSupportedContent ul li a {
+    padding: 12px 30px;
+  }
+  .nav-selector {
+    margin-top: 0px;
+    margin-left: 10px;
+    border-radius: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+  .nav-selector .left,
+  .nav-selector .right {
+    right: 10px;
+  }
+  .nav-selector .left {
+    top: -25px;
+    left: auto;
+  }
+  .nav-selector .right {
+    bottom: -25px;
+  }
+  .nav-selector .left:before {
+    left: -25px;
+    top: -25px;
+  }
+  .nav-selector .right:before {
+    bottom: -25px;
+    left: -25px;
+  }
+}
+
+/* Original Code */
+
+.logoDiv {
+  fill: #54c1fb;
+}
+
+.logoDiv:hover {
+  color: #54c1fb !important;
+}
+
+.footer {
+  margin-top: 0.5em;
+  padding: 0.5em;
+  background-color: #6c6d8a;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* .userCoinsIcon {
   margin: -2px 3px 0 5px;
   height: 100%;
   width: 18px;
@@ -18,38 +169,24 @@
 .userProfileIcon:hover {
   fill: #17a2b8;
   cursor: pointer;
-}
+} */
 
-.logoDiv {
-  fill: rgb(235, 195, 64);
-}
 
-.logoDiv:hover {
-  color: rgb(235, 195, 64) !important;
-}
 
-.coinContainer {
+/* .coinContainer {
   margin: 0 20px 0 20px;
 }
 
 .coinsText {
   margin: 0 5px 0 0px;
-}
+} */
 
-.login-button .logout-button .register-button {
+/* .login-button .logout-button .register-button {
   margin: 0 5px 0 0px;
-}
+} */
 
-.mainLogo {
+/* .mainLogo {
   margin: 0 10px 0 10px;
-}
+} */
 
-.footer {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgb(235, 195, 64);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
+

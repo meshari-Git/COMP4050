@@ -3,7 +3,7 @@ const users = require("./users");
 
 let favourSchema = new mongoose.Schema({
     ownerID: {
-        type: Number,
+        type: String,
         required: true,
     },
     title:{

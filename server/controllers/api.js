@@ -158,15 +158,16 @@ apiRouter.get("/api/", async (req , res) => {
 })
 
 //Adding new Favour 
-apiRouter.post("/api/new-favour" , (req, res) => {
-    const {title, description, cost, status, city, streetAddress} = req.body
+apiRouter.post("/api/new-favour" , async (req, res) => {
+    const {title, description, cost, status, city, streetAddress , username} = req.body
     
-    const user = verifyLogin(req)
+    const user = await getUser(username)
     if (!user){
         // User is not logged-in
         return res.status(401).json({error: "Login to access this page"})
     }
-    const OwnerId = user._id
+    //const userSchema = await 
+    const OwnerId = user._id.toString()
 
     const newFavour = new Favour({
         ownerID: OwnerId,

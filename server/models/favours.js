@@ -24,7 +24,7 @@ let favourSchema = new mongoose.Schema({
     },
     operatorID :{
         type: Number,
-        required: true,
+        required: false,
     },
     city :{
         type: String,

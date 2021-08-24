@@ -5,10 +5,9 @@ import "../assets/css/profile.css";
 import "../assets/css/sidebar.css";
 import "../assets/css/sidebarnav.css";
 import "../assets/css/userinfo.css";
-import userService from '../services/user.js';
-import { Link } from "react-router-dom";
+// import userService from '../services/user.js';
+// import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import { isAuthenticated } from "../authentication/apiindex";
 import { Row, Col, Table } from 'react-bootstrap';
 
 function Profile({user, setUser}) {
@@ -18,26 +17,7 @@ function Profile({user, setUser}) {
           id: "aldsfkjfklaj",
           email:"ben@ben.com"}
 
-    const sendLogin = (event) => {
-
-      event.preventDefault()      
-
-      userService.login("ben@rtt.co", "badpassword")
-        .then(response => {
-              
-          if(!response || response === null) {
-            alert("Username or Password are incorrect")
-            return
-          }
-          console.log(response)
-        })
-        .catch(err => {
-            console.log(err)
-            alert("Username or Password are incorrect")
-            return
-        })
-
-    }
+    
 
     
 
@@ -77,7 +57,7 @@ function Profile({user, setUser}) {
         </Row>
 
             <h5>Jobs</h5>
-            <button className="btn btn-primary" onClick={(event) => sendLogin(event)}> + Add </button>            
+            <button className="btn btn-primary"> + Add </button>            
             <Table bordered hover striped>
               <thead>
                 <tr>

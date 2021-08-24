@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Redirect } from "react-router-dom";
-import { login, authenticate, isAuthenticated } from "../authentication/apiindex";
+// import { login, authenticate, isAuthenticated } from "../authentication/apiindex";
+import userService from '../services/user.js';
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -13,7 +14,7 @@ const Login = () => {
   });
 
   const { email, password, loading, error, redirectToReferrer } = values;
-  const { user } = isAuthenticated();
+  const { user } = userService.isAuthenticated();
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -22,20 +23,27 @@ const Login = () => {
   const clickSubmit = (event) => {
     // prevent browser from reloading
     event.preventDefault();
-    setValues({ ...values, error: false, loading: true });
-    login({ email, password }).then((data) => {
-      console.log(data.error)
-      if (data.error) {
-        setValues({ ...values, error: data.error, loading: false });
-      } else {
-        authenticate(data, () => {
-          setValues({
-            ...values,
-            redirectToReferrer: true,
-          });
-        });
-      }
-    });
+    
+    userService.login(values.email, values.password)
+        .then(response => {
+              
+          setValues({ ...values, error: false, password: "" });
+          if(!response || response === null) {
+            setValues({ ...values, error: "Invalid Username or Password", loading: false });
+            return
+          }
+          console.log(response)
+          
+          //Stores the user object in local storage
+          userService.authenticate(response, () => {
+            setValues({...values,redirectToReferrer: true}); //Update the redirect value to true
+          }) 
+        })
+        .catch(err => {
+            console.log(err)
+            setValues({ ...values, error: "Invalid Username or Password", loading: false });
+            return
+        })
   };
 
   const registerForm = () => (

@@ -33,10 +33,52 @@ const login = (email, password) => {
         .then(response => response.data).catch(e => null)
 }
 
+/**
+ * Get Profile
+ * @param string token  
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const profile = (token) => {
+    const config = {headers: {Authorization: "Bearer " + token}}
+    return axios.get(baseURL + 'account', config)
+        .then(response => response.data).catch(e => null)
+}
+
+
+
+const authenticate = (data, next) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jwt", JSON.stringify(data));
+      next();
+    }
+};
+  
+const logout = (next) => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("jwt");
+      next();
+    }
+};
+  
+const isAuthenticated = () => {
+    if (typeof window == "undefined") {
+      return false;
+    }
+    if (localStorage.getItem("jwt")) {
+      return JSON.parse(localStorage.getItem("jwt"));
+    } else {
+      return false;
+    }
+};
+
 
 const exportedObject = {
     login,
-    register
+    register,
+    profile,
+    authenticate,
+    isAuthenticated,
+    logout
 };
 
 export default exportedObject;

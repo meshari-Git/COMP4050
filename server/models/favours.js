@@ -3,10 +3,6 @@ const users = require("./users");
 
 let favourSchema = new mongoose.Schema({
     ownerID: {
-        type: Number,
-        required: true,
-    },
-    description: {
         type: String,
         required: true,
     },
@@ -14,17 +10,17 @@ let favourSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    status:{
-        type: Number,
-        rquired: true,
+    description: {
+        type: String,
+        required: true,
     },
     cost:{
         type: Number,
         required: true,
     },
-    operatorID :{
+    status:{
         type: Number,
-        required: true,
+        rquired: true,
     },
     city :{
         type: String,
@@ -34,6 +30,10 @@ let favourSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    operatorID :{
+        type: Number,
+        required: false,
+    }
 
-
-})
+});
+module.exports = mongoose.model("Favour", favourSchema, "favour");

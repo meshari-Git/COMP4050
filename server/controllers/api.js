@@ -148,4 +148,16 @@ apiRouter.get('/api/account' , async (req, res) => {
 })
 
 
+//Homepage Favours
+apiRouter.get("/api/", async (req , res) => {
+    await Favour.find({})
+    .then(result =>{
+        res.json(result)
+    })
+})
+
+//Adding new Favour 
+apiRouter.post("/api/new-favour" , (req, res) => {
+    
+})
 module.exports = apiRouter

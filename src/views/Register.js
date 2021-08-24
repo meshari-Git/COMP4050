@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
-import { register } from "../authentication/apiindex";
+import userService from '../services/user.js';
+
 
 const Register = () => {
   const [values, setValues] = useState({
-    name: "NewUser",
-    email: "user@email.com",
-    address: "99 Sample Street, Suburb NSW",
-    about: "",
-    password: "123456",
+    username: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    email: "",
+    address: "",
+    city: "",
+    postCode: "",
+    DOB: "",
     error: "",
     success: false,
   });
 
-  const { name, email, address, about, password, success, error } = values;
+  const { username, firstName, lastName, password, email, address, city, postCode, DOB, success, error } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -24,17 +29,22 @@ const Register = () => {
     // prevent browser from reloading
     event.preventDefault();
     setValues({ ...values, error: false });
-    register({ name, email, address, about, password }).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error, success: false });
+    
+    userService.register(username, firstName, password, email, address, DOB, lastName, city, postCode).then((response) => {
+      if (response.error) {
+        setValues({ ...values, error: response.error, success: false });
       } else {
         setValues({
           ...values,
-          name: "",
+          username: "",
+          firstName: "",
+          lastName: "",
+          password: "",
           email: "",
           address: "",
-          about: "",
-          password: "",
+          city: "",
+          postCode: "",
+          DOB: "",
           error: "",
           success: true,
         });
@@ -45,15 +55,23 @@ const Register = () => {
   const registerForm = () => (
     <form>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label className="text-muted">First Name</label>
         <input
-          onChange={handleChange("name")}
+          onChange={handleChange("firstName")}
           type="text"
           className="form-control"
-          value={name}
+          value={firstName}
         />
       </div>
-
+      <div className="form-group">
+        <label className="text-muted">Last Name</label>
+        <input
+          onChange={handleChange("lastName")}
+          type="text"
+          className="form-control"
+          value={lastName}
+        />
+      </div>
       <div className="form-group">
         <label className="text-muted">Email</label>
         <input
@@ -73,17 +91,33 @@ const Register = () => {
           value={address}
         />
       </div>
-
       <div className="form-group">
-        <label className="text-muted">About yourself (Optional)</label>
+        <label className="text-muted">City</label>
         <input
-          onChange={handleChange("about")}
+          onChange={handleChange("city")}
           type="text"
           className="form-control"
-          value={about}
+          value={city}
         />
       </div>
-
+      <div className="form-group">
+        <label className="text-muted">Postcode</label>
+        <input
+          onChange={handleChange("postCode")}
+          type="text"
+          className="form-control"
+          value={postCode}
+        />
+      </div>
+      <div className="form-group">
+        <label className="text-muted">Date Of Birth</label>
+        <input
+          onChange={handleChange("DOB")}
+          type="text"
+          className="form-control"
+          value={DOB}
+        />
+      </div>
       <div className="form-group">
         <label className="text-muted">Password</label>
         <input
@@ -93,6 +127,7 @@ const Register = () => {
           value={password}
         />
       </div>
+
       <button onClick={clickSubmit} className="btn btn-primary">
         Submit
       </button>

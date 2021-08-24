@@ -1,5 +1,6 @@
 .homePage {
-  background-color: grey;
+
+  display: flex;
 }
 
 .dropdown {
@@ -8,11 +9,11 @@
 
 .homeContainer {
   padding: 15px;
-  width: 100%;
-
+  width: 20%;
+  height: 100vh;
+  background: black;
   display: flex;
-  justify-content: space-around;
-  justify-items: center;
+  flex-direction:row;
 }
 
 .homeCard {

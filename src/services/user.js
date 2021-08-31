@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = "/api/"
+const baseURL = "http://localhost:3001/api/"
 
 /**
  * Send A Login Request
@@ -38,8 +38,10 @@ const login = (email, password) => {
  * @param string token  
  * @returns {Promise} Promise that will resolve the response data
  */
- const profile = (token) => {
-    const config = {headers: {Authorization: "Bearer " + token}}
+ const profile = () => {
+    const user = isAuthenticated()
+
+    const config = {headers: {Authorization: "bearer " + user.token}}
     return axios.get(baseURL + 'account', config)
         .then(response => response.data).catch(e => null)
 }

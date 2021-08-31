@@ -11,28 +11,30 @@ import DataFill from "../components/JSX/DataFill";
 import Register from "../views/Register";
 import Login from "../views/Login";
 import PrivateRoute from "./PrivateRoute";
-import { isAuthenticated } from "../authentication/apiindex";
+
+import userService from '../services/user.js';
+
+// import { isAuthenticated } from "../authentication/apiindex";
 
 class DataRouter extends Component {
   constructor(props) {
     super(props);
-    if (isAuthenticated()) {
-      const {
-        user: { _id, name, email, address, balance, about, role },
-      } = isAuthenticated();
-
-      this.state = {
-        location: null,
-        userID: _id,
-        email: email,
-        address: address,
-        name: name,
-        balance: balance,
-        about: about,
-        role: role,
-        jobs: [],
-      };
-    } else {
+    // if (userService.isAuthenticated()) {
+    //   const {
+    //     user: { _id, name, email, address, balance, about, role },
+    //   } = userService.isAuthenticated();
+    //   this.state = {
+    //     location: null,
+    //     userID: _id,
+    //     email: email,
+    //     address: address,
+    //     name: name,
+    //     balance: balance,
+    //     about: about,
+    //     role: role,
+    //     jobs: [],
+    //   };
+    // } else {
       this.state = {
         location: null,
         userID: null,
@@ -40,7 +42,7 @@ class DataRouter extends Component {
         balance: null,
         jobs: [],
       };
-    }
+    // }
   }
 
   componentDidMount() {

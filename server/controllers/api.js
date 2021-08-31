@@ -19,7 +19,7 @@ const passwordHashing = (password) => {
 }
 
 const getTokenFrom = request => {
-    const authorization = request.get('authorization') 
+    const authorization = request.get('authorization')
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) { 
            return authorization.substring(7)  
         }  
@@ -78,6 +78,7 @@ apiRouter.post('/api/login' , async (req, res) => {
         catch {
             return res.status(401).json({error: "invalid token"})
         }
+        console.log(token)
 
         return res.status(200).json({token, username: EMAIL.username, email: EMAIL.email})
         
@@ -134,8 +135,14 @@ apiRouter.get('/api/account' , async (req, res) => {
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
     }
-
-    return res.json(user)
+    const userID = user._id.toString()
+    const ownedFavours = await Favour.find({ ownerID: userID })
+    const operatedFavours = await Favour.find({ operatorID: userID })
+    console.log(typeof(ownedFavours))
+    console.log(typeof(operatedFavours))
+    console.log(ownedFavours)
+    console.log(operatedFavours)
+    return res.status(200).json([[user] , ownedFavours , operatedFavours])
     
 })
 

@@ -31,7 +31,7 @@ let favourSchema = new mongoose.Schema({
         required: true,
     },
     operatorID :{
-        type: Number,
+        type: String,
         required: false,
     }
 

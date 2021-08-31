@@ -89,14 +89,14 @@ const NavBar = ({ history }) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/dashboard">
-              <i className="far fa-chart-bar"></i>My Dashboard
+            <Link className="nav-link" to="/job/new">
+              <i className="fas fa-thumbs-up"></i>Need a Favour?
             </Link>
           </li>
         </ul>
       </div>
       
-    {!userService.isAuthenticated() && (
+    {/* {!userService.isAuthenticated() && (
       <div >
         <Link className="nav-link" to="/register">
           <button
@@ -108,7 +108,7 @@ const NavBar = ({ history }) => {
         </Link>
         </div>
      
-    )}
+    )} */}
 
     {!userService.isAuthenticated() && (
       <div >
@@ -117,7 +117,7 @@ const NavBar = ({ history }) => {
             className="btn btn-light my-2 my-sm-0 border border-dark"
             type="submit"
           >
-            Login
+            Sign-in / Join
           </button>
         </Link>
       </div>

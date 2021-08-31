@@ -57,20 +57,18 @@ function Profile() {
 
   }
 
-  if (user === undefined || user.firstName === undefined) { //user not logged in
-  
   if (!userService.isAuthenticated()) {
     return (
       <Redirect to="/login"></Redirect>
     )
   }
 
-  if (!user || user === undefined || user.firstName === undefined) { //No Profile
+  if (!user || user === undefined || user.firstName === "") { //No Profile
     return (
       <h1>Loading...</h1>
     )
-  } 
-  
+  }  else {
+
   return (
     <div>
       <Row>
@@ -150,14 +148,14 @@ function Profile() {
       <br></br>
       <br></br>
 
-      <div className = 'job-card-modal' style = {{
+      {/* <div className = 'job-card-modal' style = {{
         display: modalDisplay,
       }}>
         <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
-      </div>
+      </div> */}
     </div>
   )
-}
+  }
 }
 
 

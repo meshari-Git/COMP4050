@@ -138,10 +138,6 @@ apiRouter.get('/api/account' , async (req, res) => {
     const userID = user._id.toString()
     const ownedFavours = await Favour.find({ ownerID: userID })
     const operatedFavours = await Favour.find({ operatorID: userID })
-    console.log(typeof(ownedFavours))
-    console.log(typeof(operatedFavours))
-    console.log(ownedFavours)
-    console.log(operatedFavours)
     return res.status(200).json([[user] , ownedFavours , operatedFavours])
     
 })

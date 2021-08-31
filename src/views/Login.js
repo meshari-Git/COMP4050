@@ -6,8 +6,8 @@ import userService from '../services/user.js';
 
 const Login = () => {
   const [values, setValues] = useState({
-    email: "userSwapStreet@email.com",
-    password: "123456",
+    email: "fake@fake.com",
+    password: "bob",
     error: "",
     loading: false,
     redirectToReferrer: false,
@@ -91,9 +91,9 @@ const Login = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
-      if (user) {
+      // if (user) {
         return <Redirect to="/profile" />;
-      }
+      // }
     }
   };
 
@@ -103,10 +103,10 @@ const Login = () => {
       description="Welcome Back"
       className="container col-md-8 offset-md-2"
     >
+      {redirectUser()}
       {showLoading()}
       {showError()}
       {registerForm()}
-      {redirectUser()}
     </Layout>
   );
 };

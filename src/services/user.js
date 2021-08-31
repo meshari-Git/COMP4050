@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = "/api/"
+const baseURL = "http://localhost:3001/api/"
 
 /**
  * Send A Login Request
@@ -65,6 +65,7 @@ const isAuthenticated = () => {
       return false;
     }
     if (localStorage.getItem("jwt")) {
+      console.log("JSON PARSE: ", JSON.parse(localStorage.getItem("jwt")))
       return JSON.parse(localStorage.getItem("jwt"));
     } else {
       return false;

@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import "../assets/css/navbar.css";
 import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
-
-import { logout, isAuthenticated } from "../authentication/apiindex";
+import userService from '../services/user.js';
 
 const NavBar = ({ history }) => {
   // navbar animation 
@@ -97,7 +96,7 @@ const NavBar = ({ history }) => {
         </ul>
       </div>
       
-    {!isAuthenticated() && (
+    {!userService.isAuthenticated() && (
       <div >
         <Link className="nav-link" to="/register">
           <button
@@ -111,7 +110,7 @@ const NavBar = ({ history }) => {
      
     )}
 
-    {!isAuthenticated() && (
+    {!userService.isAuthenticated() && (
       <div >
         <Link className="nav-link" to="/login">
           <button
@@ -124,11 +123,11 @@ const NavBar = ({ history }) => {
       </div>
     )}
 
-    {isAuthenticated() && (
+    {userService.isAuthenticated() && (
       <div>
         <Link className="nav-link"
           onClick={() =>
-            logout(() => {
+            userService.logout(() => {
               history.push("/");
             })
           }

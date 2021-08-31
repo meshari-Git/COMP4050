@@ -102,7 +102,7 @@ apiRouter.post('/api/registration', async (req, res) => {
     if (user) {
         return res.status(409).json({error: "Username already in use, choose a different username"})
     }
-    if (email) {
+    if (EMAIL) {
         return res.status(409).json({error: "Email already in use"})
     }
 

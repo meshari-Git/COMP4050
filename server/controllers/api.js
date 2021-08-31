@@ -187,9 +187,7 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
 
 // Specific favour retrieval
 apiRouter.get("/api/favours/:id" , async (req , res) => {
-    const id = req.params.id.toString()
-    console.log(id)
-    await Favour.findById(id)
+    await Favour.findById(req.params.id)
     .then(result => {
         res.json(result)
     })

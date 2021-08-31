@@ -6,6 +6,33 @@ import { isAuthenticated } from "../authentication/apiindex";
 
 import { Link } from "react-router-dom";
 
+// class JobPage extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       userID: this.props.userID,
+//       job: this.props.location.state.job,
+//     };
+//   }
+
+//   render() {
+//     const job = this.props.location.state.job;
+//     return (
+//       <div className = "detailed-job">
+//         Hello
+//         {console.log({job})}
+//       </div>
+//     )
+//   }
+// }
+
+// export default JobPage
+
+/**
+ * Original code.
+ * Super messy, commenting it out for now.
+ */
+
 class JobPage extends Component {
   constructor(props) {
     super(props);
@@ -369,3 +396,4 @@ class JobPage extends Component {
 }
 
 export default JobPage;
+

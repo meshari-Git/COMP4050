@@ -1,17 +1,27 @@
+import {Link} from "react-router-dom"
 
-const JobCard = ({jobID, hideJob}) => {
+const JobCard = ({job, hideJob}) => {
+    const passJob = job
     return (
         <div className = 'job-card'>
-            <div className = 'ownerID'>{jobID.ownerID}</div>
-            <div className = 'description'>{jobID.description}</div>
-            <div className = 'title'>{jobID.title}</div>
-            <div className = 'status'>{jobID.status}</div>
-            <div className = 'cost'>{jobID.cost}</div>
-            <div className = 'operatorID'>{jobID.operatorID ?
-                jobID.operator : 'Nobody assigned to this job'}</div>
-            <div className = 'city'>{jobID.city}</div>
-            <div className = 'street-address'>{jobID.streetAddress}</div>
+            <div className = 'ownerID'>{job.ownerID}</div>
+            <div className = 'description'>{job.description}</div>
+            <div className = 'title'>{job.title}</div>
+            <div className = 'status'>{job.status}</div>
+            <div className = 'cost'>{job.cost}</div>
+            <div className = 'operatorID'>{job.operatorID ?
+                job.operator : 'Nobody assigned to this job'}</div>
+            <div className = 'city'>{job.city}</div>
+            <div className = 'street-address'>{job.streetAddress}</div>
             <button onClick = {hideJob}>Close</button>
+            <Link className ="modal-button-show-job" to={{
+                pathname: "/job",
+                state: {
+                    job: passJob
+                }
+            }}>
+                <i>Show More</i>
+            </Link>
         </div>
     )
 }

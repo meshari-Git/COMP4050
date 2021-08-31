@@ -50,6 +50,12 @@ function Profile({ user, setUser }) {
     setModalDisplay('none')
   }
 
+  //test redirect to job page
+  const goToJob = (e) => {
+    e.preventDefault()
+
+  }
+
   if (user === undefined || user.firstName === undefined) { //user not logged in
     return (
       <h1>Not Logged In</h1>
@@ -130,15 +136,25 @@ function Profile({ user, setUser }) {
               <td>You (Ben Fricke)</td>
               <td>15/1/20</td>
             </tr>
+            <tr >
+              <td>Test</td>
+              <td>Free</td>
+              <td>Active</td>
+              <td>JobPage.js</td>
+              <td>Leon JM</td>
+              <td>31/08/21</td>
+            </tr>
           </tbody>
         </Table>
         <br></br>
         <br></br>
 
+        {/*Below is the JSX for showing a job. 
+        The display is controlled by modalDisplay which is a useState.*/}
         <div className = 'job-card-modal' style = {{
           display: modalDisplay,
         }}>
-          <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
+          <JobCard job = {dummyJob} hideJob = {closeJob}/>
         </div>
       </div>
     )

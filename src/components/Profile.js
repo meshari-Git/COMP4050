@@ -63,7 +63,7 @@ function Profile() {
     )
   }
 
-  if (!user || user === undefined || user.firstName === "") { //No Profile
+  if (!user || !user.email) { //No Profile
     return (
       <h1>Loading...</h1>
     )

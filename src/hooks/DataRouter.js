@@ -10,6 +10,7 @@ import JobPage from "../views/JobPage";
 import DataFill from "../components/JSX/DataFill";
 import Register from "../views/Register";
 import Login from "../views/Login";
+import CreateJob from "../views/CreateJob";
 import PrivateRoute from "./PrivateRoute";
 
 import userService from '../services/user.js';
@@ -114,7 +115,11 @@ class DataRouter extends Component {
 
 
             <Route path="/profile">
-              <Profile user={this.state.user}></Profile>
+              <Profile></Profile>
+            </Route>
+
+            <Route path="/job/new">
+              <CreateJob></CreateJob>
             </Route>
 
             <Route

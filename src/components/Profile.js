@@ -6,7 +6,7 @@ import "../assets/css/sidebar.css";
 import "../assets/css/sidebarnav.css";
 import "../assets/css/userinfo.css";
 // import userService from '../services/user.js';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Table } from 'react-bootstrap';
 import JobCard from './JobCard'
@@ -98,7 +98,7 @@ function Profile() {
       </Row>
 
       <h5>Jobs</h5>
-      <button className="btn btn-primary"> + Add </button>
+      <Link to="/job/new"><button className="btn btn-primary"> + Add </button></Link>
       <Table bordered hover striped>
         <thead>
           <tr>

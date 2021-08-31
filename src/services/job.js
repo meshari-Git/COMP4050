@@ -1,24 +1,23 @@
 import axios from 'axios'
 
-const baseURL = "dummyURL/TODO/"
+const baseURL = "http://localhost:3001/api/"
 
 /**
  * Insert a new job into the database.
  * @param JSON job
  * @returns {promise} 
  */
-const addJob = (job) => {
-    return axios.post(baseURL + 'TODO', 
+const addJob = (job, token) => {
+    const config = {headers: {Authorization: "bearer " + token}}
+    
+    return axios.post(baseURL + 'new-favour', 
         {
-            "ownerID": job.ownerID,
             "title": job.title,
             "description": job.description,
             "cost": job.cost,
-            "status": job.status,
             "city": job.city,
-            "streetAddress": job.address,
-            "operatorID": job.operatorID
-        }
+            "streetAddress": job.streetAddress,
+        }, config
     ).then(response => response.data).catch(e => null)
 }
 
@@ -29,8 +28,8 @@ const delFavour = (favourId) => {
     })
 }
 
-const editFavour = (favour) => {
-    axios.put(baseURL + favour.id, {
+const editFavour = (job) => {
+    axios.put(baseURL + job.id, {
             "ownerID": job.ownerID,
             "title": job.title,
             "description": job.description,
@@ -42,9 +41,9 @@ const editFavour = (favour) => {
         })
     .then(response => {
         console.log(response)
-        const updateFavour = favours.slice()
-        updateFavour[favour.id] = response
-        setFavours(updateFavour)
+        const updateFavour = job.slice()
+        updateFavour[job.id] = response
+        // setFavours(updateFavour)
     })
 }
 

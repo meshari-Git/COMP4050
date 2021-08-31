@@ -150,14 +150,14 @@ apiRouter.get("/api/", async (req , res) => {
 
 //Adding new Favour 
 apiRouter.post("/api/new-favour" , async (req, res) => {
-    const {title, description, cost, status, city, streetAddress , username} = req.body
+    const {title, description, cost, city, streetAddress , postCode} = req.body
     
-    const user = await getUser(username)
-    if (!user){
-        // User is not logged-in
-        return res.status(401).json({error: "Login to access this page"})
+    const user = await verifyLogin(req)
+
+    if(!user){
+       return res.status(401).json({error: "Login or create an account to access this page"})
     }
-    //const userSchema = await 
+
     const OwnerId = user._id.toString()
 
     const newFavour = new Favour({
@@ -167,12 +167,13 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
         status: 0,
         cost: cost,
         city: city,
-        streetAddress: streetAddress
+        streetAddress: streetAddress,
+        postCode: postCode
     })
 
     newFavour.save()
     .then(result => {
-        res.status(201).json(result)
+        res.status(201).json(newFavour)
     })
 
 })

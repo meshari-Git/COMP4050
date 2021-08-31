@@ -37,6 +37,10 @@ let UserSchema = new mongoose.Schema({
     city: {
         type: String,
         required: true,
+    },
+    bio: {
+      type: String,
+      required: true,
     }
     
   });

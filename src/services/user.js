@@ -40,7 +40,6 @@ const login = (email, password) => {
  */
  const profile = () => {
     const user = isAuthenticated()
-
     const config = {headers: {Authorization: "bearer " + user.token}}
     return axios.get(baseURL + 'account', config)
         .then(response => response.data).catch(e => null)

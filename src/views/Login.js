@@ -32,7 +32,6 @@ const Login = () => {
             setValues({ ...values, error: "Invalid Username or Password", loading: false });
             return
           }
-          console.log(response)
           
           //Stores the user object in local storage
           userService.authenticate(response, () => {

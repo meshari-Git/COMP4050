@@ -40,19 +40,17 @@ const verifyLogin = async request => {
     if (!token || !decodedToken.id) {
         return null
     }
-
-    const user = await getUser(decodedToken.username)
-
+    const user = await getUser(decodedToken.email)
     if (!user) {
         return null
     }
-
     return user
 }
 
 //helper functions
-const getUser = async (username) => {
-    const user = await User.findOne({ username: username })
+const getUser = async (email) => {
+    const user = await User.findOne({ email: email })
+    user.password = null
     return user
 }
 const getEmail = async (email) => {
@@ -130,11 +128,8 @@ apiRouter.post('/api/registration', async (req, res) => {
 
 //Personal Profile end-point 
 apiRouter.get('/api/account' , async (req, res) => {
-
-    const {username , email} = req.body
-    //const user = await verifyLogin(req)
-    const user = await getUser(username)
-    const EMAIL = await getEmail(email)
+    
+    const user = await verifyLogin(req)
 
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
@@ -142,9 +137,6 @@ apiRouter.get('/api/account' , async (req, res) => {
 
     return res.json(user)
     
-    
-
-
 })
 
 

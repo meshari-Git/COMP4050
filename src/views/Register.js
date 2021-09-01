@@ -93,6 +93,23 @@ const Register = () => {
   const registerForm = () => (
     <form>
       <div className="row">
+      <div className="form-group">
+              {/* <label className="text-muted">Username</label> */}
+              <div className="input-div one">
+                <div className="i">
+                  <i className="fas fa-user"></i>
+                </div>
+                <div className="div">
+                  <input
+                    onChange={handleChange("username")}
+                    type="text"
+                    placeholder="User Name"
+                    className="input"
+                    value={username}
+                  />
+                </div>
+              </div>
+            </div>
         <div className="column">
           <div className="column-1">
             <div className="form-group">

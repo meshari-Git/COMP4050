@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
 import userService from "../services/user.js";
+import { Redirect } from "react-router-dom";
+
 //import TextInput from "../components/TextInput";
 
 //image + svg + css
@@ -27,6 +29,7 @@ const Register = () => {
     DOB: "",
     bio: "",
     error: "",
+    redirectToReferrer: false,
     success: false,
   });
 
@@ -41,6 +44,7 @@ const Register = () => {
     postCode,
     DOB,
     bio,
+    redirectToReferrer,
     success,
     error,
   } = values;
@@ -84,6 +88,7 @@ const Register = () => {
             DOB: "",
             bio: "",
             error: "",
+            redirectToReferrer: true,
             success: true,
           });
         }
@@ -304,6 +309,12 @@ const Register = () => {
     </div>
   );
 
+  const redirectUser = () => {
+    if (redirectToReferrer) {
+        return <Redirect to="/profile" />;
+    }
+  };
+
   
   return (
     <div className="register-body">
@@ -314,6 +325,7 @@ const Register = () => {
             {showSuccess()}
             {showError()}
             {registerForm()}
+            {redirectUser()}
           </Layout>
         </div>
         <div className="img">

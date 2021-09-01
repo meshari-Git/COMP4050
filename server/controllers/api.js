@@ -40,14 +40,12 @@ const verifyLogin = async request => {
     if (!token || !decodedToken.id) {
         return null
     }
-    console.log("DecodedToken:" , decodedToken)
-    //const user = await getUser(decodedToken.username)
-    const email = await getEmail(decodedToken.email)
-    console.log("email" , email)
-    if (!email) {
+    const user = await getUser(decodedToken.username)
+
+    if (!user) {
         return null
     }
-    return email
+    return user
 }
 
 //helper functions
@@ -71,7 +69,8 @@ apiRouter.post('/api/login' , async (req, res) => {
         
         const userForToken = {
             id: EMAIL.id,
-            email: EMAIL.email            
+            email: EMAIL.email,
+            username: EMAIL.username            
         }
         
         let token = null

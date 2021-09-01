@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/navbar.css";
 import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
@@ -6,6 +6,13 @@ import userService from '../services/user.js';
 
 const NavBar = ({ history }) => {
   // navbar animation 
+
+  const [anim, setAnim] = useState({
+    itemAnimationPosTop: 0,
+       activeTabNewWidth: 0,
+      activeTabNewHeight:0,
+      itemAnimationPosLeft: 0,
+  });
   function animation(){
     var newTabAnimate = $('#navbarSupportedContent');
     var activeTabAnimate = newTabAnimate.find('.active');
@@ -13,6 +20,7 @@ const NavBar = ({ history }) => {
     var activeTabNewHeight = activeTabAnimate.innerHeight();
     var itemAnimationPosTop = activeTabAnimate.position();
     var itemAnimationPosLeft = activeTabAnimate.position();
+
     $(".nav-selector").css({
       "top":itemAnimationPosTop.top + "px", 
       "width": activeTabNewWidth + "px",
@@ -114,12 +122,13 @@ const NavBar = ({ history }) => {
       <div >
         <Link className="nav-link" to="/login">
           <button
-            className="btn btn-light my-2 my-sm-0 border border-dark"
+            className="navbtn btn btn-light my-2 my-sm-0 border border-dark"
             type="submit"
           >
             Sign-in / Join
           </button>
         </Link>
+        
       </div>
     )}
 
@@ -132,8 +141,14 @@ const NavBar = ({ history }) => {
             })
           }
         >
-          <button
-            className="btn btn-light my-2 my-sm-0 border border-dark"
+         
+          <button 
+           onClick={function () {
+            setTimeout(function () {
+              animation();
+            });
+          }}
+            className=" navbtn btn btn-light my-2 my-sm-0 border border-dark"
             type="submit"
           >
             Logout

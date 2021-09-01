@@ -93,7 +93,7 @@ class HomePage extends Component {
           <div className="row">{jobList}</div>
 
         </div>
-        <div>
+        <div >
           Map goes here
         </div>
         {/* <GMap /> Google Maps for the homepage here */}

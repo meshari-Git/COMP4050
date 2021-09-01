@@ -1,3 +1,8 @@
+/*
+all images sourced from https://undraw.co/
+icons sourced from https://fontawesome.com/
+*/
+
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Redirect } from "react-router-dom";
@@ -149,7 +154,7 @@ const Login = () => {
             {loginForm()}
             {redirectUser()}
           </Layout>
-          <a href="/Register">Need an account?</a>
+          <a href="/Register" onclick="return false;">Need an account?</a>
         </div>
       </div>
     </div>

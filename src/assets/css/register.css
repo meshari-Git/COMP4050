@@ -1,23 +1,24 @@
-.login-body {
+.register-body {
   font-family: "Open Sans", sans-serif;
 }
 
-.wave {
+.wave-reg {
   position: fixed;
   bottom: 0;
-  left: 0;
+  right:0;
   height: 94%;
   width: 53%;
   z-index: -1;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .container {
   width: 100vw;
-  height: 90vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 7rem;
-  padding: 0 2rem;
+  grid-gap: 5rem;
+  padding: 0 1rem;
 }
 
 .img {
@@ -26,14 +27,30 @@
   align-items: center;
 }
 
-.login-content {
+.register-content {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  flex-direction:column;
-  padding-top: 15%;
+  flex-direction: column;
 }
+
+/* row and column control */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 200%;
+  margin-left:-50%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
 
 .img img {
   width: 700%;
@@ -43,28 +60,29 @@ form {
   width: 360px;
 }
 
-.login-content img {
+.register-content img {
   height: 100px;
 }
 
-.login-content h2 {
+.register-content h2 {
   margin: 15px 0;
   color: #333;
   text-transform: uppercase;
   font-size: 2.9rem;
 }
 
-.login-content .input-div {
+.register-content .input-div {
   position: relative;
-  display: grid;
+  display:grid;
   grid-template-columns: 7% 93%;
   margin: 25px 0;
   padding: 5px 0;
   border-bottom: 2px solid #d9d9d9;
 }
 
-.login-content .input-div.one {
+.register-content .input-div.one {
   margin-top: 0;
+  width:91.5%;
 }
 
 .i {
@@ -77,6 +95,8 @@ form {
 .i i {
   transition: 0.3s;
 }
+
+
 
 .input-div > div {
   position: relative;
@@ -158,10 +178,10 @@ a:hover {
   color: #54c1fb;
 }
 
-.login-btn {
+.register-btn {
   display: block;
   width: 100%;
-  height: 50px;
+  height: 40px;
   border-radius: 25px;
   outline: none;
   border: none;
@@ -171,11 +191,11 @@ a:hover {
   color: #fff;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  margin: 1rem 0;
+  margin: 0.2rem 0;
   cursor: pointer;
   transition: 0.5s;
 }
-.login-btn:hover {
+.register-btn:hover {
   background-position: right;
 }
 
@@ -190,7 +210,7 @@ a:hover {
     width: 290px;
   }
 
-  .login-content h2 {
+  .register-content h2 {
     font-size: 2.4rem;
     margin: 8px 0;
   }
@@ -213,7 +233,7 @@ a:hover {
     display: none;
   }
 
-  .login-content {
+  .register-content {
     justify-content: center;
   }
 }

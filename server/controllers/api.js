@@ -133,7 +133,6 @@ apiRouter.post('/api/registration', async (req, res) => {
 apiRouter.get('/api/account' , async (req, res) => {
     
     const user = await verifyLogin(req)
-    console.log(user)
 
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
@@ -141,6 +140,7 @@ apiRouter.get('/api/account' , async (req, res) => {
     const userID = user._id.toString()
     const ownedFavours = await Favour.find({ ownerID: userID })
     const operatedFavours = await Favour.find({ operatorID: userID })
+    const re = []
     return res.status(200).json([[user] , ownedFavours , operatedFavours])
     
 })

@@ -40,17 +40,20 @@ const verifyLogin = async request => {
     if (!token || !decodedToken.id) {
         return null
     }
-    const user = await getUser(decodedToken.email)
-    if (!user) {
+    console.log("DecodedToken:" , decodedToken)
+    //const user = await getUser(decodedToken.username)
+    const email = await getEmail(decodedToken.email)
+    console.log("email" , email)
+    if (!email) {
         return null
     }
-    return user
+    return email
 }
 
 //helper functions
-const getUser = async (email) => {
-    const user = await User.findOne({ email: email })
-    user.password = null
+const getUser = async (username) => {
+    const user = await User.findOne({ username: username })
+    if(user){user.password = null}
     return user
 }
 const getEmail = async (email) => {
@@ -93,7 +96,7 @@ apiRouter.post('/api/login' , async (req, res) => {
 //registration end-point
 apiRouter.post('/api/registration', async (req, res) => {
 
-    const {username, firstName, password, email, address, DOB, lastName, city, postcode } = req.body
+    const {username, firstName, password, email, address, DOB, lastName, city, postCode , bio } = req.body
 
     const user = await getUser(username)
     const EMAIL = await getEmail(email)
@@ -117,7 +120,8 @@ apiRouter.post('/api/registration', async (req, res) => {
         DOB: DOB,
         lastName: lastName,
         city: city,
-        postCode: postcode
+        postCode: postCode,
+        bio: bio
     })
 
     newUser.save()
@@ -131,6 +135,7 @@ apiRouter.post('/api/registration', async (req, res) => {
 apiRouter.get('/api/account' , async (req, res) => {
     
     const user = await verifyLogin(req)
+    console.log(user)
 
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})

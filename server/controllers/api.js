@@ -106,7 +106,6 @@ apiRouter.post('/api/registration', async (req, res) => {
     if (EMAIL) {
         return res.status(409).json({error: "Email already in use"})
     }
-
     
     const hashPass = await passwordHashing(password)
 

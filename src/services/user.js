@@ -20,7 +20,7 @@ const login = (email, password) => {
  * @param string password 
  * @returns {Promise} Promise that will resolve the response data
  */
- const register = (username, firstName, password, email, address, DOB, lastName, city, postcode ) => {
+ const register = (username, firstName, password, email, address, DOB, lastName, city, postcode , bio ) => {
     return axios.post(baseURL + 'registration', {"username": username, 
                                                 "firstName": firstName, 
                                                 "password": password, 
@@ -29,7 +29,8 @@ const login = (email, password) => {
                                                 "DOB": DOB, 
                                                 "lastName": lastName, 
                                                 "city": city, 
-                                                "postcode": postcode})
+                                                "postcode": postcode,
+                                              "bio": bio})
         .then(response => response.data).catch(e => null)
 }
 

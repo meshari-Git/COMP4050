@@ -140,8 +140,7 @@ apiRouter.get('/api/account' , async (req, res) => {
     const userID = user._id.toString()
     const ownedFavours = await Favour.find({ ownerID: userID })
     const operatedFavours = await Favour.find({ operatorID: userID })
-    const re = []
-    return res.status(200).json([[user] , ownedFavours , operatedFavours])
+    return res.status(200).json({user : user , ownedFavours : ownedFavours , operatedFavours : operatedFavours })
     
 })
 

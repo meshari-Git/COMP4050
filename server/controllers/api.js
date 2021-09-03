@@ -139,8 +139,6 @@ apiRouter.post('/api/account_update' , async (req, res) => {
     delete newUser.password
     delete newUser._id
 
-    console.log("NEW USER: ", newUser)
-
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
     }
@@ -157,7 +155,6 @@ apiRouter.post('/api/account_update' , async (req, res) => {
               return res.status(404).json({error: "User Not Found"})
             }
             updatedUser.password = null
-            console.log("UPDATED USER", updatedUser)
             return res.status(200).json({updatedUser : updatedUser})
           })
           

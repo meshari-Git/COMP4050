@@ -175,8 +175,8 @@ function Profile() {
             <td>{favour.title}</td>
             <td>{favour.cost + " Tokens"}</td>
             <td>{favour.status}</td>
-            <td>{favour.ownerID}</td>
-            <td>{favour.operatorID}</td>
+            <td>{favour.ownerName}</td>
+            <td>{favour.operatorName}</td>
             <td>{"03/09/21"}</td>
           </tr>
           )}

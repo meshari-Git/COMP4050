@@ -8,7 +8,7 @@ import "../assets/css/userinfo.css";
 // import userService from '../services/user.js';
 import { Redirect, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import { Row, Col, Table } from 'react-bootstrap';
+import { Row, Col, Table, Modal, Form, Button } from 'react-bootstrap';
 import JobCard from './JobCard'
 import {useState, useEffect} from 'react'
 import userService from '../services/user.js';
@@ -18,11 +18,66 @@ function Profile() {
   //this is used to set the display style of job-card-modal
   const [modalDisplay, setModalDisplay] = useState('none')
 
-  const [user, setUser] = useState({})
+  const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(false)
+    }
+    const handleShow = () => setShow(true);
+
+  const [user, setUser] = useState({
+    user: {
+      username: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      email: "",
+      address: "",
+      city: "",
+      postCode: "",
+      DOB: "",
+      bio: ""
+    },
+    ownedFavours:[{}],
+    operatedFavours:[{}]
+  })
 
   useEffect(() => {          
-          userService.profile().then(objects => { console.log(objects);setUser( objects )})
+      userService.profile().then(objects => { 
+        console.log(objects)
+        setUser( objects )
+        if(objects) {
+          setUpdatedUser(objects.user)
+        }
+      })
   }, [setUser])
+
+  const updateProfile = () => {
+    userService.account_update(updatedUser).then(updated => {
+      handleClose()
+      console.log("UPDATED: ", updated)
+      console.log("USER: ", user)
+      setUser({user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours})
+      console.log(user)
+      
+    })
+  }
+
+  const [updatedUser, setUpdatedUser] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    city: "",
+    postCode: "",
+    DOB: "",
+    bio: ""
+  });
+
+  const handleChangeUpdate = (name) => (event) => {
+    setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
+  };
+
 
 
   //dummy job to test out JobCard component.
@@ -75,6 +130,7 @@ function Profile() {
         <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
           <img alt="" src={"https://robohash.org/" + user.user.email}></img>
           <p>{user.user.email}</p>
+          <Button variant="warning" onClick={(e)=> handleShow()}>Edit Profile</Button>
         </Col>
         <Col xs={6} sm={6} md={6} lg={6} xl={6}>
           <div>
@@ -144,6 +200,75 @@ function Profile() {
       }}>
         <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
       </div> */}
+
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header>
+            <Modal.Title>Edit Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            
+              <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" value={updatedUser.email} onChange={handleChangeUpdate("email")}/>
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="username" placeholder="Username" value={updatedUser.username} onChange={handleChangeUpdate("username")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control type="firstname" placeholder="Username" value={updatedUser.firstName} onChange={handleChangeUpdate("firstName")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="lastname" placeholder="Username" value={updatedUser.lastName} onChange={handleChangeUpdate("lastName")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>DOB</Form.Label>
+                  <Form.Control type="dob" placeholder="DD/MM/YYYY" value={updatedUser.DOB} onChange={handleChangeUpdate("DOB")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control type="address" placeholder="Address" value={updatedUser.address} onChange={handleChangeUpdate("address")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>City</Form.Label>
+                  <Form.Control type="city" placeholder="City" value={updatedUser.city} onChange={handleChangeUpdate("city")}/>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>Postcode</Form.Label>
+                  <Form.Control type="postcode" placeholder="Postcode" value={updatedUser.postCode} onChange={handleChangeUpdate("postCode")}/>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="">
+                  <Form.Label>Bio</Form.Label>
+                  <Form.Control type="bio" placeholder="Bio" value={updatedUser.bio} onChange={handleChangeUpdate("bio")}/>
+                </Form.Group>
+                
+                
+
+
+              
+              </Form>
+
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="primary" onClick={updateProfile}>Update</Button>
+            </Modal.Footer>
+      </Modal>
+
+
     </div>
   )
   }

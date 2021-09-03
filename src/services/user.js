@@ -35,6 +35,17 @@ const login = (email, password) => {
 }
 
 /**
+ * Send A Account Update Request
+ * @param object user 
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const account_update = (user) => {
+  const config = {headers: {Authorization: "bearer " + isAuthenticated().token}}
+  return axios.post(baseURL + 'account_update', user, config)
+      .then(response => response.data).catch(e => null)
+}
+
+/**
  * Get Profile
  * @param string token  
  * @returns {Promise} Promise that will resolve the response data
@@ -80,7 +91,8 @@ const exportedObject = {
     profile,
     authenticate,
     isAuthenticated,
-    logout
+    logout,
+    account_update
 };
 
 export default exportedObject;

@@ -5,6 +5,7 @@ const Favour = database.FavourSchema;
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
 const favours = require('../models/favours');
+const users = require('../models/users');
 
 
 const apiRouter = express.Router()
@@ -129,9 +130,47 @@ apiRouter.post('/api/registration', async (req, res) => {
 
 })
 
+//Personal Profile Update
+apiRouter.post('/api/account_update' , async (req, res) => {
+    
+    const user = await verifyLogin(req)
+    const newUser = req.body
+
+    delete newUser.password
+    delete newUser._id
+
+    console.log("NEW USER: ", newUser)
+
+    if(!user){
+       return res.status(401).json({error: "Login or create an account to access this page"})
+    }
+
+    const userID = user._id.toString()
+
+    users.findOneAndUpdate({_id: user._id}, newUser, function (error) {
+        if (error) {
+          console.log(error)
+          return res.status(404).json({error: "User Not Found"})
+        } else {
+            users.findOne({_id: user._id}, function (err, updatedUser) {
+            if (err) {
+              return res.status(404).json({error: "User Not Found"})
+            }
+            updatedUser.password = null
+            console.log("UPDATED USER", updatedUser)
+            return res.status(200).json({updatedUser : updatedUser})
+          })
+          
+        }
+      }) 
+
+
+})
+
+
 //Personal Profile end-point 
 apiRouter.get('/api/account' , async (req, res) => {
-    
+
     const user = await verifyLogin(req)
 
     if(!user){

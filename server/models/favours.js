@@ -33,6 +33,18 @@ let favourSchema = new mongoose.Schema({
     operatorID :{
         type: String,
         required: false,
+    },
+    operaterName : {
+        type: String,
+        required: false
+    },
+    ownerName : {
+        type: String,
+        required : true
+    },
+    timestamp: {
+        type: String,
+        required: true
     }
 
 });

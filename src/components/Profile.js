@@ -21,7 +21,7 @@ function Profile() {
   const [user, setUser] = useState({})
 
   useEffect(() => {          
-          userService.profile().then(objects => {setUser( objects )})
+          userService.profile().then(objects => { console.log(objects);setUser( objects )})
   }, [setUser])
 
 
@@ -63,7 +63,7 @@ function Profile() {
     )
   }
 
-  if (!user || !user.email) { //No Profile
+  if (!user || !user.user || !user.user.email) { //No Profile
     return (
       <h1>Loading...</h1>
     )
@@ -72,28 +72,30 @@ function Profile() {
   return (
     <div>
       <Row>
-        <Col xs={12} sm={12} md={3} lg={3} xl={3} className="text-center">
-          <img alt="" src={"https://robohash.org/" + user.email}></img>
-          <p>{user.email}</p>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
+          <img alt="" src={"https://robohash.org/" + user.user.email}></img>
+          <p>{user.user.email}</p>
         </Col>
-        <Col xs={12} sm={12} md={9} lg={9} xl={9} className="">
-          <h3>Happy to see you {user.firstName} {user.lastName}!</h3>
-          <Table bordered>
-            <thead>
-              <tr>
-                {/* <th>Skills</th> */}
-                <th>Bio</th>
-                {/* <th>Stats</th> */}
-              </tr>
-            </thead>
-            <tbody>
-              <tr height="200em">
-                {/* <td>This is some text about the users skills</td> */}
-                <td>{user.bio}</td>
-                {/* <td>This is some text about the user Stats</td> */}
-              </tr>
-            </tbody>
-          </Table>
+        <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+          <div>
+          <h3>Happy to see you {user.user.firstName} {user.user.lastName}!</h3>
+            <Table bordered>
+              <thead>
+                <tr>
+                  {/* <th>Skills</th> */}
+                  <th>Bio</th>
+                  {/* <th>Stats</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                <tr height="200em">
+                  {/* <td>This is some text about the users skills</td> */}
+                  <td>{user.user.bio}</td>
+                  {/* <td>This is some text about the user Stats</td> */}
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </Col>
       </Row>
 
@@ -111,38 +113,27 @@ function Profile() {
           </tr>
         </thead>
         <tbody>
+          {user.ownedFavours.map(favour =>           
+
           <tr onClick={showJob}>
-            <td>Mow the lawn</td>
-            <td>2 tokens</td>
-            <td>In Progress</td>
-            <td>You (Ben Fricke)</td>
-            <td>David Jones</td>
-            <td>20/1/20</td>
+            <td>{favour.title}</td>
+            <td>{favour.cost + " Tokens"}</td>
+            <td>{favour.status}</td>
+            <td>{favour.ownerID}</td>
+            <td>{favour.operatorID}</td>
+            <td>{"03/09/21"}</td>
           </tr>
-          <tr onClick={showJob}>
-            <td>Save my cat</td>
-            <td>1 tokens</td>
-            <td>Searching for help...</td>
-            <td>You (Ben Fricke)</td>
-            <td> - </td>
-            <td>20/1/21</td>
-          </tr>
-          <tr onClick={showJob}>
-            <td>Fix My Car</td>
-            <td>20 tokens</td>
-            <td>Completed</td>
-            <td>You (Ben Fricke)</td>
-            <td>Steve Jobs</td>
-            <td>18/1/20</td>
-          </tr>
-          <tr onClick={showJob}>
-            <td>Make me breakfast</td>
-            <td>25 tokens</td>
-            <td>Completed</td>
-            <td>Donald Trump</td>
-            <td>You (Ben Fricke)</td>
-            <td>15/1/20</td>
-          </tr>
+          )}
+          {user.operatedFavours.map(favour =>           
+            <tr onClick={showJob}>
+              <td>{favour.title}</td>
+              <td>{favour.cost + " Tokens"}</td>
+              <td>{favour.status}</td>
+              <td>{favour.ownerID}</td>
+              <td>{favour.operatorID}</td>
+              <td>{"03/09/21"}</td>
+            </tr>
+            )}
         </tbody>
       </Table>
       <br></br>

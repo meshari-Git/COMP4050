@@ -164,6 +164,9 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     }
 
     const OwnerId = user._id.toString()
+    const OwnerName = user.username
+    const time = new Date()
+    const string = time.getFullYear() + "-" + time.getMonth() + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
 
     const newFavour = new Favour({
         ownerID: OwnerId,
@@ -173,7 +176,9 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
         cost: cost,
         city: city,
         streetAddress: streetAddress,
-        postCode: postCode
+        postCode: postCode,
+        ownerName: OwnerName,
+        timestamp: string
     })
 
     newFavour.save()

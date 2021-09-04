@@ -47,10 +47,15 @@ const editFavour = (job) => {
     })
 }
 
+const getFavours = () => {
+    return axios.get(baseURL)
+}
+
 const exportedObject = {
     addJob,
     delFavour,
-    editFavour
+    editFavour,
+    getFavours
 };
 
 export default exportedObject;

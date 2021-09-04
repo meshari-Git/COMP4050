@@ -49,3 +49,14 @@
 .job:hover {
   text-decoration: none;
 }
+
+.row {
+  margin-top: 35px;
+}
+
+.favourCtr {
+  margin: 10px;
+  float: top;
+  background-color: white;
+  width: 60%;
+}

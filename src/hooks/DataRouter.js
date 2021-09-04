@@ -12,6 +12,7 @@ import Register from "../views/Register";
 import Login from "../views/Login";
 import CreateJob from "../views/CreateJob";
 import PrivateRoute from "./PrivateRoute";
+import jobService from "../services/job"
 
 import userService from '../services/user.js';
 
@@ -51,13 +52,14 @@ class DataRouter extends Component {
   }
 
   updateJobs() {
-    fetch("http://localhost:3000/jobs?fetch=true")
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.setState({
-          jobs: data,
-        });
-      });
+    // fetch("http://localhost:3001/jobs?fetch=true")
+    //   .then((resp) => resp.json())
+    //   .then((data) => {
+    //     this.setState({
+    //       jobs: data,
+    //     });
+    //   });
+    jobService.getFavours()
   }
 
   handleSelect(e) {

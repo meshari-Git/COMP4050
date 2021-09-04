@@ -18,9 +18,10 @@ function Favour() {
 
     return (
         <div>
+            <table className="table">
             <tbody>
             {favours.map(favour =>
-            <div className="favourCtr">
+            <div className="test">
                 <tr>
                     <td>Name: {favour.title}</td>
                 </tr>
@@ -33,6 +34,7 @@ function Favour() {
             </div>      
             )}
             </tbody>
+            </table>
         </div>
         
     )

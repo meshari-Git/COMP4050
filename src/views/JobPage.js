@@ -51,14 +51,24 @@ class JobPage extends Component {
               {user.username}
             </div>
           </div>
-          <div className = "accept-job">
-            <div className = "text-box">
+          {user.ownedFavours.indexOf({job}) ?
+            <div className = "accept-job">
+              <div className = "text-box">
 
+              </div>
+              <button className = "accept-job-button">
+                Accept Job
+              </button>
+            </div> :
+            <div className = "edit-job-container">
+              <div className = "edit-job-button">
+
+              </div>
+              <div className = "delete-job-button">
+              
+              </div>
             </div>
-            <button className = "accept-job-button">
-              Accept Job
-            </button>
-          </div>
+          }
         </div>
       </div>
     )

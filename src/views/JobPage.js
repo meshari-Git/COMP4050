@@ -6,33 +6,83 @@ import { isAuthenticated } from "../authentication/apiindex";
 
 import { Link } from "react-router-dom";
 
-// class JobPage extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       userID: this.props.userID,
-//       job: this.props.location.state.job,
-//     };
-//   }
+class JobPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userID: this.props.userID,
+      job: this.props.location.state.job,
+    };
+  }
 
-//   render() {
-//     const job = this.props.location.state.job;
-//     return (
-//       <div className = "detailed-job">
-//         Hello
-//         {console.log({job})}
-//       </div>
-//     )
-//   }
-// }
+  render() {
+    var job = this.state.job;
+    var user = this.state.userID;
+    return (
+      <div className = "job-page">
+        {console.log("JobPage.js", "job:", job, "user:", user)}
+        <div className = "job-container">
+          <div className = "job-pictures">
+            {/*job.pictures show*/}
+          </div>
+          <div className = "job-text-container">
+            <div className = "job-header">
+              <div className = "job-title">
+                {job.title}
+              </div>
+              <div className = "job-cost">
+                {job.cost}
+              </div>
+              <div className = "job-location">
+                {/*A symbol here? (See figma)*/}
+                {job.city}
+              </div>
+            </div>
+            <div className = "job-description">
+              {job.description}
+            </div>
+          </div>
+        </div>
+        <div className = "user-container">
+          <div className = "job-owner">
+            <div className = "profile-picture">
+            </div>
+            <div className = "owner-name">
+              {job.ownerName}
+            </div>
+          </div>
+          {user.ownedFavours.indexOf({job}) ?
+            <div className = "accept-job">
+              <div className = "text-box">
 
-// export default JobPage
+              </div>
+              <button className = "accept-job-button">
+                Accept Job
+              </button>
+            </div> :
+            <div className = "edit-job-container">
+              <div className = "edit-job-button">
+
+              </div>
+              <div className = "delete-job-button">
+              
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    )
+  }
+}
+
+export default JobPage
 
 /**
  * Original code.
  * Super messy, commenting it out for now.
  */
 
+/*
 class JobPage extends Component {
   constructor(props) {
     super(props);
@@ -396,4 +446,5 @@ class JobPage extends Component {
 }
 
 export default JobPage;
+*/
 

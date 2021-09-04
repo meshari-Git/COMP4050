@@ -49,7 +49,7 @@ class HomePage extends Component {
     return (
       <div className="homePage">
         <div className="homeContainer">
-          <form className="form-inline" >
+          <form style={{height: '50px', width: '100%'}}>
             <input
               className="form-control mr-sm-2"
               type="search"
@@ -59,7 +59,7 @@ class HomePage extends Component {
               onChange={this.searchData}
             />
           </form>
-          <div className="row"><Favour></Favour></div>
+          <div className="test"><Favour></Favour></div>
 
         </div>
         <div >

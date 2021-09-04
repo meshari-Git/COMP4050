@@ -10,10 +10,9 @@
 .homeContainer {
   padding: 15px;
   width: 20%;
-  height: 100vh;
+  height: 100%;
   background: black;
-  display: flex;
-  flex-direction:row;
+  min-width: 200px;
 }
 
 .homeCard {
@@ -52,11 +51,36 @@
 
 .row {
   margin-top: 35px;
+  width: 60%;
 }
 
 .favourCtr {
-  margin: 10px;
+  margin: 20px;
   float: top;
   background-color: white;
-  width: 60%;
+  width: 100%;
+}
+
+.test {
+  width: 80%;
+}
+
+.table {
+
+  height: 100%;
+}
+
+.table tbody {
+  margin: 20px;
+
+}
+
+.table tr {
+  margin: 10px;
+  background-color: white;
+  width: 200px;
+  text-align: left;
+}
+.table td {
+  padding: 10px;
 }

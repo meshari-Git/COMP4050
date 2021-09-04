@@ -20,8 +20,8 @@ class JobPage extends Component {
     var user = this.state.userID;
     return (
       <div className = "job-page">
+        {console.log("JobPage.js", "job:", job, "user:", user)}
         <div className = "job-container">
-          {console.log({job})}
           <div className = "job-pictures">
             {/*job.pictures show*/}
           </div>
@@ -48,7 +48,7 @@ class JobPage extends Component {
             <div className = "profile-picture">
             </div>
             <div className = "owner-name">
-              {user.username}
+              {job.ownerName}
             </div>
           </div>
           {user.ownedFavours.indexOf({job}) ?

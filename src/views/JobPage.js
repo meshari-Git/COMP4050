@@ -44,6 +44,7 @@ class JobPage extends Component {
           </div>
         </div>
         <div className = "user-container">
+          {/*There is a console log printing out the job and user. User appears to be null*/}
           <div className = "job-owner">
             <div className = "profile-picture">
             </div>

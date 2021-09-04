@@ -4,6 +4,7 @@ const JobCard = ({job, hideJob}) => {
     const passJob = job
     return (
         <div className = 'job-card'>
+            {console.log({job})}
             <div className = 'ownerID'>{job.ownerID}</div>
             <div className = 'description'>{job.description}</div>
             <div className = 'title'>{job.title}</div>

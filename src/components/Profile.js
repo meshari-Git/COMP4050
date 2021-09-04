@@ -178,6 +178,7 @@ function Profile() {
             <td>{favour.ownerName}</td>
             <td>{favour.operatorName}</td>
             <td>{"03/09/21"}</td>
+            {console.log({favour})} {console.log({user})} {/*to del*/}
           </tr>
           )}
           {user.operatedFavours.map(favour =>           

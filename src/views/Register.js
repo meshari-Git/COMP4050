@@ -97,7 +97,7 @@ const Register = () => {
 
   const registerForm = () => (
     <form>
-      <div className="row">
+      <div className="reg-row">
       <div className="form-group">
               {/* <label className="text-muted">Username</label> */}
               <div className="input-div one">
@@ -115,7 +115,7 @@ const Register = () => {
                 </div>
               </div>
             </div>
-        <div className="column">
+        <div className="reg-column">
           <div className="column-1">
             <div className="form-group">
               {/* <label className="text-muted">First Name</label> */}

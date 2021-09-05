@@ -13,7 +13,7 @@ import JobCard from './JobCard'
 import {useState, useEffect} from 'react'
 import userService from '../services/user.js';
 
-function Profile() {
+function Profile({user}) {
 
   //this is used to set the display style of job-card-modal
   const [modalDisplay, setModalDisplay] = useState('none')
@@ -24,59 +24,59 @@ function Profile() {
     }
     const handleShow = () => setShow(true);
 
-  const [user, setUser] = useState({
-    user: {
-      username: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      email: "",
-      address: "",
-      city: "",
-      postCode: "",
-      DOB: "",
-      bio: ""
-    },
-    ownedFavours:[{}],
-    operatedFavours:[{}]
-  })
+  // const [user, setUser] = useState({
+  //   user: {
+  //     username: "",
+  //     firstName: "",
+  //     lastName: "",
+  //     password: "",
+  //     email: "",
+  //     address: "",
+  //     city: "",
+  //     postCode: "",
+  //     DOB: "",
+  //     bio: ""
+  //   },
+  //   ownedFavours:[{}],
+  //   operatedFavours:[{}]
+  // })
 
-  useEffect(() => {          
-      userService.profile().then(objects => { 
-        console.log(objects)
-        setUser( objects )
-        if(objects) {
-          setUpdatedUser(objects.user)
-        }
-      })
-  }, [setUser])
+  // useEffect(() => {          
+  //     userService.profile().then(objects => { 
+  //       console.log(objects)
+  //       setUser( objects )
+  //       if(objects) {
+  //         setUpdatedUser(objects.user)
+  //       }
+  //     })
+  // }, [setUser])
 
-  const updateProfile = () => {
-    userService.account_update(updatedUser).then(updated => {
-      handleClose()
-      console.log("UPDATED: ", updated)
-      console.log("USER: ", user)
-      setUser({user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours})
-      console.log(user)
+  // const updateProfile = () => {
+  //   userService.account_update(updatedUser).then(updated => {
+  //     handleClose()
+  //     console.log("UPDATED: ", updated)
+  //     console.log("USER: ", user)
+  //     setUser({user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours})
+  //     console.log(user)
       
-    })
-  }
+  //   })
+  // }
 
-  const [updatedUser, setUpdatedUser] = useState({
-    username: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-    city: "",
-    postCode: "",
-    DOB: "",
-    bio: ""
-  });
+  // const [updatedUser, setUpdatedUser] = useState({
+  //   username: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   address: "",
+  //   city: "",
+  //   postCode: "",
+  //   DOB: "",
+  //   bio: ""
+  // });
 
-  const handleChangeUpdate = (name) => (event) => {
-    setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
-  };
+  // const handleChangeUpdate = (name) => (event) => {
+  //   setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
+  // };
 
 
 
@@ -210,7 +210,7 @@ function Profile() {
               <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" value={updatedUser.email} onChange={handleChangeUpdate("email")}/>
+                  <Form.Control type="email" placeholder="Enter email" value={{user}.updatedUser.email} onChange={{user}.handleChangeUpdate("email")}/>
                   <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text>
@@ -218,42 +218,42 @@ function Profile() {
 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Username" value={updatedUser.username} onChange={handleChangeUpdate("username")}/>
+                  <Form.Control type="username" placeholder="Username" value={{user}.updatedUser.username} onChange={{user}.handleChangeUpdate("username")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="firstname" placeholder="Username" value={updatedUser.firstName} onChange={handleChangeUpdate("firstName")}/>
+                  <Form.Control type="firstname" placeholder="Username" value={{user}.updatedUser.firstName} onChange={{user}.handleChangeUpdate("firstName")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="lastname" placeholder="Username" value={updatedUser.lastName} onChange={handleChangeUpdate("lastName")}/>
+                  <Form.Control type="lastname" placeholder="Username" value={{user}.updatedUser.lastName} onChange={{user}.handleChangeUpdate("lastName")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>DOB</Form.Label>
-                  <Form.Control type="dob" placeholder="DD/MM/YYYY" value={updatedUser.DOB} onChange={handleChangeUpdate("DOB")}/>
+                  <Form.Control type="dob" placeholder="DD/MM/YYYY" value={{user}.updatedUser.DOB} onChange={{user}.handleChangeUpdate("DOB")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>Address</Form.Label>
-                  <Form.Control type="address" placeholder="Address" value={updatedUser.address} onChange={handleChangeUpdate("address")}/>
+                  <Form.Control type="address" placeholder="Address" value={{user}.updatedUser.address} onChange={{user}.handleChangeUpdate("address")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>City</Form.Label>
-                  <Form.Control type="city" placeholder="City" value={updatedUser.city} onChange={handleChangeUpdate("city")}/>
+                  <Form.Control type="city" placeholder="City" value={{user}.updatedUser.city} onChange={{user}.handleChangeUpdate("city")}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>Postcode</Form.Label>
-                  <Form.Control type="postcode" placeholder="Postcode" value={updatedUser.postCode} onChange={handleChangeUpdate("postCode")}/>
+                  <Form.Control type="postcode" placeholder="Postcode" value={{user}.updatedUser.postCode} onChange={{user}.handleChangeUpdate("postCode")}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="">
                   <Form.Label>Bio</Form.Label>
-                  <Form.Control type="bio" placeholder="Bio" value={updatedUser.bio} onChange={handleChangeUpdate("bio")}/>
+                  <Form.Control type="bio" placeholder="Bio" value={{user}.updatedUser.bio} onChange={{user}.handleChangeUpdate("bio")}/>
                 </Form.Group>
                 
                 
@@ -264,7 +264,7 @@ function Profile() {
 
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="primary" onClick={updateProfile}>Update</Button>
+            <Button variant="primary" onClick={{user}.updateProfile}>Update</Button>
             </Modal.Footer>
       </Modal>
 

@@ -13,6 +13,10 @@ class JobPage extends Component {
       userID: this.props.userID,
       job: this.props.location.state.job,
     };
+    const userAuthenticated = isAuthenticated()
+    if (userAuthenticated) {
+      this.state.userID = userAuthenticated
+    }
   }
 
   render() {

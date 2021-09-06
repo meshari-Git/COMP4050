@@ -22,9 +22,9 @@ class JobPage extends Component {
   render() {
     var job = this.state.job;
     var user = this.state.userID;
+    {console.log("JobPage.js", "job:", job, "user:", user, "userID:", user.id)} {/*debug*/}
     return (
       <div className = "job-page">
-        {console.log("JobPage.js", "job:", job, "user:", user)}
         <div className = "job-container">
           <div className = "job-pictures">
             {/*job.pictures show*/}
@@ -48,7 +48,6 @@ class JobPage extends Component {
           </div>
         </div>
         <div className = "user-container">
-          {/*There is a console log printing out the job and user. User appears to be null*/}
           <div className = "job-owner">
             <div className = "profile-picture">
             </div>
@@ -56,7 +55,7 @@ class JobPage extends Component {
               {job.ownerName}
             </div>
           </div>
-          {user.ownedFavours.indexOf({job}) ?
+          {user.id != job.ownerID ?
             <div className = "accept-job">
               <div className = "text-box">
 

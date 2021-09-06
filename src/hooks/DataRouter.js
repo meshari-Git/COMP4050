@@ -45,59 +45,6 @@ class DataRouter extends Component {
       jobs: [],
     };
     // }
-    const [user, setUser] = useState({
-      user: {
-        username: "",
-        firstName: "",
-        lastName: "",
-        password: "",
-        email: "",
-        address: "",
-        city: "",
-        postCode: "",
-        DOB: "",
-        bio: ""
-      },
-      ownedFavours:[{}],
-      operatedFavours:[{}]
-    })
-  
-    useEffect(() => {          
-        userService.profile().then(objects => { 
-          console.log(objects)
-          setUser( objects )
-          if(objects) {
-            setUpdatedUser(objects.user)
-          }
-        })
-    }, [setUser])
-  
-    const updateProfile = () => {
-      userService.account_update(updatedUser).then(updated => {
-        handleClose()
-        console.log("UPDATED: ", updated)
-        console.log("USER: ", user)
-        setUser({user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours})
-        console.log(user)
-        
-      })
-    }
-  
-    const [updatedUser, setUpdatedUser] = useState({
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      city: "",
-      postCode: "",
-      DOB: "",
-      bio: ""
-    });
-  
-    const handleChangeUpdate = (name) => (event) => {
-      setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
-    };
   }
 
   componentDidMount() {
@@ -170,7 +117,7 @@ class DataRouter extends Component {
 
 
             <Route path="/profile">
-              <Profile user = {user}></Profile>
+              <Profile></Profile>
             </Route>
 
             <Route path="/job/new">

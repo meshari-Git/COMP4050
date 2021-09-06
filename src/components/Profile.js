@@ -47,6 +47,7 @@ function Profile() {
       setUser(objects)
       if (objects) {
         setUpdatedUser(objects.user)
+        console.log("ID: ", userService.isAuthenticated().id)
       }
     })
   }, [setUser])
@@ -58,7 +59,6 @@ function Profile() {
       console.log("USER: ", user)
       setUser({ user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours })
       console.log(user)
-
     })
   }
 

@@ -29,7 +29,59 @@
   margin-top: 30px;
 } */
 
+
 .job-page * {
-  border-style: solid;
-  border-width: 1px;
+  margin: 0px;
+  padding: 0px;
+  border-style: solid;    /*debug*/
+  border-width: 1px;      /*debug*/
+}
+
+
+.job-page {
+  display: flex;
+  padding-top: 3%;
+  height: 500px;
+}
+
+
+.job-container {
+  border-width: 2px;            /*debug*/
+  border-color:chartreuse;    /*debug*/
+  width: 70%;
+  padding-left: 15%;
+  padding-right: 5%;
+}
+
+.job-pictures {
+  border-color:blueviolet;    /*debug*/
+  height: 60%;
+  background-color: cornsilk; /*placeholder*/
+}
+
+.job-text-container {
+  height: 40%;
+}
+
+.job-text-container * {
+  text-align: left;
+}
+
+.job-header {
+  border-color:maroon;         /*debug*/
+  height: 40%;
+  width: 50%;
+}
+
+
+.job-description {
+  height: 60%;
+}
+
+
+.user-container {
+  border-width: 2px;            /*debug*/
+  border-color:deeppink;      /*debug*/
+  width: 30%;
+  padding-right: 5%;
 }

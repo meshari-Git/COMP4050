@@ -17,7 +17,7 @@ import "../assets/css/login.css";
 
 const Login = () => {
   const [values, setValues] = useState({
-    email: "mike@gmail.com",
+    email: "bill@gmail.com",
     password: "pass",
     error: "",
     loading: false,

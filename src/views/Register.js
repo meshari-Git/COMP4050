@@ -73,6 +73,7 @@ const Register = () => {
       )
       .then((response) => {
         if (response.error) {
+          console.log(response)
           setValues({ ...values, error: response.error, success: false });
         } else {
           setValues({
@@ -98,23 +99,23 @@ const Register = () => {
   const registerForm = () => (
     <form>
       <div className="reg-row">
-      <div className="form-group">
-              {/* <label className="text-muted">Username</label> */}
-              <div className="input-div one">
-                <div className="i">
-                  <i className="fas fa-user"></i>
-                </div>
-                <div className="div">
-                  <input
-                    onChange={handleChange("username")}
-                    type="text"
-                    placeholder="User Name"
-                    className="input"
-                    value={username}
-                  />
-                </div>
-              </div>
+        {/* <div className="form-group">
+          <label className="text-muted">Username</label>
+          <div className="input-div one">
+            <div className="i">
+              <i className="fas fa-user"></i>
             </div>
+            <div className="div">
+              <input
+                onChange={handleChange("username")}
+                type="text"
+                placeholder="User Name"
+                className="input"
+                value={username}
+              />
+            </div>
+          </div>
+        </div> */}
         <div className="reg-column">
           <div className="column-1">
             <div className="form-group">
@@ -193,7 +194,7 @@ const Register = () => {
           </div>
         </div>
 
-        <div className="column">
+        <div className="reg-column">
           <div className="column-2">
             <div className="form-group">
               {/* <label className="text-muted">Last Name</label> */}
@@ -266,23 +267,23 @@ const Register = () => {
             </div>
           </div>
         </div>
-        <div className="form-group">
-              {/* <label className="text-muted">Biography</label> */}
-              <div className="input-div one">
-                <div className="i">
-                  <i className="fas fa-book"></i>
-                </div>
-                <div className="div">
-                  <input
-                    onChange={handleChange("bio")}
-                    type="text"
-                    placeholder="What are some skills you have?"
-                    className="input"
-                    value={bio}
-                  />
-                </div>
-              </div>
+        {/* <div className="form-group">
+          <label className="text-muted">Biography</label>
+          <div className="input-div one">
+            <div className="i">
+              <i className="fas fa-book"></i>
             </div>
+            <div className="div">
+              <input
+                onChange={handleChange("bio")}
+                type="text"
+                placeholder="What are some skills you have?"
+                className="input"
+                value={bio}
+              />
+            </div>
+          </div>
+        </div> */}
       </div>
 
       <button onClick={clickSubmit} className="register-btn btn-primary">
@@ -311,11 +312,10 @@ const Register = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
-        return <Redirect to="/profile" />;
+      return <Redirect to="/profile" />;
     }
   };
 
-  
   return (
     <div className="register-body">
       <img className="wave-reg" src={Wave} alt="wave" />

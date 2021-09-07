@@ -31,8 +31,8 @@ let UserSchema = new mongoose.Schema({
     },
     username: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
+      unique: false,
     },
     city: {
         type: String,
@@ -40,7 +40,7 @@ let UserSchema = new mongoose.Schema({
     },
     bio: {
       type: String,
-      required: true,
+      required: false,
     }
     
   });

@@ -83,7 +83,7 @@ apiRouter.post('/api/login' , async (req, res) => {
         }
         console.log(token)
 
-        return res.status(200).json({token, username: EMAIL.username, email: EMAIL.email})
+        return res.status(200).json({token, username: EMAIL.username, email: EMAIL.email, id: EMAIL._id})
         
     } else {
         return res.status(401).json({error: "invalid email or password"})

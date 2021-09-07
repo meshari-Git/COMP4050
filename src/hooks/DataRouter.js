@@ -37,13 +37,13 @@ class DataRouter extends Component {
     //     jobs: [],
     //   };
     // } else {
-      this.state = {
-        location: null,
-        userID: null,
-        name: null,
-        balance: null,
-        jobs: [],
-      };
+    this.state = {
+      location: null,
+      userID: null,
+      name: null,
+      balance: null,
+      jobs: [],
+    };
     // }
   }
 

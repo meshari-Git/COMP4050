@@ -33,6 +33,9 @@ function Favour() {
                                 <td>Name: {favour.title}</td>
                             </tr>
                             <tr>
+                                <td>Owner: {favour.ownerName}</td>
+                            </tr>
+                            <tr>
                                 <td>Cost: {favour.cost}</td>
                             </tr>
                             <tr>

@@ -19,7 +19,7 @@ function Favour(filter) {
 
     const filterFavours = (list) => {
         if (filter.filter) {
-            return list.filter(favour => favour.title.includes(filter.filter));
+            return list.filter(favour => favour.title.toLowerCase().includes(filter.filter.toLowerCase()));
         } else {
             return list
         }

@@ -21,11 +21,12 @@ const addJob = (job, token) => {
     ).then(response => response.data).catch(e => null)
 }
 
-const delFavour = (favourId) => {
-    axios.delete(baseURL, favourId)
+const delFavour = (favourId, token) => {
+    const config = {headers: {Authorization: "bearer " + token}}
+    axios.delete(baseURL + "favour/" + favourId.ownerID, config)
     .then(response => {
-        console.log(response).catch(e => null)
-    })
+        console.log(response)
+    }).catch(e => null)
 }
 
 const editFavour = (job) => {

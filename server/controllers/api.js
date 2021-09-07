@@ -234,4 +234,30 @@ apiRouter.get("/api/favours/:id" , async (req , res) => {
         res.status(404).json({error: "Not found"})
     })
 })
+
+
+// Specific favour deletion
+apiRouter.delete("/api/favour/:id" , async (req , res) => {
+    
+    const user = await verifyLogin(req)
+    if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }
+
+    await Favour.findOne({ ownerID: req.params.id })
+    .then(result => {
+        if(result.ownerID != user._id) {
+            return res.status(404).json({error: "Favour Does Not Belong To You"})
+        }
+        Favour.remove({ _id: result._id }, function(err) {
+            if (!err) {
+                return res.status(200).json()
+            }
+            else {
+                return res.status(400).json({error: "Favour Could Not Be Deleted"})
+            }
+        });
+    })
+    .catch(err => {
+        res.status(404).json({error: "Favour Not found"})
+    })
+})
 module.exports = apiRouter

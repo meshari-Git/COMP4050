@@ -69,7 +69,7 @@ class JobPage extends Component {
               <div className = "edit-job-button">
 
               </div>
-              <Link className = "delete-job-button" onClick = {jobService.delFavour(job)} to={{
+              <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
                 pathname: "/"
               }}>
                 Delete Job

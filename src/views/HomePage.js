@@ -13,38 +13,17 @@ class HomePage extends Component {
     super(props);
 
     this.state = {
-      searchResults: this.props.jobs,
+      searchData: '',
     };
   }
-  render() {
-    if (this.state.searchResults.length === 0) {
-      this.state = {
-        searchResults: this.props.jobs,
-      };
-    }
 
-    let jobList = this.state.searchResults.map((job) => {
-      return (
-        job.userID != this.props.userID &&
-        job.jobStatus !== 4 && (
-          <Link
-            className="job"
-            to={{ pathname: "/job", state: { job: job, prevLocation: "/" } }}
-          >
-            <div className="homeCard border-dark mb-3">
-              <div className="homeCardBody text-dark">
-                <h5 className="card-title">{job.title}</h5>
-                <p className="card-text">{job.description}</p>
-              </div>
-              <div className="card-footer bg-transparent border-dark">
-                <p className="homeJobLocation">Location: {job.location}</p>
-                <p className="homeJobCost">Cost: {job.price}</p>
-              </div>
-            </div>
-          </Link>
-        )
-      );
-    });
+
+  updateSearchField = (event) => {
+    this.setState({...this.state.searchData, searchData: event.target.value})
+  }
+
+  render() {
+    
 
     return (
       <div className="homePage">
@@ -56,10 +35,10 @@ class HomePage extends Component {
               placeholder="Search"
               aria-label="Search"
               id="Search"
-              onChange={this.searchData}
+              onChange={this.updateSearchField}
             />
           </form>
-          <div className="test"><Favour></Favour></div>
+          <div className="test"><Favour filter={this.state.searchData} /></div>
 
         </div>
         <div >

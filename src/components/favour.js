@@ -6,7 +6,7 @@ import "../assets/css/homepage.css";
 import { Link } from "react-router-dom"
 
 
-function Favour() {
+function Favour(filter) {
 
     const [favours, setFavours] = useState([])
 
@@ -17,11 +17,19 @@ function Favour() {
             })
     }, []);
 
+    const filterFavours = (list) => {
+        if (filter.filter) {
+            return list.filter(favour => favour.title.includes(filter.filter));
+        } else {
+            return list
+        }
+    }
+
     return (
         <div>
             <table className="table">
             <tbody>
-                {favours.map(favour =>
+                {filterFavours(favours).map(favour =>
                     <div className="favourCtr">
                         <Link to={{
                             pathname: "/job",

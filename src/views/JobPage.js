@@ -3,6 +3,7 @@ import "../assets/css/jobpage.css";
 
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
+import jobService from "../services/job.js"
 
 import { Link } from "react-router-dom";
 
@@ -68,9 +69,11 @@ class JobPage extends Component {
               <div className = "edit-job-button">
 
               </div>
-              <div className = "delete-job-button">
-              
-              </div>
+              <Link className = "delete-job-button" onClick = {jobService.delFavour(job)} to={{
+                pathname: "/"
+              }}>
+                Delete Job
+              </Link>
             </div>
           }
         </div>

@@ -13,6 +13,26 @@ const login = (email, password) => {
         .then(response => response.data).catch(e => null)
 }
 
+/**
+ * Send A Forgot Request
+ * @param string email 
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const forgot = (email) => {
+  return axios.post(baseURL + 'forgot', {"email": email})
+      .then(response => response.data).catch(e => null)
+}
+
+/**
+ * Send A Reset Request
+ * @param string password
+ * * @param string password_confirm
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const reset = (password, password_confirm, userId, resetToken) => {
+  return axios.post(baseURL + 'reset', {"password": password, "password_confirm": password_confirm,  "userId": userId, "resetToken": resetToken})
+      .then(response => response.data).catch(e => null)
+}
 
 /**
  * Send A Registration Request
@@ -88,6 +108,8 @@ const isAuthenticated = () => {
 const exportedObject = {
     login,
     register,
+    forgot,
+    reset,
     profile,
     authenticate,
     isAuthenticated,

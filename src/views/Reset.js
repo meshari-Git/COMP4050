@@ -5,8 +5,7 @@ icons sourced from https://fontawesome.com/
 
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import { Redirect, Link } from "react-router-dom";
-// import { login, authenticate, isAuthenticated } from "../authentication/apiindex";
+import { Redirect, Link, useParams } from "react-router-dom";
 import userService from "../services/user.js";
 
 //image + svg + css
@@ -15,17 +14,19 @@ import ProfilePic from "../assets/img/profilePic.svg";
 import Wave from "../assets/img/wave.png";
 import "../assets/css/login.css";
 
-const Login = () => {
+const Reset = () => {
   const [values, setValues] = useState({
-    email: "bill@gmail.com",
-    password: "pass",
+    password: "",
+    password_confirm: "",
     error: "",
     loading: false,
     redirectToReferrer: false,
   });
 
-  const { email, password, loading, error, redirectToReferrer } = values;
-  const { user } = userService.isAuthenticated();
+  const resetToken = useParams().resetToken
+  const userId = useParams().userId
+  
+  const { password, password_confirm, loading, error, redirectToReferrer } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -34,31 +35,26 @@ const Login = () => {
   const clickSubmit = (event) => {
     // prevent browser from reloading
     event.preventDefault();
-
     userService
-      .login(values.email, values.password)
+      .reset(values.password, values.password_confirm, userId, resetToken)
       .then((response) => {
-        setValues({ ...values, error: false, password: "" });
+        setValues({ ...values, error: false });
         if (!response || response === null) {
           setValues({
             ...values,
-            error: "Invalid Username or Password",
+            error: "An error occurred, it is likely the token used is too old.",
             loading: false,
           });
           return;
         }
-        console.log(response);
-
-        //Stores the user object in local storage
-        userService.authenticate(response, () => {
-          setValues({ ...values, redirectToReferrer: true }); //Update the redirect value to true
-        });
+        //Success -> Redirect To Login
+        setValues({ ...values, redirectToReferrer: true }); //Update the redirect value to true
       })
       .catch((err) => {
         console.log(err);
         setValues({
           ...values,
-          error: "Invalid Username or Password",
+          error: "Invalid Email",
           loading: false,
         });
         return;
@@ -68,29 +64,10 @@ const Login = () => {
 
 
 
-  const loginForm = () => (
+  const resetForm = () => (
     <form>
 
       <div className="form-group">
-        <label className="text-muted">Email</label>
-        <div className="input-div one" >
-          <div className="i">
-            <i className="fas fa-user"></i>
-          </div>
-          <div className="div">
-            <input
-              onChange={handleChange("email")}
-              type="email"
-              className="input"
-              placeholder="Email"
-              value={email}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="form-group">
-        <label className="text-muted">Password</label>
         <div className="input-div two">
           <div className="i">
             <i className="fas fa-lock"></i>
@@ -100,14 +77,32 @@ const Login = () => {
               onChange={handleChange("password")}
               type="password"
               className="form-control"
-              placeholder="Password"
+              placeholder="New Password"
               value={password}
             />
           </div>
         </div>
       </div>
+
+      <div className="form-group">
+        <div className="input-div two">
+          <div className="i">
+            <i className="fas fa-lock"></i>
+          </div>
+          <div className="div">
+            <input
+              onChange={handleChange("password_confirm")}
+              type="password"
+              className="form-control"
+              placeholder="Confirm New Password"
+              value={password_confirm}
+            />
+          </div>
+        </div>
+      </div>
+
       <button onClick={clickSubmit} className="login-btn btn-primary">
-        Login
+        Reset Password
       </button>
     </form>
   );
@@ -130,9 +125,7 @@ const Login = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
-      //if (user) {
-        return <Redirect to="/profile" />;
-      //}
+        return <Redirect to="/login" />;
     }
   };
 
@@ -147,15 +140,13 @@ const Login = () => {
         <div className="login-content">
         <img src={ProfilePic} alt="avatar" />
 
-          <Layout title="Login" description="Welcome Back">
+          <Layout title="Reset Password" description="Enter a new password">
 
             {showLoading()}
             {showError()}
-            {loginForm()}
+            {resetForm()}
             {redirectUser()}
           </Layout>
-          <Link to="/forgot">Forgot Password?</Link>
-          <br></br>
           <Link to="/Register">Need an account?</Link>
           
         </div>
@@ -164,4 +155,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Reset;

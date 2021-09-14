@@ -1,11 +1,14 @@
 const express = require('express')  
 const database = require('../database')
+const crypto = require("crypto");
 const User = database.UserSchema;
 const Favour = database.FavourSchema;
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
 const favours = require('../models/favours');
 const users = require('../models/users');
+const Token = require("../models/token");
+
 
 
 const apiRouter = express.Router()
@@ -88,9 +91,82 @@ apiRouter.post('/api/login' , async (req, res) => {
     } else {
         return res.status(401).json({error: "invalid email or password"})
     }
+})
+
+//forgot end-point
+apiRouter.post('/api/forgot' , async (req, res) => {
+    const {email} = req.body
+    const user = await getUser(email)
+    if(user) {
+        //USER EXISTS
+
+        let token = await Token.findOne({ userId: user._id });
+        if (token) await token.deleteOne();
+        let resetToken = crypto.randomBytes(32).toString("hex");
+        const hash = await bcrypt.hash(resetToken, 10);
+
+        await new Token({
+            userId: user._id,
+            token: hash,
+            createdAt: Date.now(),
+        }).save();
+
+        const sgMail = require('@sendgrid/mail')
+        sgMail.setApiKey("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")
+        const msg = {
+        to: user.email,
+        // to: "benjamin.fricke07@gmail.com",
+        from: 'donotreply@fricke.world',
+        subject: 'Swap Street - Reset Password',
+        text: 'Reset your password here: http://localhost:3002/reset/' + resetToken + "/" + user._id,
+        html: '<strong>Reset your password here: http://localhost:3002/reset/' + resetToken + "/" + user._id + '</strong>',
+        }
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+            console.log(error.response.body.errors)
+        })
 
 
+        return res.status(200).json({email: user.email, id: user._id})
+    } else {
+        //NO USER FOUND
+        return res.status(404).json({error: "User Not Found, Try A Different Email"})
+    }
+})
 
+
+//reset password end-point
+apiRouter.post('/api/reset' , async (req, res) => {
+    const {password, password_confirm, userId, resetToken} = req.body
+    console.log(req.body)
+
+    if(password !== password_confirm) {
+        return res.status(412).json({error: "Passwords Do Not Match"})
+    }
+
+    let passwordResetToken = await Token.findOne({ userId });
+    if (passwordResetToken) {
+        
+        const isValid = await bcrypt.compare(resetToken, passwordResetToken.token);
+        if (!isValid) {
+            return res.status(401).json({error: "Token Expired"})
+        }
+        const hash = await bcrypt.hash(password, 10);
+        await User.updateOne(
+            { _id: userId },
+            { $set: { password: hash } },
+            { new: true }
+        );
+        await passwordResetToken.deleteOne();
+        return res.status(202).json({})
+    } else {
+        return res.status(401).json({error: "Token Not Found"})
+    }
 })
 
 //registration end-point

@@ -10,6 +10,8 @@ import JobPage from "../views/JobPage";
 import DataFill from "../components/JSX/DataFill";
 import Register from "../views/Register";
 import Login from "../views/Login";
+import Forgot from "../views/Forgot";
+import Reset from "../views/Reset.js";
 import CreateJob from "../views/CreateJob";
 import PrivateRoute from "./PrivateRoute";
 import jobService from "../services/job"
@@ -114,6 +116,14 @@ class DataRouter extends Component {
               userID={this.state.userID}
               exact
             />
+
+            <Route path="/forgot">
+              <Forgot></Forgot>
+            </Route>
+            <Route path="/reset/:resetToken/:userId">
+              <Reset></Reset>
+            </Route>
+
 
 
             <Route path="/profile">

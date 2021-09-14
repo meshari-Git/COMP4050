@@ -84,7 +84,6 @@ apiRouter.post('/api/login' , async (req, res) => {
         catch {
             return res.status(401).json({error: "invalid token"})
         }
-        console.log(token)
 
         return res.status(200).json({token, username: EMAIL.username, email: EMAIL.email, id: EMAIL._id})
         
@@ -143,7 +142,6 @@ apiRouter.post('/api/forgot' , async (req, res) => {
 //reset password end-point
 apiRouter.post('/api/reset' , async (req, res) => {
     const {password, password_confirm, userId, resetToken} = req.body
-    console.log(req.body)
 
     if(password !== password_confirm) {
         return res.status(412).json({error: "Passwords Do Not Match"})
@@ -218,7 +216,6 @@ apiRouter.post('/api/account_update' , async (req, res) => {
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
     }
-
     const userID = user._id.toString()
 
     users.findOneAndUpdate({_id: user._id}, newUser, function (error) {

@@ -223,12 +223,12 @@ function Profile() {
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="firstname" placeholder="Username" value={updatedUser.firstName} onChange={handleChangeUpdate("firstName")} />
+                <Form.Control type="firstname" placeholder="First Name" value={updatedUser.firstName} onChange={handleChangeUpdate("firstName")} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="lastname" placeholder="Username" value={updatedUser.lastName} onChange={handleChangeUpdate("lastName")} />
+                <Form.Control type="lastname" placeholder="Last Name" value={updatedUser.lastName} onChange={handleChangeUpdate("lastName")} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="">

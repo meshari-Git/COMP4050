@@ -28,7 +28,7 @@ class HomePage extends Component {
     return (
       <div className="homePage">
         <div className="homeContainer">
-          <form style={{height: '50px', width: '100%'}}>
+          <form className="searchBar">
             <input
               className="form-control mr-sm-2"
               type="search"
@@ -38,13 +38,12 @@ class HomePage extends Component {
               onChange={this.updateSearchField}
             />
           </form>
-          <div className="test"><Favour filter={this.state.searchData} /></div>
-
+          <div className="filters"></div>
+          <div><Favour filter={this.state.searchData} /></div>
         </div>
-        <div >
-          Map goes here
+        <div className="map">
+          <GMap />
         </div>
-        {/* <GMap /> Google Maps for the homepage here */}
       </div>
     );
   }

@@ -1,5 +1,4 @@
 .homePage {
-
   display: flex;
 }
 
@@ -9,9 +8,8 @@
 
 .homeContainer {
   padding: 15px;
-  width: 20%;
+  width: 100%;
   height: 100%;
-  background: black;
   min-width: 200px;
 }
 
@@ -20,7 +18,6 @@
   min-height: 18vh;
   border: 2px solid gray;
   border-radius: 5px;
-
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -28,59 +25,36 @@
   background: white;
 }
 
-.homeCard:hover {
-  background: #e8e8e8;
-}
-
-.homeCardBody {
-  margin: 15px;
-}
-
-.homeJobLocation {
-  color: black;
-  margin-bottom: 5px;
-}
-
-.homeJobCost {
-  color: black;
-}
-
-.job:hover {
-  text-decoration: none;
-}
-
 .row {
   margin-top: 35px;
   width: 60%;
 }
-
-.favourCtr {
-  margin: 20px;
-  float: top;
-  background-color: white;
-  width: 100%;
+.searchBar {
+  height: 50px;
+  width: 22vw;
+  z-index: 1;
+}
+.map {
+  position: absolute;
+  background-color: grey;
 }
 
-.test {
-  width: 80%;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
 }
 
-.table {
-
-  height: 100%;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
 }
 
-.table tbody {
-  margin: 20px;
-
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
 }
 
-.table tr {
-  margin: 10px;
-  background-color: white;
-  width: 200px;
-  text-align: left;
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
 }
-.table td {
-  padding: 10px;
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }

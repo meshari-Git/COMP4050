@@ -141,7 +141,7 @@ const Login = () => {
       <img className="wave" src={Wave} alt="wave" />
       <div className="container">
         <div className="img">
-          <img src={Robot} alt="Programming a Robot" />
+          <img src={Robot} alt="Programming   Robot" />
 
         </div>
         <div className="login-content">
@@ -154,9 +154,9 @@ const Login = () => {
             {loginForm()}
             {redirectUser()}
           </Layout>
-          <Link to="/forgot">Forgot Password?</Link>
+          <Link className="link" to="/forgot">Forgot Password?</Link>
           <br></br>
-          <Link to="/Register">Need an account?</Link>
+          <Link className="link" to="/Register">Need an account?</Link>
           
         </div>
       </div>

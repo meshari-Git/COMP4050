@@ -152,13 +152,13 @@ i {
 }
 
 .footer {
-  margin-top: 0.5rem;
   padding: 0.5rem;  
   background-color: #6c6d8a;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .footer p {

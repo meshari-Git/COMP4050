@@ -145,7 +145,7 @@ form {
   margin-bottom: 4px;
 }
 
-a {
+.link a {
   display: block;
   text-align: right;
   text-decoration: none;
@@ -154,7 +154,7 @@ a {
   transition: 0.3s;
 }
 
-a:hover {
+.link a :hover {
   color: #54c1fb;
 }
 

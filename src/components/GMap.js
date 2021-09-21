@@ -1,6 +1,7 @@
 
 import React from "react";
 import GoogleMapReact from 'google-map-react';
+import "../assets/css/map.css";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -8,17 +9,18 @@ export default function SimpleMap(){
 
   const defaultProps = {
     center: {
-      lat: 47.444,
-      lng: -122.176
+      lat: -33.7738,
+      lng: 151.1126
     },
-    zoom: 11
+    zoom: 15
   };
+  const API_KEY = "AIzaSyBVlA41PNk8sS6ej2xL7NSQaGjEMFvY9OE"
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '100vh', width: '80%', }}>
+    <div className="map">
       <GoogleMapReact
-         bootstrapURLKeys={{ key: "AIzaSyBVlA41PNk8sS6ej2xL7NSQaGjEMFvY9OE" }}
+         bootstrapURLKeys={{ key: API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >

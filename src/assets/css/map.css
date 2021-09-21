@@ -1,5 +1,5 @@
-.mapStyles {
-    width: '100%';
-    height: '100%';
-  };
-  
+.map {
+    height: 90.5vh;
+    width: 100vw;
+    z-index: -1;
+}

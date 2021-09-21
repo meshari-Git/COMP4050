@@ -36,7 +36,7 @@ class JobPage extends Component {
                 {job.title}
               </div>
               <div className = "job-cost">
-                {job.cost}
+                {job.cost} Token(s)
               </div>
               <div className = "job-location">
                 {/*A symbol here? (See figma)*/}
@@ -57,18 +57,18 @@ class JobPage extends Component {
             </div>
           </div>
           {user.id != job.ownerID ?
-            <div className = "accept-job">
-              <div className = "text-box">
-
-              </div>
-              <button className = "accept-job-button">
-                Accept Job
-              </button>
+            <div className = "accept-job-container">
+              <form className = "accept-job">
+                <input type = "text" className = "text-box">
+                </input>
+                <input type = "submit" className = "accept-job-button" value = "accept job">
+                </input>
+              </form>
             </div> :
             <div className = "edit-job-container">
-              <div className = "edit-job-button">
-
-              </div>
+              <button className = "edit-job-button">
+                Edit Job
+              </button>
               <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
                 pathname: "/"
               }}>

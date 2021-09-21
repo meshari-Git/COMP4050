@@ -33,8 +33,8 @@
 .job-page * {
   margin: 0px;
   padding: 0px;
-  border-style: solid;    /*debug*/
-  border-width: 1px;      /*debug*/
+  /*border-style: solid;    /*debug*/
+  /*border-width: 1px;      /*debug*/
 }
 
 
@@ -46,31 +46,57 @@
 
 
 .job-container {
-  border-width: 2px;            /*debug*/
-  border-color:chartreuse;    /*debug*/
+  /*border-width: 2px;            /*debug*/
+  /*border-color:chartreuse;    /*debug*/
   width: 70%;
   padding-left: 15%;
   padding-right: 5%;
 }
 
+
 .job-pictures {
-  border-color:blueviolet;    /*debug*/
+  /*border-color:blueviolet;    /*debug*/
   height: 60%;
   background-color: cornsilk; /*placeholder*/
 }
+
 
 .job-text-container {
   height: 40%;
 }
 
+
 .job-text-container * {
   text-align: left;
 }
 
+
 .job-header {
-  border-color:maroon;         /*debug*/
-  height: 40%;
+  /*border-color:maroon;         /*debug*/
   width: 50%;
+  padding: 10px 0px;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;     /*change to whatever font family you want*/
+}
+
+
+.job-header * {
+  padding: 2px 0px;
+}
+
+
+.job-title {
+  font-size: 1.1em;
+}
+
+
+.job-cost {
+  font-size: 1.5em;
+}
+
+
+.job-location {
+  font-size: 1.3em;
 }
 
 
@@ -80,8 +106,60 @@
 
 
 .user-container {
-  border-width: 2px;            /*debug*/
-  border-color:deeppink;      /*debug*/
+  /*border-width: 2px;            /*debug*/
+  /*border-color:deeppink;      /*debug*/
   width: 30%;
-  padding-right: 5%;
+  margin-right: 5%;
+  text-align: center;
 }
+
+
+.job-owner {
+  display: flex;
+  height: 10em;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.profile-picture {
+  /*border-color: blueviolet;   /*debug*/
+  background-color: cornsilk; /*placeholder*/
+  width: 50%;
+  height: 100%;
+}
+
+
+.owner-name {
+  padding-left: 5%;;
+}
+
+
+.accept-job-container {
+}
+
+
+.accept-job * {
+  display: list-item;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+
+.accept-job {
+  /*border-color: darkorange;   /*debug*/
+}
+
+
+.text-box {
+  height: 5em;
+}
+
+
+.edit-job-container {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+
+

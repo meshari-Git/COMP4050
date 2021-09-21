@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import GMap from "../components/GMap.js";
 import jobService from "../services/job"
-import Favour from "../components/favour"
+import Favour from "../components/Favour"
 
 class HomePage extends Component {
   constructor(props) {

@@ -15,7 +15,7 @@ mongoose.connection
 .on("error", (err) => console.log(err));
 
 const UserSchema = require("./models/users");
-const FavourSchema = require("./models/favours");
+const FavourSchema = require("./models/Favours");
 
 module.exports = {
   UserSchema,

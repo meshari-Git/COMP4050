@@ -5,7 +5,7 @@ const User = database.UserSchema;
 const Favour = database.FavourSchema;
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
-const favours = require('../models/favours');
+const favours = require('../models/Favours');
 const users = require('../models/users');
 const Token = require("../models/token");
 
@@ -298,7 +298,7 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
 })
 
 // Specific favour retrieval
-apiRouter.get("/api/favours/:id" , async (req , res) => {
+apiRouter.get("/api/Favours/:id" , async (req , res) => {
     await Favour.findById(req.params.id)
     .then(result => {
         res.json(result)
@@ -310,7 +310,7 @@ apiRouter.get("/api/favours/:id" , async (req , res) => {
 
 
 // Specific favour deletion
-apiRouter.delete("/api/favour/:id" , async (req , res) => {
+apiRouter.delete("/api/Favour/:id" , async (req , res) => {
     
     const user = await verifyLogin(req)
     if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }

@@ -40,7 +40,6 @@ const NavBar = ({ history }) => {
       var activeTabNewHeight = $(this).innerHeight();
       var itemAnimationPosTop = $(this).position();
       var itemAnimationPosLeft = $(this).position();
-
       $(".nav-selector").css({
         width: activeTabNewWidth + "px",
         height: activeTabNewHeight + "px",

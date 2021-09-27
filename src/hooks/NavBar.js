@@ -34,6 +34,10 @@ const NavBar = ({ history }) => {
     });
 
     $("#navbarSupportedContent").on("click", "li", function (e) {
+      console.log(window.location.href);
+      if(window.location.href === "http://localhost:3002/profile"){
+        console.log("hey your on the profile page?")
+      }
       $("#navbarSupportedContent ul li").removeClass("active");
       $(this).addClass("active");
       var activeTabNewWidth = $(this).innerWidth();
@@ -56,10 +60,10 @@ const NavBar = ({ history }) => {
           const tab = localStorage.setItem('activeTab', $(e.target).attr('href'));
           this.setState({tab})
       });
-      var activeTab = localStorage.getItem('activeTab');
-      if(activeTab){
-          $('#myTab a[href="' + activeTab + '"]').tab('show');
-      }
+      // var activeTab = localStorage.getItem('activeTab');
+      // if(activeTab){
+      //     $('#myTab a[href="' + activeTab + '"]').tab('show');
+      // }
     });
     animation();
     $(window).on("resize", function () {

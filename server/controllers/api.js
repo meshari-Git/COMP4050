@@ -8,6 +8,9 @@ const jwt = require("jsonwebtoken");
 const favours = require('../models/Favours');
 const users = require('../models/users');
 const Token = require("../models/token");
+const mongoose = require('mongoose');
+
+
 
 
 
@@ -61,6 +64,15 @@ const getUser = async (username) => {
 const getEmail = async (email) => {
     const Email = await User.findOne({ email: email })
     return Email
+}
+const getFavour = async (favourID) => {
+    if(mongoose.Types.ObjectId.isValid(favourID)){
+    const fav = await Favour.findOne({_id: favourID})
+    return fav
+    }
+    else{
+        return null
+    }
 }
 
 //login end-point
@@ -308,9 +320,43 @@ apiRouter.get("/api/Favours/:id" , async (req , res) => {
     })
 })
 
+//Accepting a favour
+apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
+    const user = await verifyLogin(req)
+
+    if(user){
+        const newFav = await getFavour(req.params.id)
+        if(!newFav){
+            return res.status(404).json({error: "Favour not found"})
+        }
+        else if(newFav.ownerName == user.username){
+            return res.status(403).json({error: "Cannot accept your favours"})
+        }
+        else if(newFav.operatorID != null || newFav.operatorName != null){
+            return res.status(403).json({error: "Favour already accepted"})
+        }
+        newFav.operatorID = user._id
+        newFav.operaterName = user.username
+        newFav.status = 1
+        console.log(newFav)
+    
+        newFav.save().then(result => {
+            return res.status(200).json(result)
+        })
+        .catch(err => {
+            return res.status(404).json({error: "Error"})
+        })
+    }
+    else
+    {   
+        return res.status(401).json({error: "Login or create an account to accept favours"})
+    }   
+    
+
+})
 
 // Specific favour deletion
-apiRouter.delete("/api/Favour/:id" , async (req , res) => {
+apiRouter.delete("/api/Favours/:id" , async (req , res) => {
     
     const user = await verifyLogin(req)
     if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }

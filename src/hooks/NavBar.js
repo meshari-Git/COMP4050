@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import React, { useState, useEffect } from "react";
 import "../assets/css/navbar.css";
 import { Link, withRouter, useLocation } from "react-router-dom";
@@ -70,7 +76,7 @@ const NavBar = ({ history }) => {
         $(".nav-item-3").addClass("active");
         animation()
       }
-      if(location.pathname !== "/job/new" || location.pathname !== "/profile"  || location.pathname !== "/"){
+      if(location.pathname !== "/job/new" || location.pathname !== "/profile"  || location.pathname !== "/" || location.pathname !== "/job"){
         $(".nav-item").addClass("active");
         animation()
       }

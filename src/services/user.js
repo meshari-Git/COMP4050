@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import axios from 'axios'
 
 const baseURL = "http://localhost:3001/api/"
@@ -78,7 +84,7 @@ const login = (email, password) => {
 }
 
 /**
- * Get Profile
+ * Get Profile Of The Current User
  * @param string token  
  * @returns {Promise} Promise that will resolve the response data
  */
@@ -89,6 +95,19 @@ const login = (email, password) => {
         .then(response => response.data).catch(e => null)
 }
 
+
+
+/**
+ * Get Profile Of Another User
+ * @param string token  
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const profile_other = (username) => {
+  const user = isAuthenticated()
+  const config = {headers: {Authorization: "bearer " + user.token}}
+  return axios.get(baseURL + 'account/' + username, config)
+      .then(response => response.data).catch(e => null)
+}
 
 
 const authenticate = (data, next) => {
@@ -123,6 +142,7 @@ const exportedObject = {
     forgot,
     reset,
     profile,
+    profile_other,
     authenticate,
     isAuthenticated,
     logout,

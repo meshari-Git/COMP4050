@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import { useState, useEffect } from "react";

@@ -1,7 +1,14 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Profile from "../components/Profile";
+import ProfileOther from "../components/ProfileOther";
 import Header from "./NavBar";
 import ChangeInfo from "../components/JSX/ChangeInfo.jsx";
 import HomePage from "../views/HomePage";
@@ -128,6 +135,11 @@ class DataRouter extends Component {
 
             <Route path="/profile">
               <Profile></Profile>
+            </Route>
+
+
+            <Route path="/user/:username">
+              <ProfileOther></ProfileOther>
             </Route>
 
             <Route path="/job/new">

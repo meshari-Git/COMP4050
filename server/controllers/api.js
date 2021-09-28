@@ -359,7 +359,8 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
 apiRouter.get("/api/Favours/:id" , async (req , res) => {
     await Favour.findById(req.params.id)
     .then(result => {
-        res.json(result)
+        if(!result){res.status(404).json({error: "Not found"})}
+        else res.json(result)
     })
     .catch(err => {
         res.status(404).json({error: "Not found"})
@@ -408,14 +409,12 @@ apiRouter.delete("/api/Favours/:id" , async (req , res) => {
     if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }
     const fav = await getFavour(req.params.id)
     
-    if(fav && fav.ownerName == user.name && fav.ownerID == user._id){
+    if(fav && fav.ownerName == user.username && fav.ownerID == user._id){
         await Favour.findByIdAndDelete(fav._id)
         .then(result =>{
-            console.log("yeaa")
             return res.status(200).json()}
             )
             .catch(err => {
-                console.log("naah")
                 return res.status(400).json({error: "error"})
             })
     }

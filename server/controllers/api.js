@@ -266,6 +266,23 @@ apiRouter.get('/api/account' , async (req, res) => {
 })
 
 
+//Delete Profile - You Can Only Delete Your Own Account
+apiRouter.delete('/api/account_terminate' , async (req, res) => {
+    
+    //GET USER FROM THE TOKEN - ONLY WORKS IF TOKEN IS VALID
+    const user = await verifyLogin(req)
+
+    //IF TOKEN IS INVALID (NO USER OR NOT AUTHENTICATED)
+    if(!user){ return res.status(401).json({error: "Login to delete your account"}) }
+
+    //DELETE THE USER
+    const userDelete = await User.findOneAndDelete({_id: user._id})
+
+    //RETURN THE RESPONSE
+    return res.status(200).json({userDelete})
+})
+
+
 //Homepage Favours
 apiRouter.get("/api/", async (req , res) => {
     await Favour.find({})
@@ -336,7 +353,7 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
             return res.status(403).json({error: "Favour already accepted"})
         }
         newFav.operatorID = user._id
-        newFav.operaterName = user.username
+        newFav.operatorName = user.username
         newFav.status = 1
         console.log(newFav)
     
@@ -379,4 +396,33 @@ apiRouter.delete("/api/Favours/:id" , async (req , res) => {
         res.status(404).json({error: "Favour Not found"})
     })
 })
+
+//Cancel An accepted favour
+apiRouter.post("/api/favours/cancel/:id" , async (req , res) => {
+    const user = await verifyLogin(req)
+    if(user){
+        const currFav = await getFavour(req.params.id)
+        if(!currFav){
+            return res.status(404).json({error: "Favour does not exist"})
+        }
+        else if(currFav.operaterName != user.username && currFav.operatorID != user._id){
+            return res.status(403).json({error: "Cannot cancel favour operated by someone else"})
+        }
+        else{
+            currFav.operatorID = null
+            currFav.operatorName = null
+            currFav.status = 0;
+            currFav.save().then(result => {
+                return res.status(200).json(result)
+            })
+            .catch(err => {
+                return res.status(404).json({error: "Error"})
+            })
+        }
+    }
+    else{
+        return res.status(401).json({error: "Login or register to cancel favours"})
+    }
+})
+
 module.exports = apiRouter

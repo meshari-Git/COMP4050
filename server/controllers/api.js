@@ -265,6 +265,26 @@ apiRouter.get('/api/account' , async (req, res) => {
     
 })
 
+//OTHER USER Profile end-point 
+apiRouter.get('/api/account/:username' , async (req, res) => {
+
+    //GET USER FROM THE TOKEN - ONLY WORKS IF TOKEN IS VALID
+    const currentUser = await verifyLogin(req)
+
+    //IF TOKEN IS INVALID (NO USER OR NOT AUTHENTICATED)
+    if(!currentUser){ return res.status(401).json({error: "Login or create an account to access this page"}) }
+    
+
+    const username = req.params.username
+    if(!username || username ===  "") { return res.status(400).json({error: "No Username Specified"}) }
+    
+    const user = await User.findOne({ username: username})
+    if(!user){ return res.status(404).json({error: "User not found"}) }
+    const ownedFavours = await Favour.find({ username: user.username })
+    return res.status(200).json({user : user , ownedFavours : ownedFavours })
+    
+})
+
 
 //Delete Profile - You Can Only Delete Your Own Account
 apiRouter.delete('/api/account_terminate' , async (req, res) => {

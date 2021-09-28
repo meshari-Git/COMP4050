@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/navbar.css";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, useLocation } from "react-router-dom";
 import $ from "jquery";
 import userService from "../services/user.js";
 
 const NavBar = ({ history }) => {
+  const location = useLocation()
  
   /**
-   * The Solution to the refresh problem is localstorage.
    * 
    * @param {Object} newTabAnimate
    * @param {Object} activeTabAnimate - Finds the currently selected Tab which has the ".active" keyword
@@ -19,13 +19,13 @@ const NavBar = ({ history }) => {
    */
 
   function animation() {
+    //Automatically finds the active tab and moves to it
     var newTabAnimate = $("#navbarSupportedContent");
     var activeTabAnimate = newTabAnimate.find(".active");
     var activeTabNewWidth = activeTabAnimate.innerWidth();
     var activeTabNewHeight = activeTabAnimate.innerHeight();
     var itemAnimationPosTop = activeTabAnimate.position();
     var itemAnimationPosLeft = activeTabAnimate.position();
- //   console.log("New tab anime ", newTabAnimate);
     $(".nav-selector").css({
       width: activeTabNewWidth + "px",
       height: activeTabNewHeight + "px",
@@ -33,11 +33,8 @@ const NavBar = ({ history }) => {
       left: itemAnimationPosLeft.left + "px",
     });
 
+    //Manually finding the active tab
     $("#navbarSupportedContent").on("click", "li", function (e) {
-      console.log(window.location.href);
-      if(window.location.href === "http://localhost:3002/profile"){
-        console.log("hey your on the profile page?")
-      }
       $("#navbarSupportedContent ul li").removeClass("active");
       $(this).addClass("active");
       var activeTabNewWidth = $(this).innerWidth();
@@ -52,26 +49,40 @@ const NavBar = ({ history }) => {
       });
     });
   }
+  /**
+   * Now the animation is looking for the "active" tab 
+   * The if statements give the active class based on the current URL
+   * @param location returns the location of the current page including URL path
+   * @returns {animation} Returns the animation per refresh/click
+   */
 
   useEffect(() => {
-    //localstorage
-    $(document).ready(function(){
-      $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-          const tab = localStorage.setItem('activeTab', $(e.target).attr('href'));
-          this.setState({tab})
-      });
-      // var activeTab = localStorage.getItem('activeTab');
-      // if(activeTab){
-      //     $('#myTab a[href="' + activeTab + '"]').tab('show');
-      // }
+    $(document).ready(function(e){
+      if(location.pathname === "/"){
+          $(".nav-item-1").addClass("active");
+          animation()
+      }
+      if(location.pathname === "/profile"){
+        $(".nav-item-2").addClass("active");
+        animation()
+      }
+      if(location.pathname === "/job/new"){
+        $(".nav-item-3").addClass("active");
+        animation()
+      }
+      if(location.pathname !== "/job/new" || location.pathname !== "/profile"  || location.pathname !== "/"){
+        $(".nav-item").addClass("active");
+        animation()
+      }
     });
-    animation();
+    $("#navbarSupportedContent ul li").removeClass("active");
+
     $(window).on("resize", function () {
       setTimeout(function () {
         animation();
       }, 1);
     });
-  }, []);
+  }, [location]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
@@ -105,21 +116,24 @@ const NavBar = ({ history }) => {
             <div className="left"></div>
             <div className="right"></div>
           </div>
-          <li className="nav-item active" data-toggle="tab">
+         
+          <li className="nav-item-1 active" data-toggle="tab">
             <Link className="nav-link" to="/" >
               <i className="fas fa-home"></i>Home
               <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li className="nav-item"  data-toggle="tab">
+          <li className="nav-item-2"  data-toggle="tab">
             <Link className="nav-link" to="/profile" >
               <i className="far fa-address-book"></i>My Profile
             </Link>
           </li>
-          <li className="nav-item" data-toggle="tab">
+          <li className="nav-item-3" data-toggle="tab">
             <Link className="nav-link" to="/job/new" >
               <i className="fas fa-thumbs-up"></i>Need a Favour?
             </Link>
+          </li>
+          <li className="nav-item" data-toggle="tab">
           </li>
         </ul>
       </div>

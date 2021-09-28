@@ -29,23 +29,12 @@ const delFavour = (favourId, token) => {
     }).catch(e => null)
 }
 
-const editFavour = (job) => {
-    axios.put(baseURL + job.id, {
-            "ownerID": job.ownerID,
-            "title": job.title,
-            "description": job.description,
-            "cost": job.cost,
-            "status": job.status,
-            "city": job.city,
-            "streetAddress": job.address,
-            "operatorID": job.operatorID
-        })
-    .then(response => {
-        console.log(response)
-        const updateFavour = job.slice()
-        updateFavour[job.id] = response
-        // setFavours(updateFavour)
-    })
+const editFavour = (job, token) => {
+    const config = {headers: {Authorization: "bearer " + token}}
+    axios.put(baseURL + "job/"+ job._id, {
+            job
+        }, config)
+    .then(response => response.data).catch(e => null)
 }
 
 const getFavours = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../assets/css/jobpage.css";
-
+import JobModal from "../components/JobEditModal"
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
 import jobService from "../services/job.js"
@@ -66,9 +66,7 @@ class JobPage extends Component {
               </form>
             </div> :
             <div className = "edit-job-container">
-              <button className = "edit-job-button">
-                Edit Job
-              </button>
+              <JobModal job={this.state.job} user={user}/>
               <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
                 pathname: "/"
               }}>

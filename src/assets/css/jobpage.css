@@ -73,10 +73,12 @@
 
 .job-header {
   /*border-color:maroon;         /*debug*/
-  width: 50%;
+  width: 100%;
   padding: 10px 0px;
+  margin-top: 2em;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;     /*change to whatever font family you want*/
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 
@@ -102,6 +104,7 @@
 
 .job-description {
   height: 60%;
+  border-bottom: 2px solid black;
 }
 
 
@@ -134,7 +137,7 @@
 
 .owner-name {
   padding-left: 5%;
-  margin: 40% 0%;
+  margin: 5em 0em;
 }
 
 
@@ -142,7 +145,7 @@
 }
 
 
-.accept-job * {
+.accept-job *, .edit-job-container * {
   display: list-item;
   width: 100%;
   margin: 10px 0px;
@@ -161,10 +164,18 @@
 }
 
 
-.edit-job-container {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 10px;
+.accept-job-button, .edit-job-button, .delete-job-button {
+  background-color: #363dfa;
+  color: white;
+  height: 50px;
+  width: 80%;
+  border-radius: 10px;
+  margin: 1em 2em;  
+}
+
+.delete-job-button {
+  text-align: center;
+  padding: 1em;
 }
 
 

@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { Link, Redirect } from "react-router-dom";
 import userService from '../services/user.js';
 import jobService from '../services/job.js';
+import "../assets/css/dashboard.css";
 
 
 const CreateJob = () => {

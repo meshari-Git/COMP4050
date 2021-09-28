@@ -171,11 +171,11 @@
   width: 80%;
   border-radius: 10px;
   margin: 1em 2em;  
+  text-align: center;
+  padding: 1em;
 }
 
 .delete-job-button {
-  text-align: center;
-  padding: 1em;
 }
 
 

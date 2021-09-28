@@ -61,8 +61,24 @@ class JobPage extends Component {
               <form className = "accept-job">
                 <input type = "text" className = "text-box">
                 </input>
-                <input type = "submit" className = "accept-job-button" value = "accept job">
-                </input>
+                {/*{job.operatorID ?
+                  <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
+                  </input> :
+                  <input type = "submit" className = "accept-job-button" value = "Accepted" onClick = {(e) => jobService.cancelFavour(job, user.token)}>
+                  </input>
+                }*/}
+                {job.operatorID == null ?
+                  <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
+                    pathname: "/"
+                  }}>
+                    Accept Job
+                  </Link> :
+                  <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job, user.token)} to = {{
+                    pathname: "/"
+                  }}>
+                    Accepted
+                  </Link>
+                }
               </form>
             </div> :
             <div className = "edit-job-container">

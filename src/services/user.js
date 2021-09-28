@@ -65,6 +65,18 @@ const login = (email, password) => {
       .then(response => response.data).catch(e => null)
 }
 
+
+/**
+ * Send A Account Terminate Request
+ * @param object user 
+ * @returns {Promise} Promise that will resolve the response data
+ */
+ const account_terminate = () => {
+  const config = {headers: {Authorization: "bearer " + isAuthenticated().token}}
+  return axios.delete(baseURL + 'account_terminate', config)
+      .then(response => response.data).catch(e => null)
+}
+
 /**
  * Get Profile
  * @param string token  
@@ -114,7 +126,8 @@ const exportedObject = {
     authenticate,
     isAuthenticated,
     logout,
-    account_update
+    account_update,
+    account_terminate
 };
 
 export default exportedObject;

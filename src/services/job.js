@@ -52,11 +52,31 @@ const getFavours = () => {
     return axios.get(baseURL)
 }
 
+const cancelFavour = (favourID , token) => {
+    const config = {headers: {Authorization: "bearer " + token}}
+    axios.post(baseURL + "favours/cancel/" + favourID , config)
+    .then(response =>{
+        response.data()
+    })
+    .catch(e => null)
+}
+
+const acceptFavour = (favourID , token) => {
+    const config = {headers: {Authorization: "bearer " + token}}
+    axios.post(baseURL + "favours/accept/" + favourID , config)
+    .then(response => {
+        response.data() 
+    })
+    .catch(e => null)
+}
+
 const exportedObject = {
     addJob,
     delFavour,
     editFavour,
-    getFavours
+    getFavours,
+    cancelFavour,
+    acceptFavour
 };
 
 export default exportedObject;

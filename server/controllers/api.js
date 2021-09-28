@@ -385,7 +385,6 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
         newFav.operatorID = user._id
         newFav.operatorName = user.username
         newFav.status = 1
-        console.log(newFav)
     
         newFav.save().then(result => {
             return res.status(200).json(result)

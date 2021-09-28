@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import React, { Component } from "react";
 import "../assets/css/jobpage.css";
 import JobModal from "../components/JobEditModal"

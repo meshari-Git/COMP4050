@@ -111,14 +111,16 @@
   width: 30%;
   margin-right: 5%;
   text-align: center;
+  border: 2px solid black;
+  border-radius: 50px;
 }
 
 
 .job-owner {
   display: flex;
   height: 10em;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  margin: 1em 0em;
 }
 
 
@@ -131,7 +133,8 @@
 
 
 .owner-name {
-  padding-left: 5%;;
+  padding-left: 5%;
+  margin: 40% 0%;
 }
 
 
@@ -148,11 +151,13 @@
 
 .accept-job {
   /*border-color: darkorange;   /*debug*/
+  width: 90%;
+  margin: 0% 5%;
 }
 
 
 .text-box {
-  height: 5em;
+  height: 8em;
 }
 
 

@@ -377,24 +377,20 @@ apiRouter.delete("/api/Favours/:id" , async (req , res) => {
     
     const user = await verifyLogin(req)
     if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }
-
-    await Favour.findOne({ ownerID: req.params.id })
-    .then(result => {
-        if(result.ownerID != user._id) {
-            return res.status(404).json({error: "Favour Does Not Belong To You"})
-        }
-        Favour.remove({ _id: result._id }, function(err) {
-            if (!err) {
-                return res.status(200).json()
-            }
-            else {
-                return res.status(400).json({error: "Favour Could Not Be Deleted"})
-            }
-        });
-    })
-    .catch(err => {
-        res.status(404).json({error: "Favour Not found"})
-    })
+    const fav = await getFavour(req.params.id)
+    
+    if(fav && fav.ownerName == user.name && fav.ownerID == user._id){
+        await Favour.findByIdAndDelete(fav._id)
+        .then(result =>{
+            console.log("yeaa")
+            return res.status(200).json()}
+            )
+            .catch(err => {
+                console.log("naah")
+                return res.status(400).json({error: "error"})
+            })
+    }
+    else return res.status(404).json({error: "Favour does not exist or you do not have access to favour"})
 })
 
 //Cancel An accepted favour

@@ -31,8 +31,34 @@
 }
 .searchBar {
   height: 50px;
-  width: 22vw;
+  width: 100%;
   z-index: 1;
+}
+
+.ctr {
+  height: 50px;
+  width: 22vw;
+}
+
+.sb {
+  float: left;
+  width: 65%;
+  height: 50px;
+}
+
+.dd {
+  float: right;
+  width: 30%;
+  height: 50px;
+}
+
+.dropdown {
+  padding: 0px;
+  padding-left: 5%;
+}
+
+#dropdown-basic {
+  width: 100%;
 }
 .map {
   position: absolute;

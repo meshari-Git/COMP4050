@@ -266,6 +266,23 @@ apiRouter.get('/api/account' , async (req, res) => {
 })
 
 
+//Delete Profile - You Can Only Delete Your Own Account
+apiRouter.delete('/api/account_terminate' , async (req, res) => {
+    
+    //GET USER FROM THE TOKEN - ONLY WORKS IF TOKEN IS VALID
+    const user = await verifyLogin(req)
+
+    //IF TOKEN IS INVALID (NO USER OR NOT AUTHENTICATED)
+    if(!user){ return res.status(401).json({error: "Login to delete your account"}) }
+
+    //DELETE THE USER
+    const userDelete = await User.findOneAndDelete({_id: user._id})
+
+    //RETURN THE RESPONSE
+    return res.status(200).json({userDelete})
+})
+
+
 //Homepage Favours
 apiRouter.get("/api/", async (req , res) => {
     await Favour.find({})

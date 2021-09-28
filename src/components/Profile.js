@@ -78,18 +78,20 @@ function Profile() {
     setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
   };
 
-
-
-  //dummy job to test out JobCard component.
-  const dummyJob = {
-    ownerID: 'Leon',
-    description: 'Using a shovel, you must dig me a giant hole.',
-    title: 'Dig me a hole',
-    status: 0,
-    cost: 3,
-    operatorID: null,
-    city: 'Sydney',
-    streetAddress: '42 Milky Way, Ryde 2650 NSW',
+  const terminateUser = () => {
+    var r = window.confirm("Are you sure you want to delete your account, this cannot be undone!");
+    if (r==true) {
+      userService.account_terminate().then(respons => {
+        
+        if(respons.email === user.email) {
+          userService.logout(() => {
+            setUser({})
+          })
+        } else {
+          alert("Something went wrong...")
+        }
+      })
+    } 
   }
 
   //can be moved elsewhere and redone as a component.
@@ -130,7 +132,8 @@ function Profile() {
           <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
             <img alt="" src={"https://robohash.org/" + user.user.email}></img>
             <p>{user.user.email}</p>
-            <Button variant="warning" onClick={(e) => handleShow()}>Edit Profile</Button>
+            <Button variant="warning" onClick={(e) => handleShow()}>Edit Profile</Button>{"   "}
+            <Button variant="danger" onClick={(e) => terminateUser()}>Terminate My Account</Button>
           </Col>
           <Col xs={6} sm={6} md={6} lg={6} xl={6}>
             <div>

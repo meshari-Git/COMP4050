@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { Link, Redirect } from "react-router-dom";

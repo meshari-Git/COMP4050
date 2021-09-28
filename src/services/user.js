@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import axios from 'axios'
 
 const baseURL = "http://localhost:3001/api/"

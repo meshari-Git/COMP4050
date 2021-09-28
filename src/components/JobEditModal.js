@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import jobService from '../services/job'

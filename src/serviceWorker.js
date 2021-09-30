@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

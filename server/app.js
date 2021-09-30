@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 //Express server intitiation 
 const express = require('express') 
 const cors = require('cors')

@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 import React, { useState, useEffect } from "react";
 import "../assets/css/navbar.css";
 import { Link, withRouter, useLocation } from "react-router-dom";

@@ -1,3 +1,9 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: 
+  * 
+  */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const tokenSchema = new Schema({

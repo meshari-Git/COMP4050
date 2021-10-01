@@ -1,7 +1,7 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @J5kinner @Ben450
   * 
   */
 import React, { useState, useEffect } from "react";

@@ -1,0 +1,183 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: @J5kinner
+  * 
+  */
+
+.form-inputs {
+  height: 120vh;
+}
+.new-favour-form {
+  width: 75vw;
+  position: absolute;
+  left: 12%;
+}
+.row {
+  width: 77vw;
+}
+
+.left-form {
+  color: var(--blue);
+}
+
+.text-area {
+  height: 100px;
+}
+
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 1rem 0 0.5rem;
+  border: 3px dotted lightgray;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+
+.upload-input {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  border: none;
+  text-transform: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.drag-drop-text {
+  text-align: center;
+  margin-top: 0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.upload-file-btn {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid var(--blue);
+  cursor: pointer;
+  padding: 1em 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 1rem;
+  color: var(--blue);
+  z-index: 1;
+  width: 27%;
+  
+
+  i {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.7rem;
+    width: 10%;
+  }
+
+  @media only screen and (max-width: 300px) {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 500px) {
+    width: 70%;
+  }
+
+  &:hover {
+    outline: 0;
+    background: var(--blue);
+    color: white;
+  }
+}
+
+.preview-container {
+  border-radius: 1rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.2rem;
+  width: 47%;
+  height: 120px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  & > div:first-of-type {
+    position: relative;
+    height: 100%;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 100%;
+    padding: 0 0 0.4em;
+  }
+  
+  @media only screen and (max-width: 500px) {
+    width: 85%;
+  }
+
+  @media only screen and (max-width: 750px) {
+    width: 75%;
+  }
+}
+
+.preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+
+  @media only screen and (max-width: 400px) {
+    flex-direction: column;
+  }
+}
+
+#preview-img {
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.remove-file-icon {
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.file-meta-data {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5em;
+  border-radius: 1rem;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(5, 5, 5, 0.55);
+
+  aside {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.spacer {
+  width: 50%;
+  float: right;
+  padding: 1em;
+}

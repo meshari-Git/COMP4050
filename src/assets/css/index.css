@@ -1,7 +1,7 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @J5kinner
   * 
   */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
@@ -13,6 +13,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 400px;
+}
+
+:root {
+  --blue: #6D71F9;
+  --light-blue: #54C1FB;
+  --purple: #6C6D8A;
+  --dark-purple: #272848;
+  --white: ##FFFFFF;
 }
 
 code {

@@ -75,7 +75,7 @@ const Login = () => {
 
 
   const loginForm = () => (
-    <form>
+    <form className="login-form">
 
       <div className="form-group">
         <label className="text-muted">Email</label>

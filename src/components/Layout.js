@@ -1,7 +1,7 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @J5kinner
   * 
   */
 import React from "react";
@@ -14,8 +14,8 @@ const Layout = ({
 }) => (
   <div>
     <div className="jumbotron">
-      <h2>{title}</h2>
-      <p className="lead">{description}</p>
+      <h1 className="display-4 text-center">{title}</h1>
+      <p className="lead text-center">{description}</p>
     </div>
     <div className={className}>{children}</div>
   </div>

@@ -1,22 +1,31 @@
 /** @license 4050 Boyz
-  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
-  *
-  * Authors: 
-  * 
-  */
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @J5kinner
+ *
+ */
 import React, { useState } from "react";
-import Layout from "../components/Layout";
+import "bootstrap/dist/css/bootstrap.css";
+import "../assets/sass/components/forms/createJob.scss";
+import "../assets/css/login.css";
+
 import { Link, Redirect } from "react-router-dom";
+import Layout from "../components/Layout";
 import userService from "../services/user.js";
 import jobService from "../services/job.js";
-import "../assets/css/dashboard.css";
-import "bootstrap/dist/css/bootstrap.css";
-// import {Row, Col, Form} from './react-bootstrap';
-
-// import {FloatingLabel} from './react-bootstrap';
+import Input from "../components/forms/Input";
+import TextArea from "../components/forms/TextArea";
+import FileUpload from "../components/forms/FileUpload";
 
 const CreateJob = () => {
   const user = userService.isAuthenticated();
+
+  const [newFavourInfo, setNewUserInfo] = useState({
+    profileImages: [],
+  });
+  /* Image upload Handler */
+  const updateUploadedFiles = (files) =>
+    setNewUserInfo({ ...newFavourInfo, profileImages: files });
 
   const [values, setValues] = useState({
     title: "",
@@ -83,87 +92,77 @@ const CreateJob = () => {
   }
 
   const createJobForm = () => (
-    <div>
-      <form>
-        <div className="form-group">
-          <label className="text-muted">Title</label>
-          <input
-            onChange={handleChange("title")}
+    <div className="form-inputs">
+      <h2>Title</h2>
+      <Input
+        handler={handleChange("title")}
+        type="text"
+        label="Title"
+        value={title}
+      />
+      <h2>Description</h2>
+      <TextArea
+        handler={handleChange("description")}
+        type="text"
+        label="Description"
+        value={description}
+      />
+
+      <div className="row">
+        <h2>Location</h2>
+
+        <div className="col">
+          <Input
+            handler={handleChange("city")}
             type="text"
-            className="form-control"
-            value={title}
+            label="City"
+            value={city}
           />
         </div>
-        <div className="form-group">
-          <label className="text-muted">Description</label>
-          <input
-            onChange={handleChange("description")}
+        <div className="col">
+          <Input
+            handler={handleChange("postCode")}
             type="text"
-            className="form-control"
-            value={description}
+            label="Post Code"
+            value={postCode}
           />
         </div>
-        <div className="form-group">
-          <label className="text-muted">Cost</label>
-          <input
-            onChange={handleChange("cost")}
+      </div>
+
+      <Input
+        handler={handleChange("streetAddress")}
+        type="text"
+        label="Address"
+        value={streetAddress}
+      />
+      <div className="row">
+        <div className="col">
+          <h3>Reward</h3>
+        </div>
+        <div className="col">
+          <Input
+            handler={handleChange("cost")}
             type="number"
-            className="form-control"
+            label="Tokens"
             value={cost}
           />
         </div>
-        <div className="form-group">
-          <label className="text-muted">Address</label>
-          <input
-            onChange={handleChange("streetAddress")}
-            type="text"
-            className="form-control"
-            value={streetAddress}
-          />
+        <div className="col-9">
+          <h3>for this favour</h3>
         </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label className="text-muted">City</label>
-            <input
-              onChange={handleChange("city")}
-              type="text"
-              className="form-control"
-              value={city}
-            />
-          </div>
-          <div className="form-group col-md-6">
-            <label className="text-muted">Postcode</label>
-            <input
-              onChange={handleChange("postCode")}
-              type="text"
-              className="form-control"
-              value={postCode}
-            />
-          </div>
-        </div>
-        {/* <Row className="g-2">
-  <Col md>
-    <FloatingLabel controlId="floatingInputGrid" label="Email address">
-      <Form.Control type="email" placeholder="name@example.com" />
-    </FloatingLabel>
-  </Col>
-  <Col md>
-    <FloatingLabel controlId="floatingSelectGrid" label="Works with selects">
-      <Form.Select aria-label="Floating label select example">
-        <option>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </Form.Select>
-    </FloatingLabel>
-  </Col>
-</Row> */}
-
-        <button onClick={clickSubmit} className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      </div>
+      <h4>Do you have any images for the favour?</h4>
+      <FileUpload
+        accept=".jpg,.png,.jpeg"
+        label="Favour Image(s)"
+        multiple
+        fileCallBackUpdate={updateUploadedFiles}
+      />
+  <div className="spacer">
+      <button onClick={clickSubmit} className="login-btn btn-favour">
+        Submit
+      </button>
+      </div>
     </div>
   );
 
@@ -186,15 +185,17 @@ const CreateJob = () => {
   );
 
   return (
-    <Layout
-      title="Create Job "
-      description="Create A New Job"
-      className="container col-md-8 offset-md-2"
-    >
-      {showSuccess()}
-      {showError()}
-      {createJobForm()}
-    </Layout>
+    <div className="new-favour-form">
+      <Layout
+        title="Create a Favour"
+        description="Create a new Favour by filling out the form below"
+        className="form-inputs"
+      >
+        {showSuccess()}
+        {showError()}
+        {createJobForm()}
+      </Layout>
+    </div>
   );
 };
 

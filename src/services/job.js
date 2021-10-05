@@ -37,7 +37,7 @@ const delFavour = (favour, token) => {
 
 const editFavour = (job, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    axios.put(baseURL + "job/"+ job._id, {
+    axios.put(baseURL + "favours/"+ job._id, {
             job
         }, config)
     .then(response => response.data).catch(e => null)

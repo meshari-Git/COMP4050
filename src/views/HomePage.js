@@ -59,6 +59,18 @@ class HomePage extends Component {
     this.setState({order: 'z'})
   }
 
+  handlePriceHighLow = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "High Price"})
+    this.setState({order: 'l'})
+  }
+
+  handlePriceLowHigh = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "Low Price"})
+    this.setState({order: 'h'})
+  }
+
   render() {
 
     return (
@@ -88,6 +100,8 @@ class HomePage extends Component {
                   <Dropdown.Item href="#" onClick={this.handleOldFirst}>Oldest First</Dropdown.Item>
                   <Dropdown.Item href="#" onClick={this.handleAlphabetical}>A - Z</Dropdown.Item>
                   <Dropdown.Item href="#" onClick={this.handleAlphaReverse}>Z - A</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handlePriceLowHigh}>Lowest Price</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handlePriceHighLow}>Highest Price</Dropdown.Item>
 
                 </Dropdown.Menu>
               </Dropdown>

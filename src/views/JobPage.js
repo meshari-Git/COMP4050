@@ -10,6 +10,7 @@ import JobModal from "../components/JobEditModal"
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
 import jobService from "../services/job.js"
+import userService from "../services/user.js"
 
 import { Link } from "react-router-dom";
 
@@ -29,7 +30,7 @@ class JobPage extends Component {
   render() {
     var job = this.state.job;
     var user = this.state.userID;
-    {console.log("JobPage.js", "job:", job, "user:", user, "userID:", user.id)} {/*debug*/}
+    console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/}
     return (
       <div className = "job-page">
         <div className = "job-container">
@@ -62,37 +63,52 @@ class JobPage extends Component {
               {job.ownerName}
             </div>
           </div>
-          {user.id != job.ownerID ?
-            <div className = "accept-job-container">
-              <form className = "accept-job">
-                <input type = "text" className = "text-box">
-                </input>
-                {/*{job.operatorID ?
-                  <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
-                  </input> :
-                  <input type = "submit" className = "accept-job-button" value = "Accepted" onClick = {(e) => jobService.cancelFavour(job, user.token)}>
+          {isAuthenticated() ?
+            user.id != job.ownerID ?
+              <div className = "accept-job-container">
+                <form className = "accept-job">
+                  <input type = "text" className = "text-box">
                   </input>
-                }*/}
-                {job.operatorID == null ?
-                  <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
-                    pathname: "/"
-                  }}>
-                    Accept Job
-                  </Link> :
-                  <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job, user.token)} to = {{
-                    pathname: "/"
-                  }}>
-                    Accepted
-                  </Link>
-                }
-              </form>
-            </div> :
-            <div className = "edit-job-container">
-              <JobModal job={this.state.job} user={user}/>
-              <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
-                pathname: "/"
-              }}>
-                Delete Job
+                  {/*{job.operatorID ?
+                    <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
+                    </input> :
+                    <input type = "submit" className = "accept-job-button" value = "Accepted" onClick = {(e) => jobService.cancelFavour(job, user.token)}>
+                    </input>
+                  }*/}
+                  {job.operatorID == null ?
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job._id, user.token)} to = {{
+                      pathname: "/job",
+                      state: {
+                        job: job,
+                      },
+                    }}>
+                      Accept Job
+                    </Link> :
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job._id, user.token)} to = {{
+                      pathname: "/job",
+                      state: {
+                        job: job,
+                      },
+                    }}>
+                      Accepted
+                    </Link>
+                  }
+                </form>
+              </div> :
+              <div className = "edit-job-container">
+                <JobModal job={this.state.job} user={user}/>
+                <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
+                  pathname: "/"
+                }}>
+                  Delete Job
+                </Link>
+              </div> 
+            :
+            <div className = "login-container">
+              <Link className = "login-job-button" to={{
+                  pathname: "/login"
+                }}>
+                  Login
               </Link>
             </div>
           }

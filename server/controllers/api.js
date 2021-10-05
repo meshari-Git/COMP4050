@@ -370,6 +370,7 @@ apiRouter.get("/api/Favours/:id" , async (req , res) => {
 //Accepting a favour
 apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
     const user = await verifyLogin(req)
+    console.log("debug ", user) //debug
 
     if(user){
         const newFav = await getFavour(req.params.id)

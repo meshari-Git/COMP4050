@@ -22,14 +22,41 @@ function Favour(filter) {
   }, []);
 
   const filterFavours = (list) => {
+    var finalList = list
     if (filter.filter) {
-      return list.filter((favour) =>
+      finalList = list.filter((favour) =>
         favour.title.toLowerCase().includes(filter.filter.toLowerCase())
       );
-    } else {
-      return list;
+    } 
+    if (filter.ord) {
+      if (filter.ord == 'n') {
+        return sortNew(finalList)
+      } else if (filter.ord == 'o') {
+        return sortOld(finalList)
+      } else {
+        return finalList
+      }
     }
+    return finalList
   };
+
+  const sortOld = (list) => {
+    list.sort(function (x, y) {
+      let a = new Date(x.timestamp),
+          b = new Date(y.timestamp);
+      return a - b;
+    });
+    return list
+  }
+
+  const sortNew = (list) => {
+    const w = list.sort(function (y, x) {
+      let a = new Date(x.timestamp),
+          b = new Date(y.timestamp);
+      return a - b;
+    });
+    return w
+  }
 
   return (
     <div className="favourContainer">

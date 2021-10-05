@@ -38,6 +38,10 @@ function Favour(filter) {
         return sortAlpha(finalList)
       case 'z':
         return sortAlphaReverse(finalList)
+      case 'l':
+        return sortLowHigh(finalList)
+      case 'h':
+        return sortHighLow(finalList)
       default:
         return finalList
     }
@@ -72,6 +76,18 @@ function Favour(filter) {
       let a = x.title.toUpperCase(),
           b = y.title.toUpperCase();
       return a == b ? 0 : a > b ? 1 : -1;
+    });
+  }
+
+  const sortHighLow = (list) => {
+    return list.sort(function (x, y) {
+      return x.cost - y.cost;
+    });
+  }
+
+  const sortLowHigh = (list) => {
+    return list.sort(function (y, x) {
+      return x.cost - y.cost;
     });
   }
 

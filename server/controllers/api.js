@@ -15,6 +15,7 @@ const favours = require('../models/Favours');
 const users = require('../models/users');
 const Token = require("../models/token");
 const mongoose = require('mongoose');
+const Favours = require('../models/Favours');
 
 
 
@@ -72,7 +73,7 @@ const getEmail = async (email) => {
     return Email
 }
 const getFavour = async (favourID) => {
-    if(mongoose.Types.ObjectId.isValid(favourID)){
+    if(favourID){
     const fav = await Favour.findOne({_id: favourID})
     return fav
     }
@@ -326,6 +327,7 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     
     const user = await verifyLogin(req)
 
+
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
     }
@@ -369,9 +371,9 @@ apiRouter.get("/api/Favours/:id" , async (req , res) => {
 
 //Accepting a favour
 apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
+    //console.log(req)
     const user = await verifyLogin(req)
-    console.log("debug ", user) //debug
-
+    
     if(user){
         const newFav = await getFavour(req.params.id)
         if(!newFav){
@@ -446,6 +448,36 @@ apiRouter.post("/api/favours/cancel/:id" , async (req , res) => {
     }
     else{
         return res.status(401).json({error: "Login or register to cancel favours"})
+    }
+})
+
+//Edit personal favour
+apiRouter.put("/api/favours/:id" , async (req , res) =>{
+
+    const user = await verifyLogin(req)
+    if(!user){
+        return res.status(401).json({error: "Login or register to edit favours"})
+    }
+    const newFav = req.body
+    console.log(newFav)
+    const fav = await getFavour(req.params.id)
+    if(fav){
+        if(fav.ownerName == user.username && fav.ownerID == user._id){
+            if(fav.status == 0 && fav.operatorName == null && fav.operatorID == null){
+                Favours.findByIdAndUpdate(req.params.id ,newFav, function(err , result){
+                    if(err){
+                        return res.status(404).json({error: "Error"})
+                    }else{
+                        return res.status(200).json(result)
+                    }
+                })
+            }else{
+                return res.status(403).json({error: "Cannot edit favours in progress"})
+            }
+        }
+    }
+    else {
+        return res.status(404).json({error: "Favour does not exist"})
     }
 })
 

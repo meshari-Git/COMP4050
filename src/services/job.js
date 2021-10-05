@@ -47,20 +47,24 @@ const getFavours = () => {
     return axios.get(baseURL)
 }
 
-const cancelFavour = (favourID , token) => {
+const cancelFavour = (favour , token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    axios.post(baseURL + "favours/cancel/" + favourID , config)
+    axios.post(baseURL + "favours/cancel/" + favour._id, favour, config)
     .then(response =>{
         response.data()
     })
     .catch(e => null)
 }
 
-const acceptFavour = (favourID , token) => {
-    const config = {headers: {Authorization: "bearer " + token}}
-    console.log("parameters (services/job.js): ", favourID, "\n", token, "\n config: ", config) //debug
-    return axios.post(baseURL + "favours/accept/" + favourID , config)
-    .then(response => response.data).catch(e => null)
+const acceptFavour = (favour , token) => {
+    console.log(typeof(favourID))
+    const config = {headers: {authorization: "bearer " + token}}
+    console.log(config)
+    axios.post(baseURL + "favours/accept/" + favour._id , favour , config)
+    .then(response => {
+        response.data() 
+    })
+    .catch(e => null)
 }
 
 const exportedObject = {

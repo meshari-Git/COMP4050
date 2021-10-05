@@ -13,6 +13,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import GMap from "../components/GMap.js";
 import jobService from "../services/job"
 import Favour from "../components/favour.js"
+import LMap from "../components/LMap.js"
 
 class HomePage extends Component {
   constructor(props) {
@@ -46,8 +47,8 @@ class HomePage extends Component {
     this.setState({order: 'o'})
   }
 
-  render() {
 
+  render() {
 
     return (
       <div className="homePage">
@@ -85,7 +86,8 @@ class HomePage extends Component {
           <div><Favour filter={this.state.searchData} ord={this.state.order} /></div>
         </div>
         <div className="map">
-          <GMap />
+          {/*<GMap />*/}
+          <LMap/>
         </div>
       </div>
     );

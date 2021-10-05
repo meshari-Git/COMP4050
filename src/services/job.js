@@ -27,9 +27,9 @@ const addJob = (job, token) => {
     ).then(response => response.data).catch(e => null)
 }
 
-const delFavour = (favourId, token) => {
+const delFavour = (favour, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    axios.delete(baseURL + "favour/" + favourId.ownerID, config)
+    axios.delete(baseURL + "favour/" + favour._id, config)
     .then(response => {
         console.log(response)
     }).catch(e => null)

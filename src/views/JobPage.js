@@ -30,6 +30,7 @@ class JobPage extends Component {
   render() {
     var job = this.state.job;
     var user = this.state.userID;
+    console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/}
     return (
       <div className = "job-page">
         <div className = "job-container">
@@ -75,13 +76,19 @@ class JobPage extends Component {
                     </input>
                   }*/}
                   {job.operatorID == null ?
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
-                      pathname: "/"
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job._id, user.token)} to = {{
+                      pathname: "/job",
+                      state: {
+                        job: job,
+                      },
                     }}>
                       Accept Job
                     </Link> :
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job, user.token)} to = {{
-                      pathname: "/"
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job._id, user.token)} to = {{
+                      pathname: "/job",
+                      state: {
+                        job: job,
+                      },
                     }}>
                       Accepted
                     </Link>

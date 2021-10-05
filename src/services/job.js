@@ -57,9 +57,7 @@ const cancelFavour = (favour , token) => {
 }
 
 const acceptFavour = (favour , token) => {
-    console.log(typeof(favourID))
     const config = {headers: {authorization: "bearer " + token}}
-    console.log(config)
     axios.post(baseURL + "favours/accept/" + favour._id , favour , config)
     .then(response => {
         response.data() 

@@ -76,7 +76,7 @@ class JobPage extends Component {
                     </input>
                   }*/}
                   {job.operatorID == null ?
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job._id, user.token)} to = {{
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
                       pathname: "/job",
                       state: {
                         job: job,
@@ -84,7 +84,7 @@ class JobPage extends Component {
                     }}>
                       Accept Job
                     </Link> :
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job._id, user.token)} to = {{
+                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job, user.token)} to = {{
                       pathname: "/job",
                       state: {
                         job: job,

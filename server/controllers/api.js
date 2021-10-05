@@ -375,6 +375,7 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
     const user = await verifyLogin(req)
     
     if(user){
+        console.log(req.params.id)
         const newFav = await getFavour(req.params.id)
         if(!newFav){
             return res.status(404).json({error: "Favour not found"})

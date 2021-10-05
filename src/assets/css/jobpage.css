@@ -170,7 +170,7 @@
 }
 
 
-.accept-job-button, .edit-job-button, .delete-job-button {
+.accept-job-button, .edit-job-button, .delete-job-button, .login-job-button {
   background-color: #363dfa;
   color: white;
   height: 50px;

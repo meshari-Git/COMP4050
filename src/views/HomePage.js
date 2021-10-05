@@ -20,7 +20,7 @@ class HomePage extends Component {
 
     this.state = {
       searchData: '',
-      order: 'n',
+      order: 'a',
       dropDownState: "Sort by "
     };
   }
@@ -44,6 +44,18 @@ class HomePage extends Component {
     e.preventDefault();
     this.setState({dropDownState: "Oldest "})
     this.setState({order: 'o'})
+  }
+
+  handleAlphabetical = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "A - Z"})
+    this.setState({order: 'a'})
+  }
+
+  handleAlphaReverse = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "Z - A"})
+    this.setState({order: 'z'})
   }
 
   render() {
@@ -74,6 +86,8 @@ class HomePage extends Component {
                 <Dropdown.Menu>
                   <Dropdown.Item href="#" onClick={this.handleNewFirst}>Newest First</Dropdown.Item>
                   <Dropdown.Item href="#" onClick={this.handleOldFirst}>Oldest First</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleAlphabetical}>A - Z</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleAlphaReverse}>Z - A</Dropdown.Item>
 
                 </Dropdown.Menu>
               </Dropdown>

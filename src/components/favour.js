@@ -27,35 +27,52 @@ function Favour(filter) {
       finalList = list.filter((favour) =>
         favour.title.toLowerCase().includes(filter.filter.toLowerCase())
       );
-    } 
-    if (filter.ord) {
-      if (filter.ord == 'n') {
-        return sortNew(finalList)
-      } else if (filter.ord == 'o') {
-        return sortOld(finalList)
-      } else {
-        return finalList
-      }
     }
-    return finalList
+    //change this to a switch later
+    switch (filter.ord) {
+      case 'n':
+        return sortNew(finalList)
+      case 'o':
+        return sortOld(finalList)
+      case 'a':
+        return sortAlpha(finalList)
+      case 'z':
+        return sortAlphaReverse(finalList)
+      default:
+        return finalList
+    }
   };
 
   const sortOld = (list) => {
-    list.sort(function (x, y) {
+    return list.sort(function (x, y) {
       let a = new Date(x.timestamp),
           b = new Date(y.timestamp);
       return a - b;
     });
-    return list
   }
 
   const sortNew = (list) => {
-    const w = list.sort(function (y, x) {
+    return list.sort(function (y, x) {
       let a = new Date(x.timestamp),
           b = new Date(y.timestamp);
       return a - b;
     });
-    return w
+  }
+
+  const sortAlpha = (list) => {
+    return list.sort(function (x, y) {
+      let a = x.title.toUpperCase(),
+          b = y.title.toUpperCase();
+      return a == b ? 0 : a > b ? 1 : -1;
+    });
+  }
+
+  const sortAlphaReverse = (list) => {
+    return list.sort(function (y, x) {
+      let a = x.title.toUpperCase(),
+          b = y.title.toUpperCase();
+      return a == b ? 0 : a > b ? 1 : -1;
+    });
   }
 
   return (

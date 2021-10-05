@@ -153,6 +153,7 @@
 
 .accept-job *, .edit-job-container * {
   display: list-item;
+  list-style-type: none;
   width: 100%;
   margin: 10px 0px;
 }
@@ -170,7 +171,7 @@
 }
 
 
-.accept-job-button, .edit-job-button, .delete-job-button {
+.accept-job-button, .edit-job-button, .delete-job-button, .login-job-button {
   background-color: #363dfa;
   color: white;
   height: 50px;

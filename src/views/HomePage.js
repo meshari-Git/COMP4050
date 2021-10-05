@@ -20,17 +20,42 @@ class HomePage extends Component {
 
     this.state = {
       searchData: '',
-      dropDownState: "Sort by"
+      order: 'a',
+      dropDownState: "Sort by "
     };
   }
 
 
   updateSearchField = (event) => {
-    this.setState({ ...this.state.searchData, searchData: event.target.value })
+    this.setState({...this.state.searchData, searchData: event.target.value})
   }
 
   MyFunction() {
     console.log("lel")
+  }
+
+  handleNewFirst = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "Newest "})
+    this.setState({order: 'n'})
+  }
+
+  handleOldFirst = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "Oldest "})
+    this.setState({order: 'o'})
+  }
+
+  handleAlphabetical = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "A - Z"})
+    this.setState({order: 'a'})
+  }
+
+  handleAlphaReverse = (e) => {
+    e.preventDefault();
+    this.setState({dropDownState: "Z - A"})
+    this.setState({order: 'z'})
   }
 
   render() {
@@ -59,8 +84,10 @@ class HomePage extends Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item as="button" >Newest First</Dropdown.Item>
-                  <Dropdown.Item href="#" >Oldest First</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleNewFirst}>Newest First</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleOldFirst}>Oldest First</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleAlphabetical}>A - Z</Dropdown.Item>
+                  <Dropdown.Item href="#" onClick={this.handleAlphaReverse}>Z - A</Dropdown.Item>
 
                 </Dropdown.Menu>
               </Dropdown>
@@ -69,7 +96,7 @@ class HomePage extends Component {
 
 
           <div className="filters"></div>
-          <div><Favour filter={this.state.searchData} /></div>
+          <div><Favour filter={this.state.searchData} ord={this.state.order} /></div>
         </div>
         <div className="map">
           <GMap />

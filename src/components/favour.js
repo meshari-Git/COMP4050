@@ -22,14 +22,58 @@ function Favour(filter) {
   }, []);
 
   const filterFavours = (list) => {
+    var finalList = list
     if (filter.filter) {
-      return list.filter((favour) =>
+      finalList = list.filter((favour) =>
         favour.title.toLowerCase().includes(filter.filter.toLowerCase())
       );
-    } else {
-      return list;
+    }
+    //change this to a switch later
+    switch (filter.ord) {
+      case 'n':
+        return sortNew(finalList)
+      case 'o':
+        return sortOld(finalList)
+      case 'a':
+        return sortAlpha(finalList)
+      case 'z':
+        return sortAlphaReverse(finalList)
+      default:
+        return finalList
     }
   };
+
+  const sortOld = (list) => {
+    return list.sort(function (x, y) {
+      let a = new Date(x.timestamp),
+          b = new Date(y.timestamp);
+      return a - b;
+    });
+  }
+
+  const sortNew = (list) => {
+    return list.sort(function (y, x) {
+      let a = new Date(x.timestamp),
+          b = new Date(y.timestamp);
+      return a - b;
+    });
+  }
+
+  const sortAlpha = (list) => {
+    return list.sort(function (x, y) {
+      let a = x.title.toUpperCase(),
+          b = y.title.toUpperCase();
+      return a == b ? 0 : a > b ? 1 : -1;
+    });
+  }
+
+  const sortAlphaReverse = (list) => {
+    return list.sort(function (y, x) {
+      let a = x.title.toUpperCase(),
+          b = y.title.toUpperCase();
+      return a == b ? 0 : a > b ? 1 : -1;
+    });
+  }
 
   return (
     <div className="favourContainer">

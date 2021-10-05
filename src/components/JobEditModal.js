@@ -10,7 +10,7 @@ import jobService from '../services/job'
 
 
 
-function JobModal(job, user) {
+function JobModal(job) {
     const [modalDisplay, setModalDisplay] = useState('none')
 
     const [show, setShow] = useState(false);
@@ -47,7 +47,8 @@ function JobModal(job, user) {
         job.job.title = updatedJob.title
         job.job.description = updatedJob.description
         job.job.cost = updatedJob.cost
-        jobService.editFavour(job.job, user.token)
+        jobService.editFavour(job.job, job.user.token)
+        setShow(false)
     }
 
     return (

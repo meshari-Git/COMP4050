@@ -406,7 +406,7 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
 })
 
 // Specific favour deletion
-apiRouter.delete("/api/Favours/:id" , async (req , res) => {
+apiRouter.delete("/api/favours/:id" , async (req , res) => {
     
     const user = await verifyLogin(req)
     if(!user){ return res.status(401).json({error: "Login or create an account to delete favour"}) }

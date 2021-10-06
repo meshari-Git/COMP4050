@@ -1,25 +1,27 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @J5kinner
   * 
   */
-.Profile-page {
+
+.profile-page {
   display: flex;
   background-color: rgb(236, 243, 247);
+  justify-content: center;
+}
+.buttons {
+  align-items: center;
 }
 
-.profilePicCard {
-  margin-left: 20px;
-  margin-top: 100px;
-  flex: 0.13;
+.btn-link {
+  width:  15vw;
 }
 
-.Profile-picture {
-  height: 200px;
-  width: 200px;
-}
 
-.balance {
-  margin-left: 60px;
-}
+
+
+
+
+
+

@@ -1,33 +1,28 @@
 /** @license 4050 Boyz
-  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
-  *
-  * Authors: 
-  * 
-  */
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @LeonJM @J5kinner @Ben450
+ *
+ */
 import React from "react";
-import "../assets/css/profile.css";
-// @ts-ignore
+import "../assets/sass/pages/profilePage/profile.scss";
+import "bootstrap/dist/css/bootstrap.css";
 // import profilePic from '../../resources/userProfile/default-user.jpg'
-import "../assets/css/sidebar.css";
-import "../assets/css/sidebarnav.css";
-import "../assets/css/userinfo.css";
 // import userService from '../services/user.js';
 import { Redirect, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import { Row, Col, Table, Modal, Form, Button } from 'react-bootstrap';
-import JobCard from './JobCard'
-import { useState, useEffect } from 'react'
-import userService from '../services/user.js';
+import { Row, Col, Table, Modal, Form, Button } from "react-bootstrap";
+import JobCard from "./JobCard";
+import { useState, useEffect } from "react";
+import userService from "../services/user.js";
 
 function Profile() {
-
   //this is used to set the display style of job-card-modal
-  const [modalDisplay, setModalDisplay] = useState('none')
+  const [modalDisplay, setModalDisplay] = useState("none");
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   const [user, setUser] = useState({
@@ -41,32 +36,36 @@ function Profile() {
       city: "",
       postCode: "",
       DOB: "",
-      bio: ""
+      bio: "",
     },
     ownedFavours: [{}],
-    operatedFavours: [{}]
-  })
+    operatedFavours: [{}],
+  });
 
   useEffect(() => {
-    userService.profile().then(objects => {
-      console.log(objects)
-      setUser(objects)
+    userService.profile().then((objects) => {
+      console.log(objects);
+      setUser(objects);
       if (objects) {
-        setUpdatedUser(objects.user)
-        console.log("ID: ", userService.isAuthenticated().id)
+        setUpdatedUser(objects.user);
+        console.log("ID: ", userService.isAuthenticated().id);
       }
-    })
-  }, [setUser])
+    });
+  }, [setUser]);
 
   const updateProfile = () => {
-    userService.account_update(updatedUser).then(updated => {
-      handleClose()
-      console.log("UPDATED: ", updated)
-      console.log("USER: ", user)
-      setUser({ user: updated.updatedUser, ownedFavours: user.ownedFavours, operatedFavours: user.operatedFavours })
-      console.log(user)
-    })
-  }
+    userService.account_update(updatedUser).then((updated) => {
+      handleClose();
+      console.log("UPDATED: ", updated);
+      console.log("USER: ", user);
+      setUser({
+        user: updated.updatedUser,
+        ownedFavours: user.ownedFavours,
+        operatedFavours: user.operatedFavours,
+      });
+      console.log(user);
+    });
+  };
 
   const [updatedUser, setUpdatedUser] = useState({
     username: "",
@@ -77,211 +76,275 @@ function Profile() {
     city: "",
     postCode: "",
     DOB: "",
-    bio: ""
+    bio: "",
   });
 
   const handleChangeUpdate = (name) => (event) => {
-    setUpdatedUser({ ...updatedUser, error: false, [name]: event.target.value });
+    setUpdatedUser({
+      ...updatedUser,
+      error: false,
+      [name]: event.target.value,
+    });
   };
 
   const terminateUser = () => {
-    var r = window.confirm("Are you sure you want to delete your account, this cannot be undone!");
-    if (r==true) {
-      userService.account_terminate().then(respons => {
-        
-        if(respons.email === user.email) {
+    var r = window.confirm(
+      "Are you sure you want to delete your account, this cannot be undone!"
+    );
+    if (r == true) {
+      userService.account_terminate().then((respons) => {
+        if (respons.email === user.email) {
           userService.logout(() => {
-            setUser({})
-          })
+            setUser({});
+          });
         } else {
-          alert("Something went wrong...")
+          alert("Something went wrong...");
         }
-      })
-    } 
-  }
+      });
+    }
+  };
 
   //can be moved elsewhere and redone as a component.
   const showJob = (e) => {
-    e.preventDefault()
-    console.log('showJob Click')
-    setModalDisplay('block')
-  }
+    e.preventDefault();
+    console.log("showJob Click");
+    setModalDisplay("block");
+  };
 
   //can be moved elsewhere and redone as a component.
   const closeJob = (e) => {
-    e.preventDefault()
-    console.log('closeJob Click')
-    setModalDisplay('none')
-  }
+    e.preventDefault();
+    console.log("closeJob Click");
+    setModalDisplay("none");
+  };
 
   //test redirect to job page
   const goToJob = (e) => {
-    e.preventDefault()
-
-  }
+    e.preventDefault();
+  };
 
   if (!userService.isAuthenticated()) {
-    return (
-      <Redirect to="/login"></Redirect>
-    )
+    return <Redirect to="/login"></Redirect>;
   }
 
-  if (!user || !user.user || !user.user.email) { //No Profile
-    return (
-      <h1>Loading...</h1>
-    )
+  if (!user || !user.user || !user.user.email) {
+    //No Profile
+    return <h1>Loading...</h1>;
   } else {
-
     return (
-      <div>
-        <Row>
-          <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
-            <img alt="" src={"https://robohash.org/" + user.user.email}></img>
-            <p>{user.user.email}</p>
-            <Button variant="warning" onClick={(e) => handleShow()}>Edit Profile</Button>{"   "}
-            <Button variant="danger" onClick={(e) => terminateUser()}>Terminate My Account</Button>
-          </Col>
-          <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-            <div>
-              <h3>Happy to see you {user.user.firstName} {user.user.lastName}!</h3>
-              <Table bordered>
-                <thead>
-                  <tr>
-                    {/* <th>Skills</th> */}
-                    <th>Bio</th>
-                    {/* <th>Stats</th> */}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr height="200em">
-                    {/* <td>This is some text about the users skills</td> */}
-                    <td>{user.user.bio}</td>
-                    {/* <td>This is some text about the user Stats</td> */}
-                  </tr>
-                </tbody>
-              </Table>
+      <div className="profile-page">
+        <div className="profile">
+          <div className="profile-info">
+            <div className="pro-img">
+              <img
+                alt="automated robot profile"
+                src={"https://robohash.org/" + user.user.email}
+              />
             </div>
-          </Col>
-        </Row>
-
-        <h5>Jobs</h5>
-        <Link to="/job/new"><button className="btn btn-primary"> + Add </button></Link>
-        <Table bordered hover striped>
-          <thead>
-            <tr>
-              <th>Job</th>
-              <th>Cost</th>
-              <th>Status</th>
-              <th>Listed By</th>
-              <th>Completed By</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user.ownedFavours.map(favour =>
-
-              <tr onClick={showJob}>
-                <td>{favour.title}</td>
-                <td>{favour.cost + " Tokens"}</td>
-                <td>{favour.status}</td>
-                <td>{favour.ownerName}</td>
-                <td>{favour.operatorName}</td>
-                <td>{"03/09/21"}</td>
+            <div className="profile-details">
+              <p>
+                <strong>
+                  {user.user.firstName} {user.user.lastName}
+                </strong>
+              </p>
+              <p>
+                <i>{user.user.address}</i>
+              </p>
+              <p>{user.user.email}</p>
+            </div>
+          </div>
+          <div className="bio">
+            <Table responsive bordered>
+              <thead>
+                <tr>
+                  {/* <th>Skills</th> */}
+                  <th>Bio</th>
+                  {/* <th>Stats</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {/* <td>This is some text about the users skills</td> */}
+                  <td>{user.user.bio}</td>
+                  {/* <td>This is some text about the user Stats</td> */}
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+          <div className="create-btn">
+            <Link to="/job/new">
+              <Button variant="success">Create a Favour</Button>
+            </Link>
+          </div>
+          <div className="buttons">
+            <Button variant="warning" onClick={(e) => handleShow()}>
+              Edit Profile
+            </Button>
+          </div>
+          <div>
+            <h3>
+              Welcome {user.user.firstName} {user.user.lastName}!
+            </h3>
+          </div>
+          <Table responsive bordered hover striped>
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Cost</th>
+                <th>Status</th>
+                <th>Listed By</th>
+                <th>Completed By</th>
+                <th>Date</th>
               </tr>
-            )}
-            {user.operatedFavours.map(favour =>
-              <tr onClick={showJob}>
-                <td>{favour.title}</td>
-                <td>{favour.cost + " Tokens"}</td>
-                <td>{favour.status}</td>
-                <td>{favour.ownerID}</td>
-                <td>{favour.operatorID}</td>
-                <td>{"03/09/21"}</td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-        <br></br>
-        <br></br>
+            </thead>
+            <tbody>
+              {user.ownedFavours.map((favour) => (
+                <tr onClick={showJob}>
+                  <td>{favour.title}</td>
+                  <td>{favour.cost + " Tokens"}</td>
+                  <td>{favour.status}</td>
+                  <td>{favour.ownerName}</td>
+                  <td>{favour.operatorName}</td>
+                  <td>{"03/09/21"}</td>
+                </tr>
+              ))}
+              {user.operatedFavours.map((favour) => (
+                <tr onClick={showJob}>
+                  <td>{favour.title}</td>
+                  <td>{favour.cost + " Tokens"}</td>
+                  <td>{favour.status}</td>
+                  <td>{favour.ownerID}</td>
+                  <td>{favour.operatorID}</td>
+                  <td>{"03/09/21"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <br></br>
+          <br></br>
 
-        {/* <div className = 'job-card-modal' style = {{
-        display: modalDisplay,
-      }}>
-        <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
-      </div> */}
+          {/* <div className = 'job-card-modal' style = {{
+             display: modalDisplay,
+            }}>
+             <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
+                </div> */}
+          <div>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>Edit Profile</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      value={updatedUser.email}
+                      onChange={handleChangeUpdate("email")}
+                    />
+                    <Form.Text className="text-muted">
+                      We'll never share your email with anyone else.
+                    </Form.Text>
+                  </Form.Group>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header>
-            <Modal.Title>Edit Profile</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="username"
+                      placeholder="Username"
+                      value={updatedUser.username}
+                      onChange={handleChangeUpdate("username")}
+                    />
+                  </Form.Group>
 
-            <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" value={updatedUser.email} onChange={handleChangeUpdate("email")} />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                      type="firstname"
+                      placeholder="First Name"
+                      value={updatedUser.firstName}
+                      onChange={handleChangeUpdate("firstName")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="username" placeholder="Username" value={updatedUser.username} onChange={handleChangeUpdate("username")} />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                      type="lastname"
+                      placeholder="Last Name"
+                      value={updatedUser.lastName}
+                      onChange={handleChangeUpdate("lastName")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="firstname" placeholder="First Name" value={updatedUser.firstName} onChange={handleChangeUpdate("firstName")} />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>DOB</Form.Label>
+                    <Form.Control
+                      type="dob"
+                      placeholder="DD/MM/YYYY"
+                      value={updatedUser.DOB}
+                      onChange={handleChangeUpdate("DOB")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="lastname" placeholder="Last Name" value={updatedUser.lastName} onChange={handleChangeUpdate("lastName")} />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control
+                      type="address"
+                      placeholder="Address"
+                      value={updatedUser.address}
+                      onChange={handleChangeUpdate("address")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>DOB</Form.Label>
-                <Form.Control type="dob" placeholder="DD/MM/YYYY" value={updatedUser.DOB} onChange={handleChangeUpdate("DOB")} />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control
+                      type="city"
+                      placeholder="City"
+                      value={updatedUser.city}
+                      onChange={handleChangeUpdate("city")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Address</Form.Label>
-                <Form.Control type="address" placeholder="Address" value={updatedUser.address} onChange={handleChangeUpdate("address")} />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Postcode</Form.Label>
+                    <Form.Control
+                      type="postcode"
+                      placeholder="Postcode"
+                      value={updatedUser.postCode}
+                      onChange={handleChangeUpdate("postCode")}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>City</Form.Label>
-                <Form.Control type="city" placeholder="City" value={updatedUser.city} onChange={handleChangeUpdate("city")} />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Postcode</Form.Label>
-                <Form.Control type="postcode" placeholder="Postcode" value={updatedUser.postCode} onChange={handleChangeUpdate("postCode")} />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="">
-                <Form.Label>Bio</Form.Label>
-                <Form.Control type="bio" placeholder="Bio" value={updatedUser.bio} onChange={handleChangeUpdate("bio")} />
-              </Form.Group>
-
-
-
-
-
-            </Form>
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={updateProfile}>Update</Button>
-          </Modal.Footer>
-        </Modal>
-
-
+                  <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Bio</Form.Label>
+                    <Form.Control
+                      type="bio"
+                      placeholder="Bio"
+                      value={updatedUser.bio}
+                      onChange={handleChangeUpdate("bio")}
+                    />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={updateProfile}>
+                  Update
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+          <div className="del-btn">
+            <Button variant="danger" onClick={(e) => terminateUser()}>
+              Delete Account
+            </Button>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 
-
-export default Profile
+export default Profile;

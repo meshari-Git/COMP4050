@@ -6,7 +6,7 @@
  */
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "../assets/sass/components/forms/createJob.scss";
+import "../assets/sass/pages/createJob/createJob.scss";
 import "../assets/css/login.css";
 
 import { Link, Redirect } from "react-router-dom";

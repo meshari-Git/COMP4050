@@ -1,0 +1,97 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: @J5kinner
+  * 
+  */
+
+.profile-page {
+  background-color: rgb(236, 243, 247);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 70vw;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0px;
+  margin-top: 2vh;
+  width: 80vw;
+  outline: 0.5px solid black;
+
+  @media only screen and (min-width: 350px) {
+    font-size: 1.1rem;
+    line-height: 0.3rem;
+    margin-bottom: 1em;
+    outline: 1px solid black;
+    border-radius: 0.5rem;
+  }
+  @media only screen and (min-width: 650px) {
+    align-items: center;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 0.3rem;
+    margin-bottom: 1em;
+    width: 20vw;
+    outline: 1px solid black;
+    border-radius: 0.5rem;
+    flex-direction: column;
+  }
+
+  //   @media only screen and (min-width: 700px) {
+  //     font-size: 1.1rem;
+  //     line-height: 0.3rem;
+  //     margin-bottom: 1em;
+  //     width: 15vw;
+  //     outline: 1px solid black;
+  //     border-radius: 0.5rem;
+  //   }
+}
+
+.pro-img {
+  img {
+    height: 10vh;
+    padding: 0px;
+  }
+}
+
+.profile-details {
+  width: min-content;
+  padding-top: 2.5vh;
+}
+
+.bio {
+  width: 80vw;
+
+  @media only screen and (min-width: 700px) {
+    width: 40vw;
+    height: 31vh;
+    padding-left: 2em;
+    padding-top: 5vh;
+
+    td {
+      height: 16vh;
+    }
+  }
+}
+
+.create-btn {
+  padding: 1em;
+  padding-left: 1px;
+}
+
+.buttons {
+  padding: 0.5em;
+}
+
+.del-btn {
+  padding-bottom: 10vh;
+  @media only screen and (min-width: 700px) {
+    width: 100%;
+  }
+}

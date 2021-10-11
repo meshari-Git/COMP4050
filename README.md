@@ -79,7 +79,7 @@ Runs the server of the app and you will be able to access the whole app from
 
 ### `npm start`
 
-Launches the Front-End on http://localhost:3001
+Launches the Front-End on http://localhost:3006
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 ### `npm run build`

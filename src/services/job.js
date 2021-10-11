@@ -27,9 +27,9 @@ const addJob = (job, token) => {
     ).then(response => response.data).catch(e => null)
 }
 
-const delFavour = (favourId, token) => {
+const delFavour = (favour, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    axios.delete(baseURL + "favour/" + favourId.ownerID, config)
+    axios.delete(baseURL + "favours/" + favour._id, config)
     .then(response => {
         console.log(response)
     }).catch(e => null)
@@ -37,9 +37,7 @@ const delFavour = (favourId, token) => {
 
 const editFavour = (job, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    axios.put(baseURL + "job/"+ job._id, {
-            job
-        }, config)
+    axios.put(baseURL + "favours/"+ job._id, job, config)
     .then(response => response.data).catch(e => null)
 }
 
@@ -55,9 +53,7 @@ const cancelFavour = (favour , token) => {
 }
 
 const acceptFavour = (favour , token) => {
-    console.log(typeof(favourID))
     const config = {headers: {authorization: "bearer " + token}}
-    console.log(config)
     axios.post(baseURL + "favours/accept/" + favour._id , favour , config)
     .then(response => {
         response.data() 

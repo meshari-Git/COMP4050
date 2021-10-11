@@ -38,6 +38,10 @@ function Favour(filter) {
         return sortAlpha(finalList)
       case 'z':
         return sortAlphaReverse(finalList)
+      case 'l':
+        return sortLowHigh(finalList)
+      case 'h':
+        return sortHighLow(finalList)
       default:
         return finalList
     }
@@ -75,6 +79,26 @@ function Favour(filter) {
     });
   }
 
+  const sortHighLow = (list) => {
+    return list.sort(function (x, y) {
+      return x.cost - y.cost;
+    });
+  }
+
+  const sortLowHigh = (list) => {
+    return list.sort(function (y, x) {
+      return x.cost - y.cost;
+    });
+  }
+
+  const getDate = (e) => {
+    const year = e.substring(0,4)
+    const month = e.substring(5, e.indexOf('-', 5))
+    const dayLoc =  e.indexOf('-', 5) + 1
+    const day = e.substring(dayLoc, e.indexOf(' ', dayLoc))
+    return day + "/" + month + "/" + year
+  }
+
   return (
     <div className="favourContainer">
       <table className="table">
@@ -105,6 +129,9 @@ function Favour(filter) {
                   </tr>
                   <tr>
                     <td>Cost: {favour.cost}</td>
+                  </tr>
+                  <tr>
+                    <td>Requested: {getDate(favour.timestamp)}</td>
                   </tr>
                 </div>
               </Link>

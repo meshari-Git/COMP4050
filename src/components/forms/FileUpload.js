@@ -5,7 +5,7 @@
  *
  */
 import React, { useState, useRef } from "react";
-import "../../assets/sass/components/forms/createJob.scss";
+import "../../assets/sass/pages/createJob/createJob.scss";
 
 const kilo_bytes = 1000;
 const max_file_byte_size = 500000;

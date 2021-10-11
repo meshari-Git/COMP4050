@@ -5,7 +5,7 @@
  *
  */
 import React from "react";
-import "../../assets/sass/components/forms/createJob.scss";
+import "../../assets/sass/pages/createJob/createJob.scss";
 
 
 function TextArea({ handler, type, label, value }) {

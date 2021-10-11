@@ -100,7 +100,7 @@ class HomePage extends Component {
         </div>
         <div className="map">
           {/*<GMap />*/}
-          {/*<LMap/>*/}
+          <LMap/>
         </div>
       </div>
     );

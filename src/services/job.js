@@ -50,9 +50,7 @@ const getFavours = () => {
 const cancelFavour = (favour , token) => {
     const config = {headers: {Authorization: "bearer " + token}}
     axios.post(baseURL + "favours/cancel/" + favour._id, favour, config)
-    .then(response =>{
-        response.data()
-    })
+    .then(response =>response.data)
     .catch(e => null)
 }
 

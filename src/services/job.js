@@ -45,6 +45,10 @@ const getFavours = () => {
     return axios.get(baseURL)
 }
 
+const getFavour = (id) => {
+    return axios.get(baseURL + "favours/" + id)
+}
+
 const cancelFavour = (favour , token) => {
     const config = {headers: {Authorization: "bearer " + token}}
     axios.post(baseURL + "favours/cancel/" + favour._id, favour, config)
@@ -66,6 +70,7 @@ const exportedObject = {
     delFavour,
     editFavour,
     getFavours,
+    getFavour,
     cancelFavour,
     acceptFavour
 };

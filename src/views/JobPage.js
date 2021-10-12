@@ -25,11 +25,18 @@ class JobPage extends Component {
     if (userAuthenticated) {
       this.state.userID = userAuthenticated
     }
+
+    jobService.getFavour(this.state.job._id).then(res => {
+      this.setState({
+        job: res.data,
+      });
+    })
   }
 
   render() {
-    var job = this.state.job;
+    var job = this.state.job
     var user = this.state.userID;
+    
     {/*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/}
     return (
       <div className = "job-page">

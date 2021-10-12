@@ -358,7 +358,7 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
 })
 
 // Specific favour retrieval
-apiRouter.get("/api/Favours/:id" , async (req , res) => {
+apiRouter.get("/api/favours/:id" , async (req , res) => {
     await Favour.findById(req.params.id)
     .then(result => {
         if(!result){res.status(404).json({error: "Not found"})}

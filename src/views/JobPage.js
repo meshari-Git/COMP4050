@@ -74,9 +74,15 @@ class JobPage extends Component {
           <div className = "job-owner">
             <div className = "profile-picture">
             </div>
-            <div className = "owner-name">
+            {/*<div className = "owner-name">
               {job.ownerName}
-            </div>
+            </div>*/}
+            <Link className = "owner-name" to = {{
+              pathname: "/user/" + job.ownerName,
+
+            }}>
+              {job.ownerName}
+            </Link>
           </div>
           {isAuthenticated() ?
             user.id != job.ownerID ?

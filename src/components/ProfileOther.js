@@ -5,7 +5,8 @@
   * 
   */
 import React from "react";
-import "../assets/css/profile.css";
+import "../assets/sass/pages/profilePage/profile.scss";
+
 // @ts-ignore
 // import profilePic from '../../resources/userProfile/default-user.jpg'
 import "../assets/css/sidebar.css";

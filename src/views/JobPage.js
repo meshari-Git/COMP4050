@@ -33,6 +33,14 @@ class JobPage extends Component {
     })
   }
 
+  componentDidUpdate() {
+    jobService.getFavour(this.state.job._id).then(res => {
+      this.setState({
+        job: res.data,
+      });
+    })
+  }
+
   render() {
     var job = this.state.job
     var user = this.state.userID;

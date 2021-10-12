@@ -32,6 +32,7 @@ function JobModal({job, user}) {
         setModalDisplay('none')
     }
 
+
     const [updatedJob, setUpdatedJob] = useState({
         title: job.title,
         description: job.description,
@@ -47,7 +48,7 @@ function JobModal({job, user}) {
         job.description = updatedJob.description
         job.cost = updatedJob.cost
         jobService.editFavour(job, user.token)
-        window.location.reload();
+        //window.location.reload();
         setShow(false)
         
     }

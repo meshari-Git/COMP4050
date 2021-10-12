@@ -14,6 +14,11 @@
   align-items: center;
   flex-flow: row wrap;
   width: 70vw;
+
+  @media only screen and (min-width: 650px) {
+    width: 60vw;
+  }
+
 }
 
 .profile-info {

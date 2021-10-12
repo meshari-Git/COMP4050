@@ -5,7 +5,6 @@
   * 
   */
 .map {
-    height: 90.5vh;
-    width: 100vw;
-    z-index: -1;
+    height: 80vh;
+    width: 76vw;
 }

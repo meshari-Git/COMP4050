@@ -10,7 +10,7 @@ import jobService from '../services/job'
 
 
 
-function JobModal(job) {
+function JobModal({job, user}) {
     const [modalDisplay, setModalDisplay] = useState('none')
 
     const [show, setShow] = useState(false);
@@ -32,23 +32,25 @@ function JobModal(job) {
         setModalDisplay('none')
     }
 
+
     const [updatedJob, setUpdatedJob] = useState({
-        title: job.job.title,
-        description: job.job.description,
-        cost: job.job.cost
-      });
+        title: job.title,
+        description: job.description,
+        cost: job.cost
+    });
     
-      const handleChangeUpdate = (name) => (event) => {
+    const handleChangeUpdate = (name) => (event) => {
         setUpdatedJob({ ...updatedJob, error: false, [name]: event.target.value });
-      };
-    
+    };
 
     const updateJob = () => {
-        job.job.title = updatedJob.title
-        job.job.description = updatedJob.description
-        job.job.cost = updatedJob.cost
-        jobService.editFavour(job.job, job.user.token)
+        job.title = updatedJob.title
+        job.description = updatedJob.description
+        job.cost = updatedJob.cost
+        jobService.editFavour(job, user.token)
+        //window.location.reload();
         setShow(false)
+        
     }
 
     return (

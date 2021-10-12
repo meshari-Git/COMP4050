@@ -15,16 +15,11 @@ const center = {
 
 const LMap = () => {
     return (
-        <MapContainer center={[-33.7738, 151.1126]} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={[-33.7738, 151.1126]} zoom={13} scrollWheelZoom={true} dragging={true}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[33.7738, 151.1126]}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
         </MapContainer>
     )
 }

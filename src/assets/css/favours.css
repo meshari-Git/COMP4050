@@ -6,7 +6,7 @@
   */
 /* Hide scrollbar for IE, Edge and Firefox */
 .favourContainer {
-  height: 83vh;
+  height: 89vh;
   float: left;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */

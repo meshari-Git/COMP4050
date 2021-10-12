@@ -4,6 +4,7 @@
   * Authors: 
   * 
   */
+import { FALSE } from "node-sass";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "../assets/css/lmap.css"
@@ -15,7 +16,7 @@ const center = {
 
 const LMap = () => {
     return (
-        <MapContainer center={[-33.7738, 151.1126]} zoom={13} scrollWheelZoom={true} dragging={true}>
+        <MapContainer center={[-33.7738, 151.1126]} zoom={13} scrollWheelZoom={true} dragging={true} zoomControl={false}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

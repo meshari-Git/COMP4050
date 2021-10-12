@@ -50,6 +50,7 @@
   float: left;
   width: 65%;
   height: 50px;
+  z-index: 1000;
 }
 
 .dd {

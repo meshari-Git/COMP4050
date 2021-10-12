@@ -19,7 +19,7 @@ function Favour(filter) {
     jobService.getFavours().then((response) => {
       setFavours(response.data);
     });
-  }, []);
+  }, [favours]);
 
   const filterFavours = (list) => {
     var finalList = list
@@ -98,6 +98,7 @@ function Favour(filter) {
     const day = e.substring(dayLoc, e.indexOf(' ', dayLoc))
     return day + "/" + month + "/" + year
   }
+
 
   return (
     <div className="favourContainer">

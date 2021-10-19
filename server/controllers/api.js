@@ -23,6 +23,7 @@ const Favours = require('../models/Favours');
 
 const apiRouter = express.Router()
 
+
 const SECRET = process.env.SECRET
 
 
@@ -84,6 +85,7 @@ const getFavour = async (favourID) => {
 
 //login end-point
 apiRouter.post('/api/login' , async (req, res) => {
+
     const {email,  password} = req.body
     //const user = await getUser(username)
     const EMAIL = await getEmail(email)
@@ -335,7 +337,11 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     const OwnerId = user._id.toString()
     const OwnerName = user.username
     const time = new Date()
-    const string = time.getFullYear() + "-" + time.getMonth() + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
+    const year = time.getFullYear()  
+    const month = time.getMonth() + 1 
+    console.log(month)
+    const day = time.getDate()
+    const string = year + "-" + month + "-" + day + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
 
     const newFavour = new Favour({
         ownerID: OwnerId,

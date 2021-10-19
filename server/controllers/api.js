@@ -323,7 +323,7 @@ apiRouter.get("/api/", async (req , res) => {
 
 //Adding new Favour 
 apiRouter.post("/api/new-favour" , async (req, res) => {
-    const {title, description, cost, city, streetAddress , postCode , lat , long} = req.body
+    const {title, description, cost, city, streetAddress , lat , long} = req.body
     
     const user = await verifyLogin(req)
 
@@ -345,7 +345,6 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
         cost: cost,
         city: city,
         streetAddress: streetAddress,
-        postCode: postCode,
         ownerName: OwnerName,
         timestamp: string,
         lat: lat,

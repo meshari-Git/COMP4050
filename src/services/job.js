@@ -23,6 +23,9 @@ const addJob = (job, token) => {
             "cost": job.cost,
             "city": job.city,
             "streetAddress": job.streetAddress,
+            "postCode": job.postCode,
+            "lat": job.lat,
+            "long": job.long
         }, config
     ).then(response => response.data).catch(e => null)
 }

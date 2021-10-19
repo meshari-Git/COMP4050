@@ -55,6 +55,14 @@ let favourSchema = new mongoose.Schema({
     potentialOperators: {
         type: [String],
         required: false
+    },
+    lat: {
+        type: Number,
+        required: true
+    },
+    long: {
+        type: Number,
+        required: true
     }
 
 });

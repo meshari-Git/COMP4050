@@ -527,4 +527,9 @@ apiRouter.put("/api/favours/:id" , async (req , res) =>{
     }
 })
 
+
+// PHOTO UPLOADING : https://github.com/bradtraversy/mongo_file_uploads/blob/master/app.js
+// PHOTO UPLOADING : https://www.youtube.com/watch?v=3f5Q9wDePzY
+
+
 module.exports = apiRouter

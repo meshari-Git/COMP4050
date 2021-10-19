@@ -386,9 +386,13 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
         else if(newFav.operatorID != null || newFav.operatorName != null){
             return res.status(403).json({error: "Favour already accepted"})
         }
-        newFav.operatorID = user._id
+        else if(newFav.potentialOperators.includes(user.username)){
+            return res.status(403).json({error: "Cannot re-accept favours"})
+        }
+        /**newFav.operatorID = user._id
         newFav.operatorName = user.username
-        newFav.status = 1
+        newFav.status = 1**/
+        newFav.potentialOperators.push(user.username)
     
         newFav.save().then(result => {
             return res.status(200).json(result)
@@ -402,6 +406,47 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
         return res.status(401).json({error: "Login or create an account to accept favours"})
     }   
     
+
+})
+
+
+apiRouter.post("/api/favours/approve/:id" , async(req , res) => {
+    const user = await verifyLogin(req)
+    const fav = await getFavour(req.params.id)
+    const operator = await getUser(req.body.operator)
+    if(user){
+        if(!fav){
+            return res.status(404).json({error: "Favour not found"})
+        }
+        else if(!operator){
+            return res.status(404).json({error: "Operator not found"})
+        }
+        else if(fav.ownerName == operator.username){
+            return res.status(403).json({error: "Cannot accept your favours"})
+        }
+        else if(fav.operatorID != null || fav.operatorName != null){
+            return res.status(403).json({error: "Favour already accepted"})
+        }
+        else if(user._id != fav.ownerID){
+            return res.status(403).json({error: "You have no authority"})
+        }
+        fav.operatorID = operator._id
+        fav.operatorName = operator.username
+        fav.status = 1
+        fav.potentialOperators = null
+ 
+
+        fav.save().then(result => {
+            return res.status(200).json(result)
+        })
+        .catch(err => {
+            return res.status(404).json({error: "Error"})
+        })
+    }
+    else
+    {   
+        return res.status(401).json({error: "Login or create an account to accept favours"})
+    }   
 
 })
 

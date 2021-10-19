@@ -51,6 +51,10 @@ let favourSchema = new mongoose.Schema({
     timestamp: {
         type: String,
         required: true
+    },
+    potentialOperators: {
+        type: [String],
+        required: false
     }
 
 });

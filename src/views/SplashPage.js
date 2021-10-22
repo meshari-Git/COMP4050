@@ -91,7 +91,7 @@ function SplashPage() {
                 <img
                   class="static"
                   src={JonahStatic}
-                  alt="One frame of Leon's Gif"
+                  alt="One frame of Jonah's Gif"
                 />
                 <img
                   class="active"
@@ -125,7 +125,7 @@ function SplashPage() {
                 <img
                   class="static"
                   src={MeshStatic}
-                  alt="One frame of Leon's Gif"
+                  alt="One frame of Meshari's Gif"
                 />
                 <img
                   class="active"
@@ -144,7 +144,7 @@ function SplashPage() {
                 <img
                   class="static"
                   src={BenStatic}
-                  alt="One frame of Leon's Gif"
+                  alt="One frame of Ben's Gif"
                 />
                 <img class="active" src={Ben} alt="animating Ben bit emoji" />
               </div>
@@ -158,7 +158,7 @@ function SplashPage() {
                 <img
                   class="active"
                   src={Malachi}
-                  alt="animating Malachi bit emoji"
+                  alt="Malachi bit emoji"
                 />
               </div>
               <div>

@@ -78,64 +78,99 @@ function SplashPage() {
           </div>
         </div>
       </section>
-      <section className="spacer layer4"></section>
-      <section className="spacer2 layer5">
-        <div className="devteam-profiles">
+      <section className="spacer2 layer4">
+      <div className="devteam-profiles">
           <h1>Our Development Team</h1>
           <p>
             SwapStreet is a creative, lightweight, clean & super responsive app.
           </p>
 
           <div className="gifs">
-            <div className="profile">
-              <img
-                class="static"
-                src={JonahStatic}
-                alt="One frame of Leon's Gif"
-              />
-              <img class="active" src={Jonah} alt="animating Jonah bit emoji" />
-              
+            <div className="profile ">
+              <div>
+                <img
+                  class="static"
+                  src={JonahStatic}
+                  alt="One frame of Leon's Gif"
+                />
+                <img
+                  class="active"
+                  src={Jonah}
+                  alt="animating Jonah bit emoji"
+                />
+              </div>
+              <div>
+                <h5>Jonah Skinner</h5>
+                <h6>Front-End Engineer</h6>
+              </div>
             </div>
 
             <div className="profile">
-              <img
-                class="static"
-                src={LeonStatic}
-                alt="One frame of Leon's Gif"
-              />
-              <img class="active" src={Leon} alt="animating Leon bit emoji" />
+              <div>
+                <img
+                  class="static"
+                  src={LeonStatic}
+                  alt="One frame of Leon's Gif"
+                />
+                <img class="active" src={Leon} alt="animating Leon bit emoji" />
+              </div>
+              <div>
+                <h5>Leon Johan-Mosi</h5>
+                <h6>Front-End Engineer</h6>
+              </div>
             </div>
 
             <div className="profile">
-              <img
-                class="static"
-                src={MeshStatic}
-                alt="One frame of Leon's Gif"
-              />
-              <img
-                class="active"
-                src={Meshari}
-                alt="animating Meshari bit emoji"
-              />
+              <div>
+                <img
+                  class="static"
+                  src={MeshStatic}
+                  alt="One frame of Leon's Gif"
+                />
+                <img
+                  class="active"
+                  src={Meshari}
+                  alt="animating Meshari bit emoji"
+                />
+              </div>
+              <div>
+                <h5>Meshari Algethami</h5>
+                <h6>Back-End Engineer</h6>
+              </div>
             </div>
-            <div className="profile">
-              <img
-                class="static"
-                src={BenStatic}
-                alt="One frame of Leon's Gif"
-              />
 
-              <img class="active" src={Ben} alt="animating Ben bit emoji" />
+            <div className="profile">
+              <div>
+                <img
+                  class="static"
+                  src={BenStatic}
+                  alt="One frame of Leon's Gif"
+                />
+                <img class="active" src={Ben} alt="animating Ben bit emoji" />
+              </div>
+              <div>
+                <h5>Ben Fricke</h5>
+                <h6>Back-End Engineer</h6>
+              </div>
             </div>
             <div className="profile">
-              <img
-                class="active"
-                src={Malachi}
-                alt="animating Malachi bit emoji"
-              />
+              <div>
+                <img
+                  class="active"
+                  src={Malachi}
+                  alt="animating Malachi bit emoji"
+                />
+              </div>
+              <div>
+                <h5>Malachi Mashiah</h5>
+                <h6>Back-End Engineer</h6>
+              </div>
             </div>
           </div>
         </div>
+      </section>
+      <section className="spacer layer5">
+       
       </section>
     </div>
   );

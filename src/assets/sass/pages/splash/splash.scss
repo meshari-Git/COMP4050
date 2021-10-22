@@ -1,0 +1,151 @@
+/** @license 4050 Boyz
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @J5kinner
+ *
+ * SVGs were created using https://app.haikei.app/
+ */
+
+@import "../../abstracts/colors";
+
+.splash section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  padding: 60px 15vw;
+}
+
+.spacer {
+  aspect-ratio: 960/300;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.spacer2 {
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+.layer1 {
+  background-image: url("../../../img/splash/topWave.svg");
+  @media (min-width: 400px) {
+    margin-bottom: -200px;
+  }
+  @media (min-width: 1070px) {
+    margin-bottom: -300px;
+  }
+}
+.layer2 {
+  background-image: url("../../../img/splash/purpleWave.svg");
+
+  .text-box {
+    @media (min-width: 1200px) {
+      max-height: 400px;
+      max-width: 1395px;
+    }
+  }
+}
+
+.layer3 {
+  background-image: url("../../../img/splash/light-blue-purpleWave.svg");
+  color: $white;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-text {
+  @media (min-width: 400px) {
+    width: 80vw;
+  }
+  @media (min-width: 1070px) {
+    width: 20vw;
+  }
+}
+
+.map-img img {
+  width: 80vw;
+  border-radius: 15px;
+  padding-right: 0px;
+  @media (min-width: 400px) {
+    width: 80vw;
+  }
+  @media (min-width: 1070px) {
+    width: 30vw;
+  }
+}
+
+.right-content {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.right-text {
+  @media (min-width: 400px) {
+    width: 80vw;
+  }
+  @media (min-width: 1070px) {
+    width: 20vw;
+  }
+}
+
+.map-img-left img {
+  width: 80vw;
+  border-radius: 0px;
+  padding-right: 15px;
+  @media (min-width: 400px) {
+    width: 80vw;
+  }
+  @media (min-width: 1070px) {
+    width: 30vw;
+  }
+}
+
+.light-blue {
+  background-color: $light-blue;
+  color: $white;
+  @media (min-width: 1070px) {
+    margin-bottom: -200px;
+  }
+}
+
+.layer4 {
+  background-image: url("../../../img/splash/light-blue-whiteWave.svg");
+  @media (min-width: 1070px) {
+    margin-bottom: -300px;
+  }
+}
+.layer5 {
+  background-image: url("../../../img/splash/bottom-wave.svg");
+}
+
+.gifs, .apple {
+    flex-direction: row;
+align-content: center;
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.static {
+  position: absolute;
+  padding-top: 2em;
+  background: white;
+}
+
+.static:hover {
+  opacity: 0;
+}
+
+

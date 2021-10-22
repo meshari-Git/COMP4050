@@ -1,9 +1,10 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @J5kinner
   * 
   */
+  @import "../abstracts/colors";
 
 body {
   background: #fff;
@@ -159,7 +160,7 @@ i {
 
 .footer {
   padding: 0.5rem;  
-  background-color: #6c6d8a;
+  background-color: $blue;
   position: fixed;
   bottom: 0;
   left: 0;

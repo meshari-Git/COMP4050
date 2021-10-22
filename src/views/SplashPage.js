@@ -8,11 +8,15 @@
 import React from "react";
 import "../assets/sass/pages/splash/splash.scss";
 import map from "../assets/img/splash/map.png";
-import Jonah from "../assets/img/splash/jo-gif.gif";
-import Leon from "../assets/img/splash/Leon.gif";
-import LeonStatic from "../assets/img/splash/Leon-Static.png";
-import Malachi from "../assets/img/splash/Mal.png";
 
+import LeonStatic from "../assets/img/splash/LeonStatic.png";
+import JonahStatic from "../assets/img/splash/JonahStatic.png";
+import MeshStatic from "../assets/img/splash/MeshStatic.png";
+import BenStatic from "../assets/img/splash/benStatic.png";
+
+import Leon from "../assets/img/splash/leon.gif";
+import Jonah from "../assets/img/splash/jonah.gif";
+import Malachi from "../assets/img/splash/Mal.png";
 import Meshari from "../assets/img/splash/Meshari.gif";
 import Ben from "../assets/img/splash/Ben.gif";
 
@@ -76,24 +80,62 @@ function SplashPage() {
       </section>
       <section className="spacer layer4"></section>
       <section className="spacer2 layer5">
-        {/* <h1>Our Development Team</h1>
-        <p>
-          SwapStreet is a creative, lightweight, clean & super responsive app.
-        </p> */}
-        <img class="static" src={LeonStatic} alt="One frame of Leon's Gif" />
-        <img class="static" src={LeonStatic} alt="One frame of Leon's Gif" />
-        <img class="static" src={LeonStatic} alt="One frame of Leon's Gif" />
-        <img class="static" src={LeonStatic} alt="One frame of Leon's Gif" />
-        <img class="static" src={LeonStatic} alt="One frame of Leon's Gif" />
+        <div className="devteam-profiles">
+          <h1>Our Development Team</h1>
+          <p>
+            SwapStreet is a creative, lightweight, clean & super responsive app.
+          </p>
 
-        <div className="gifs">
-          <img class="active" src={Jonah} alt="animating Jonah bit emoji" />
-          <img class="active" src={Leon} alt="animating Leon bit emoji" />
-          <img class="active" src={Meshari} alt="animating Meshari bit emoji" />
-          <img class="active" src={Ben} alt="animating Ben bit emoji" />
-          <img class="active" src={Malachi} alt="animating Malachi bit emoji" />
+          <div className="gifs">
+            <div className="profile">
+              <img
+                class="static"
+                src={JonahStatic}
+                alt="One frame of Leon's Gif"
+              />
+              <img class="active" src={Jonah} alt="animating Jonah bit emoji" />
+              
+            </div>
+
+            <div className="profile">
+              <img
+                class="static"
+                src={LeonStatic}
+                alt="One frame of Leon's Gif"
+              />
+              <img class="active" src={Leon} alt="animating Leon bit emoji" />
+            </div>
+
+            <div className="profile">
+              <img
+                class="static"
+                src={MeshStatic}
+                alt="One frame of Leon's Gif"
+              />
+              <img
+                class="active"
+                src={Meshari}
+                alt="animating Meshari bit emoji"
+              />
+            </div>
+            <div className="profile">
+              <img
+                class="static"
+                src={BenStatic}
+                alt="One frame of Leon's Gif"
+              />
+
+              <img class="active" src={Ben} alt="animating Ben bit emoji" />
+            </div>
+            <div className="profile">
+              <img
+                class="active"
+                src={Malachi}
+                alt="animating Malachi bit emoji"
+              />
+            </div>
+          </div>
         </div>
-       
       </section>
     </div>
   );

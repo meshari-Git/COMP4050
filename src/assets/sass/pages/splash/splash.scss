@@ -130,19 +130,27 @@
   background-image: url("../../../img/splash/bottom-wave.svg");
 }
 
-.gifs, .apple {
-    flex-direction: row;
-align-content: center;
+.gifs {
+  background-color: grey;
+  display: flex;
+  border-radius: 25px;
+  .profile {
+    padding: 2vw;
+
+  }
+
   img {
-    width: 100px;
-    height: 100px;
+    border-radius: 15px;
+
+    width: 140px;
+    height: 150px;
   }
 }
 .static {
   position: absolute;
-  padding-top: 2em;
   background: white;
 }
+
 
 .static:hover {
   opacity: 0;

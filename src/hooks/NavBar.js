@@ -5,7 +5,7 @@
   * 
   */
 import React, { useState, useEffect } from "react";
-import "../assets/css/navbar.css";
+import "../assets/sass/components/navbar.scss";
 import { Link, withRouter, useLocation } from "react-router-dom";
 import $ from "jquery";
 import userService from "../services/user.js";
@@ -93,7 +93,7 @@ const NavBar = ({ history }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="logoDiv">
-        <a className="navbar-logo navbar-brand" href="/">
+        <a className="navbar-logo navbar-brand" href="/splash">
           <i className="fas fa-retweet"></i>
           SwapStreet
         </a>
@@ -139,8 +139,11 @@ const NavBar = ({ history }) => {
               <i className="fas fa-thumbs-up"></i>Need a Favour?
             </Link>
           </li>
+          <div className="extra-item">
           <li className="nav-item" data-toggle="tab">
+          
           </li>
+          </div>
         </ul>
       </div>
 

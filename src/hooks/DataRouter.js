@@ -1,9 +1,9 @@
 /** @license 4050 Boyz
-  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
-  *
-  * Authors: 
-  * 
-  */
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @Ben450 @J5kinner
+ *
+ */
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -21,31 +21,14 @@ import Forgot from "../views/Forgot";
 import Reset from "../views/Reset.js";
 import CreateJob from "../views/CreateJob";
 import PrivateRoute from "./PrivateRoute";
-import jobService from "../services/job"
+import jobService from "../services/job";
+import SplashPage from "../views/SplashPage";
 
-import userService from '../services/user.js';
-
-// import { isAuthenticated } from "../authentication/apiindex";
+import userService from "../services/user.js";
 
 class DataRouter extends Component {
   constructor(props) {
     super(props);
-    // if (userService.isAuthenticated()) {
-    //   const {
-    //     user: { _id, name, email, address, balance, about, role },
-    //   } = userService.isAuthenticated();
-    //   this.state = {
-    //     location: null,
-    //     userID: _id,
-    //     email: email,
-    //     address: address,
-    //     name: name,
-    //     balance: balance,
-    //     about: about,
-    //     role: role,
-    //     jobs: [],
-    //   };
-    // } else {
     this.state = {
       location: null,
       userID: null,
@@ -61,14 +44,7 @@ class DataRouter extends Component {
   }
 
   updateJobs() {
-    // fetch("http://localhost:3001/jobs?fetch=true")
-    //   .then((resp) => resp.json())
-    //   .then((data) => {
-    //     this.setState({
-    //       jobs: data,
-    //     });
-    //   });
-    jobService.getFavours()
+    jobService.getFavours();
   }
 
   handleSelect(e) {
@@ -91,15 +67,17 @@ class DataRouter extends Component {
             <Route path="/ChangeInfo">
               <ChangeInfo />
             </Route>
-
             <Route path="/datafill">
               <DataFill />
             </Route>
-
+            <Route path="/splash" exact component={SplashPage} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
-            <PrivateRoute component={Profile} path="/components/Profile.js" exact />
-
+            <PrivateRoute
+              component={Profile}
+              path="/components/Profile.js"
+              exact
+            />
             <Route
               exact
               path="/add"
@@ -107,7 +85,6 @@ class DataRouter extends Component {
                 <DataFill {...props} userID={this.state.userID} />
               )}
             />
-
             <Route
               exact
               path="/edit"
@@ -115,7 +92,6 @@ class DataRouter extends Component {
                 <DataFill {...props} userID={this.state.userID} />
               )}
             />
-
             <PrivateRoute
               component={DashBoard}
               path="/dashboard"
@@ -123,29 +99,21 @@ class DataRouter extends Component {
               userID={this.state.userID}
               exact
             />
-
             <Route path="/forgot">
               <Forgot></Forgot>
             </Route>
             <Route path="/reset/:resetToken/:userId">
               <Reset></Reset>
             </Route>
-
-
-
             <Route path="/profile">
               <Profile></Profile>
             </Route>
-
-
             <Route path="/user/:username">
               <ProfileOther></ProfileOther>
             </Route>
-
             <Route path="/job/new">
               <CreateJob></CreateJob>
             </Route>
-
             <Route
               exact
               path="/job"
@@ -153,7 +121,6 @@ class DataRouter extends Component {
                 <JobPage {...props} userID={this.state.userID} />
               )}
             />
-
             <Route path="/">
               <HomePage jobs={this.state.jobs} userID={this.state.userID} />
             </Route>

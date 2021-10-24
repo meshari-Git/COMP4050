@@ -139,8 +139,11 @@ const NavBar = ({ history }) => {
               <i className="fas fa-thumbs-up"></i>Need a Favour?
             </Link>
           </li>
+          <div className="extra-item">
           <li className="nav-item" data-toggle="tab">
+          
           </li>
+          </div>
         </ul>
       </div>
 

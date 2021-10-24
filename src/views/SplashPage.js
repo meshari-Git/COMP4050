@@ -54,7 +54,7 @@ function SplashPage() {
             </p>
           </div>
 
-          <div className="map-img">
+          <div className="map-img-right">
             <img src={map} alt="A Map of Macquarie/Ryde area" />
           </div>
         </div>
@@ -73,7 +73,7 @@ function SplashPage() {
               coins so that they can also request their own favours.
             </p>
           </div>
-          <div className="map-img">
+          <div className="map-img-left">
             <img src={map} alt="A Map of Macquarie/Ryde area" />
           </div>
         </div>

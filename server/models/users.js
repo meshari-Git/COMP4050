@@ -47,6 +47,10 @@ let UserSchema = new mongoose.Schema({
     bio: {
       type: String,
       required: false,
+    },
+    balance: {
+      type: Number,
+      required: true,
     }
     
   });

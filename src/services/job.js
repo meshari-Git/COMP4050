@@ -80,6 +80,14 @@ const approveFavour = (favour , token, operator) => {
 const uploadImageForFavour = (formData) => {
     axios.post('upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     .then(response =>{ alert(response.data)})
+}
+
+const completeFavour = (favour , token) => {
+    const config = {headers: {authorization: "bearer " + token}}
+    axios.post(baseURL + "favours/complete/" + favour._id , favour,  config)
+    .then(response => {
+        response.data() 
+    })
     .catch(e => null)
 }
 
@@ -92,7 +100,8 @@ const exportedObject = {
     cancelFavour,
     acceptFavour,
     approveFavour,
-    uploadImageForFavour
+    uploadImageForFavour,
+    completeFavour
 };
 
 export default exportedObject;

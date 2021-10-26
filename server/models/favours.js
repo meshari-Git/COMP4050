@@ -66,6 +66,13 @@ let favourSchema = new mongoose.Schema({
     },
     images: {
         type: [String],
+    },
+    completionTime: {
+        type: String,
+        required: false
+    },
+    editTime: {
+        type: String,
         required: false
     }
 

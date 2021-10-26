@@ -40,7 +40,7 @@ const Login = () => {
   const clickSubmit = (event) => {
     // prevent browser from reloading
     event.preventDefault();
-
+    setValues({ ...values, error: false, loading: true });
     userService
       .login(values.email, values.password)
       .then((response) => {
@@ -118,19 +118,23 @@ const Login = () => {
     </form>
   );
 
-  const showError = () => (
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "error logging in" : "none" }}
-    >
-      {error}
-    </div>
-  );
+  const showError = () => {
+    if(error) {
+      return(
+        <div
+          className="alert alert-danger"
+
+        >
+          {error}
+        </div>
+      )
+    } 
+  }
 
   const showLoading = () =>
     loading && (
       <div className="alert alert-info">
-        <h2>Loading...</h2>
+        <h4>Loading...</h4>
       </div>
     );
 

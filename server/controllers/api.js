@@ -299,7 +299,7 @@ apiRouter.get('/api/account/:username' , async (req, res) => {
     
     const user = await User.findOne({ username: username})
     if(!user){ return res.status(404).json({error: "User not found"}) }
-    const ownedFavours = await Favour.find({ username: user.username })
+    const ownedFavours = await Favour.find({ ownerID: user._id })
     user.password = ""
     user.address = ""
     user.dob = ""

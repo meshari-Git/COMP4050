@@ -205,7 +205,7 @@ function Profile() {
                   <td>{favour.status}</td>
                   <td>{favour.ownerName}</td>
                   <td>{favour.operatorName}</td>
-                  <td>{"03/09/21"}</td>
+                  <td>{favour.timestamp}</td>
                 </tr>
               ))}
               {user.operatedFavours.map((favour) => (

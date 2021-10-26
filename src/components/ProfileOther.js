@@ -45,7 +45,6 @@ function ProfileOther() {
 
   useEffect(() => {
     userService.profile_other(usernameToView).then(resp => {
-      console.log("RESP: ", resp)
       setUser(resp)
       if(resp === null) {
           setNotFound(true)
@@ -54,6 +53,7 @@ function ProfileOther() {
   }, [setUser])
 
 
+  console.log("USER: ", user)
   
 
   //can be moved elsewhere and redone as a component.
@@ -138,7 +138,7 @@ function ProfileOther() {
             </tr>
           </thead>
           <tbody>
-            {user.ownedFavours && user.ownedFavours.size > 0 && user.ownedFavours.map(favour =>
+            {user.ownedFavours && user.ownedFavours.length > 0 && user.ownedFavours.map(favour =>
 
               <tr key={favour._id} onClick={showJob}>
                 <td>{favour.title}</td>
@@ -146,7 +146,7 @@ function ProfileOther() {
                 <td>{favour.status}</td>
                 <td>{favour.ownerName}</td>
                 <td>{favour.operatorName}</td>
-                <td>{"03/09/21"}</td>
+                <td>{favour.timestamp}</td>
               </tr>
             )}
           </tbody>

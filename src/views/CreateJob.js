@@ -58,7 +58,6 @@ const CreateJob = () => {
   } = values;
 
   const handleChange = (name) => (event) => {
-    console.log(name)
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 

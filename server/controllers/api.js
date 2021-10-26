@@ -142,7 +142,7 @@ apiRouter.post('/api/forgot' , async (req, res) => {
         }).save();
 
         const sgMail = require('@sendgrid/mail')
-        sgMail.setApiKey("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")
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
         to: user.email,
         // to: "benjamin.fricke07@gmail.com",
@@ -215,11 +215,12 @@ apiRouter.post('/api/registration', async (req, res) => {
     if(!firstName) {return res.status(400).json({error: "Please Provide First Name"})}
     if(!lastName) {return res.status(400).json({error: "Please Provide Last Name"})}
     if(!password) {return res.status(400).json({error: "Please Provide Password"})}
-    if(!email) {return res.status(400).json({error: "Please Provide Last Email"})}
-    if(!DOB) {return res.status(400).json({error: "Please Provide Last DOB"})}
-    if(!city) {return res.status(400).json({error: "Please Provide Last City"})}
-    if(!postCode) {return res.status(400).json({error: "Please Provide Last Post Code"})}
-    if(!address) {return res.status(400).json({error: "Please Provide Last Address"})}
+    if(!email) {return res.status(400).json({error: "Please Provide Email"})}
+    if(!DOB) {return res.status(400).json({error: "Please Provide DOB"})}
+    if(!city) {return res.status(400).json({error: "Please Provide City"})}
+    console.log(postCode)
+    if(postCode == null) {return res.status(400).json({error: "Please Provide Post Code"})}
+    if(!address) {return res.status(400).json({error: "Please Provide Address"})}
 
     
     const hashPass = await passwordHashing(password)
@@ -346,13 +347,18 @@ apiRouter.get("/api/", async (req , res) => {
 apiRouter.post("/api/new-favour" , async (req, res) => {
     const {title, description, cost, city, streetAddress , lat , long, images} = req.body
     
+    if(!title){return res.status(400).json({error: "Title Can not Be Blank"})}
+    if(!description){return res.status(400).json({error: "Description Can not Be Blank"})}
+    if(!cost){return res.status(400).json({error: "Cost Can not Be Blank"})}
+    if(!streetAddress){return res.status(400).json({error: "Address Can not Be Blank"})}
+    if(lat == null){return res.status(400).json({error: "Latitude Can not Be Blank"})}
+    if(long == null){return res.status(400).json({error: "Longitude Can not Be Blank"})}
+
     const user = await verifyLogin(req)
     if(cost > user.balance){
         return res.status(403).json({error: "Cannot Post Favours You Cannot Afford"})
     }
-    if(!user){
-       return res.status(401).json({error: "Login or create an account to access this page"})
-    }
+    if(!user){return res.status(401).json({error: "Login or create an account to access this page"})}
 
     const OwnerId = user._id.toString()
     const OwnerName = user.username
@@ -692,9 +698,6 @@ apiRouter.get('/image/:filename', (req, res) => {
     });
   });
 
-
-// PHOTO UPLOADING : https://github.com/bradtraversy/mongo_file_uploads/blob/master/app.js
-// PHOTO UPLOADING : https://www.youtube.com/watch?v=3f5Q9wDePzY
 
 
 module.exports = apiRouter

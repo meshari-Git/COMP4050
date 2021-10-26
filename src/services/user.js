@@ -16,7 +16,7 @@ const baseURL = "http://localhost:3001/api/"
  */
 const login = (email, password) => {
     return axios.post(baseURL + 'login', {"email": email, "password": password})
-        .then(response => response.data).catch(e => null)
+        .then(response => response.data).catch(e => e.response.data)
 }
 
 /**
@@ -55,9 +55,9 @@ const login = (email, password) => {
                                                 "DOB": DOB, 
                                                 "lastName": lastName, 
                                                 "city": city, 
-                                                "postcode": postcode,
+                                                "postCode": postcode,
                                               "bio": "this is the bio"})
-        .then(response => response.data).catch(e => null)
+        .then(response => response.data).catch(e => e.response.data)
 }
 
 /**

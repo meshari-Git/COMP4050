@@ -65,6 +65,7 @@ const CreateJob = () => {
     // prevent browser from reloading
     event.preventDefault();
     setValues({ ...values, error: false });
+    window.scrollTo(0, 0)
 
     jobService
       .addJob(
@@ -74,8 +75,8 @@ const CreateJob = () => {
           cost: cost,
           city: city,
           streetAddress: streetAddress,
-          lat: 0.0,
-          long: 0.0,
+          lat: 0.0, //CHANGE THIS
+          long: 0.0, //CHANGE THIS
           images: images
         },
         user.token
@@ -177,14 +178,17 @@ const CreateJob = () => {
     </div>
   );
 
-  const showError = () => (
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
-    >
-      {error}
-    </div>
-  );
+  const showError = () => {
+    if(error) {
+      return(
+        <div
+          className="alert alert-danger"
+        >
+          {error}
+        </div>
+      )
+    } 
+  }
 
   const showSuccess = () => (
     <div

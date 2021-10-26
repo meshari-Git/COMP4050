@@ -45,10 +45,10 @@ const Login = () => {
       .login(values.email, values.password)
       .then((response) => {
         setValues({ ...values, error: false, password: "" });
-        if (!response || response === null) {
+        if (!response || response === null || response.error) {
           setValues({
             ...values,
-            error: "Invalid Username or Password",
+            error: "Invalid Username Or Password",
             loading: false,
           });
           return;
@@ -64,8 +64,7 @@ const Login = () => {
         console.log(err);
         setValues({
           ...values,
-          error: "Invalid Username or Password",
-          loading: false,
+          error: err.error
         });
         return;
       });

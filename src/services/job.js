@@ -27,7 +27,7 @@ const addJob = (job, token) => {
             "long": job.long,
             "images": job.images
         }, config
-    ).then(response => response.data).catch(e => null)
+    ).then(response => response.data).catch(e => e.response.data)
 }
 
 const delFavour = (favour, token) => {

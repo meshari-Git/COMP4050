@@ -191,7 +191,7 @@ apiRouter.post('/api/reset' , async (req, res) => {
 //registration end-point
 apiRouter.post('/api/registration', async (req, res) => {
 
-    const {username, firstName, password, email, address, DOB, lastName, city, postCode , bio } = req.body
+    const {username, firstName, password, email, address, DOB, lastName, city, postCode , bio, balance} = req.body
 
     const user = await getUser(username)
     const EMAIL = await getEmail(email)
@@ -215,7 +215,8 @@ apiRouter.post('/api/registration', async (req, res) => {
         lastName: lastName,
         city: city,
         postCode: postCode,
-        bio: bio
+        bio: bio,
+        balance: 20
     })
 
     newUser.save()
@@ -328,8 +329,10 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     const {title, description, cost, city, streetAddress , lat , long} = req.body
     
     const user = await verifyLogin(req)
-
-
+    console.log("long" , long, "lat", lat)
+    if(cost > user.balance){
+        return res.status(403).json({error: "Cannot Post Favours You Cannot Afford"})
+    }
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
     }

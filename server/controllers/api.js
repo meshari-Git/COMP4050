@@ -69,6 +69,13 @@ const getUser = async (username) => {
     if(user){user.password = null}
     return user
 }
+
+const getUserID = async (userID) => {
+    const user = await User.findOne({_id: userID})
+    if(user){user.password = null}
+    return user
+}
+
 const getEmail = async (email) => {
     const Email = await User.findOne({ email: email })
     return Email
@@ -242,7 +249,6 @@ apiRouter.post('/api/account_update' , async (req, res) => {
 
     users.findOneAndUpdate({_id: user._id}, newUser, function (error) {
         if (error) {
-          console.log(error)
           return res.status(404).json({error: "User Not Found"})
         } else {
             users.findOne({_id: user._id}, function (err, updatedUser) {
@@ -329,7 +335,6 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     const {title, description, cost, city, streetAddress , lat , long} = req.body
     
     const user = await verifyLogin(req)
-    console.log("long" , long, "lat", lat)
     if(cost > user.balance){
         return res.status(403).json({error: "Cannot Post Favours You Cannot Afford"})
     }
@@ -342,7 +347,6 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
     const time = new Date()
     const year = time.getFullYear()  
     const month = time.getMonth() + 1 
-    console.log(month)
     const day = time.getDate()
     const string = year + "-" + month + "-" + day + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
 
@@ -381,11 +385,9 @@ apiRouter.get("/api/favours/:id" , async (req , res) => {
 
 //Accepting a favour
 apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
-    //console.log(req)
     const user = await verifyLogin(req)
     
     if(user){
-        console.log(req.params.id)
         const newFav = await getFavour(req.params.id)
         if(!newFav){
             return res.status(404).json({error: "Favour not found"})
@@ -419,7 +421,7 @@ apiRouter.post("/api/favours/accept/:id" , async (req , res) => {
 
 })
 
-
+//API Call For Approving A Favour
 apiRouter.post("/api/favours/approve/:id" , async(req , res) => {
     const user = await verifyLogin(req)
     const fav = await getFavour(req.params.id)
@@ -515,7 +517,6 @@ apiRouter.put("/api/favours/:id" , async (req , res) =>{
         return res.status(401).json({error: "Login or register to edit favours"})
     }
     const newFav = req.body
-    console.log(newFav)
     const fav = await getFavour(req.params.id)
     if(fav){
         if(fav.ownerName == user.username && fav.ownerID == user._id){
@@ -537,6 +538,54 @@ apiRouter.put("/api/favours/:id" , async (req , res) =>{
     }
 })
 
+//API Call For Completing Favour
+apiRouter.post("/api/favours/complete/:id" , async (req , res) =>{
+
+    const user = await verifyLogin(req)
+    if(user){
+        const currFav = await getFavour(req.params.id)
+        if(!currFav){
+            return res.status(404).json({error: "Favour does not exist"})
+        }
+        else if(currFav.operaterName != user.username && currFav.operatorID != user._id){
+            return res.status(403).json({error: "Cannot complete favour operated by someone else"})
+        }
+        else{
+            const owner = await getUserID(currFav.ownerID)
+            const newOwnerBalance = owner.balance - currFav.cost
+            const newOperatorBalance = user.balance + currFav.cost
+            if(owner){
+                currFav.status = 2;
+                users.findByIdAndUpdate({_id: owner._id} , {balance: newOwnerBalance}, function(err , result){
+                    if (err) {
+                        return res.status(404).json({error: "error"})
+                    } else {
+                        
+                    }
+                })
+                users.findByIdAndUpdate({_id: user._id} , {balance: newOperatorBalance}, function(err , result){
+                    if (err) {
+                        return res.status(404).json({error: "error"})
+                    } else {
+                        
+                    }
+                })
+                currFav.save().then(result => {
+                    return res.status(200).json(result)
+                })
+                .catch(err => {
+                    return res.status(404).json({error: "Error"})
+                })
+            }
+            else{
+                return res.status(401).json({error: "Something is wrong"})
+            }
+        }
+    }
+    else{
+        return res.status(401).json({error: "Login or register to cancel favours"})
+    }
+})
 
 // PHOTO UPLOADING : https://github.com/bradtraversy/mongo_file_uploads/blob/master/app.js
 // PHOTO UPLOADING : https://www.youtube.com/watch?v=3f5Q9wDePzY

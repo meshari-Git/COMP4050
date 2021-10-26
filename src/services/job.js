@@ -76,6 +76,15 @@ const approveFavour = (favour , token, operator) => {
     .catch(e => null)
 }
 
+const completeFavour = (favour , token) => {
+    const config = {headers: {authorization: "bearer " + token}}
+    axios.post(baseURL + "favours/complete/" + favour._id , favour,  config)
+    .then(response => {
+        response.data() 
+    })
+    .catch(e => null)
+}
+
 const exportedObject = {
     addJob,
     delFavour,
@@ -84,7 +93,8 @@ const exportedObject = {
     getFavour,
     cancelFavour,
     acceptFavour,
-    approveFavour
+    approveFavour,
+    completeFavour
 };
 
 export default exportedObject;

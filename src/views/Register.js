@@ -78,8 +78,15 @@ const Register = () => {
         bio
       )
       .then((response) => {
+        console.log(response)
+        if (!response || response === null) {
+          setValues({
+            ...values,
+            error: "Please Fill In All The Fields"
+          });
+          return;
+        }
         if (response.error) {
-          console.log(response)
           setValues({ ...values, error: response.error, success: false });
         } else {
           setValues({
@@ -99,6 +106,9 @@ const Register = () => {
             success: true,
           });
         }
+      }).catch((e) => {
+          console.log("Error: ", e)
+          setValues({ ...values, error: e.error, success: false });
       });
   };
 
@@ -298,14 +308,18 @@ const Register = () => {
     </form>
   );
 
-  const showError = () => (
-    <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
-    >
-      {error}
-    </div>
-  );
+  const showError = () => {
+    if(error) {
+      return(
+        <div
+          className="alert alert-danger"
+
+        >
+          {error}
+        </div>
+      )
+    } 
+  }
 
   const showSuccess = () => (
     <div

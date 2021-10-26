@@ -212,6 +212,15 @@ apiRouter.post('/api/registration', async (req, res) => {
     if (EMAIL) {
         return res.status(409).json({error: "Email already in use"})
     }
+    if(!firstName) {return res.status(400).json({error: "Please Provide First Name"})}
+    if(!lastName) {return res.status(400).json({error: "Please Provide Last Name"})}
+    if(!password) {return res.status(400).json({error: "Please Provide Password"})}
+    if(!email) {return res.status(400).json({error: "Please Provide Last Email"})}
+    if(!DOB) {return res.status(400).json({error: "Please Provide Last DOB"})}
+    if(!city) {return res.status(400).json({error: "Please Provide Last City"})}
+    if(!postCode) {return res.status(400).json({error: "Please Provide Last Post Code"})}
+    if(!address) {return res.status(400).json({error: "Please Provide Last Address"})}
+
     
     const hashPass = await passwordHashing(password)
 

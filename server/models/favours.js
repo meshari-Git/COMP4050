@@ -63,6 +63,10 @@ let favourSchema = new mongoose.Schema({
     long: {
         type: Number,
         required: true
+    },
+    images: {
+        type: [String],
+        required: false
     }
 
 });

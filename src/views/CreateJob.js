@@ -16,16 +16,22 @@ import jobService from "../services/job.js";
 import Input from "../components/forms/Input";
 import TextArea from "../components/forms/TextArea";
 import FileUpload from "../components/forms/FileUpload";
+import axios from 'axios'
 
 const CreateJob = () => {
   const user = userService.isAuthenticated();
 
-  const [newFavourInfo, setNewUserInfo] = useState({
-    profileImages: [],
-  });
   /* Image upload Handler */
-  const updateUploadedFiles = (files) =>
-    setNewUserInfo({ ...newFavourInfo, profileImages: files });
+  const updateUploadedFiles = (files) => {
+    var formData = new FormData();
+    formData.append("file", files[0]);
+    axios.post('upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    .then(response =>{ 
+      var newImages = values.images
+      newImages.push(response.data.file_name)
+      setValues({ ...values, images: newImages})
+    })
+  }
 
   const [values, setValues] = useState({
     title: "",
@@ -36,6 +42,7 @@ const CreateJob = () => {
     postCode: "",
     error: "",
     success: false,
+    images: [],
   });
 
   const {
@@ -46,10 +53,12 @@ const CreateJob = () => {
     streetAddress,
     postCode,
     success,
+    images,
     error,
   } = values;
 
   const handleChange = (name) => (event) => {
+    console.log(name)
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
@@ -66,6 +75,9 @@ const CreateJob = () => {
           cost: cost,
           city: city,
           streetAddress: streetAddress,
+          lat: 0.0,
+          long: 0.0,
+          images: images
         },
         user.token
       )

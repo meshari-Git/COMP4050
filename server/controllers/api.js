@@ -9,6 +9,7 @@ const database = require('../database')
 const crypto = require("crypto");
 const User = database.UserSchema;
 const Favour = database.FavourSchema;
+const getGFS = database.getGFS;
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
 const favours = require('../models/Favours');
@@ -17,15 +18,17 @@ const Token = require("../models/token");
 const mongoose = require('mongoose');
 const Favours = require('../models/Favours');
 
-
-
+const multer = require('multer');
+const {GridFsStorage} = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const { mongoURI } = require("../config/keys");
+const path = require('path');
 
 
 const apiRouter = express.Router()
 
 
 const SECRET = process.env.SECRET
-
 
 //Authentication functions
 const passwordHashing = (password) => {
@@ -325,10 +328,11 @@ apiRouter.get("/api/", async (req , res) => {
 
 //Adding new Favour 
 apiRouter.post("/api/new-favour" , async (req, res) => {
-    const {title, description, cost, city, streetAddress , lat , long} = req.body
+    const {title, description, cost, city, streetAddress , lat , long, images} = req.body
     
     const user = await verifyLogin(req)
 
+    console.log("IMAGES FOR NEW JOB: ", images)
 
     if(!user){
        return res.status(401).json({error: "Login or create an account to access this page"})
@@ -354,7 +358,8 @@ apiRouter.post("/api/new-favour" , async (req, res) => {
         ownerName: OwnerName,
         timestamp: string,
         lat: lat,
-        long: long
+        long: long,
+        images: images
     })
 
     newFavour.save()
@@ -533,6 +538,87 @@ apiRouter.put("/api/favours/:id" , async (req , res) =>{
         return res.status(404).json({error: "Favour does not exist"})
     }
 })
+
+
+
+// Create storage engine
+const storage = new GridFsStorage({
+    url: mongoURI,
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+            if (err) {
+            return reject(err);
+            }
+            const filename = buf.toString('hex') + path.extname(file.originalname);
+            const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+            };
+            resolve(fileInfo);
+        });
+        });
+    }
+    });
+    const upload = multer({ storage });
+      
+    
+//Upload An Image For A Job
+apiRouter.post('/job/upload', upload.single('file'), (req, res) => {
+    gfs = getGFS()
+    gfs.files.find().toArray((err, files) => {
+      // Check if files
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        });
+      }
+  
+      // Files created successfully - return the file name
+      return res.status(200).json({file_name: files[files.length -1].filename})
+    });
+    
+    
+});
+
+apiRouter.get('/files', (req, res) => {
+    gfs = getGFS()
+    gfs.files.find().toArray((err, files) => {
+      // Check if files
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          err: 'No files exist'
+        });
+      }
+  
+      // Files exist
+      return res.json(files);
+    });
+  });
+  
+
+apiRouter.get('/image/:filename', (req, res) => {
+    gfs = getGFS()
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+      // Check if file
+      if (!file || file.length === 0) {
+        return res.status(404).json({
+          err: 'No file exists'
+        });
+      }
+  
+      // Check if image
+      if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+        // Read output to browser
+        const readstream = gfs.createReadStream(file.filename);
+        readstream.pipe(res);
+      } else {
+        res.status(404).json({
+          err: 'Not an image'
+        });
+      }
+    });
+  });
 
 
 // PHOTO UPLOADING : https://github.com/bradtraversy/mongo_file_uploads/blob/master/app.js

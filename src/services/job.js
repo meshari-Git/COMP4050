@@ -15,7 +15,7 @@ const baseURL = "http://localhost:3001/api/"
  */
 const addJob = (job, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    
+    console.log("JOB IMAGES: ", job.images)
     return axios.post(baseURL + 'new-favour', 
         {
             "title": job.title,
@@ -24,7 +24,8 @@ const addJob = (job, token) => {
             "city": job.city,
             "streetAddress": job.streetAddress,
             "lat": job.lat,
-            "long": job.long
+            "long": job.long,
+            "images": job.images
         }, config
     ).then(response => response.data).catch(e => null)
 }
@@ -76,6 +77,12 @@ const approveFavour = (favour , token, operator) => {
     .catch(e => null)
 }
 
+const uploadImageForFavour = (formData) => {
+    axios.post('upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    .then(response =>{ alert(response.data)})
+    .catch(e => null)
+}
+
 const exportedObject = {
     addJob,
     delFavour,
@@ -84,7 +91,8 @@ const exportedObject = {
     getFavour,
     cancelFavour,
     acceptFavour,
-    approveFavour
+    approveFavour,
+    uploadImageForFavour
 };
 
 export default exportedObject;

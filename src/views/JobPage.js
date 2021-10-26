@@ -50,7 +50,13 @@ class JobPage extends Component {
       <div className = "job-page">
         <div className = "job-container">
           <div className = "job-pictures">
-            {/*job.pictures show*/}
+            {job.images && job.images.length > 0 &&
+                  <img
+                  class="card-img-top"
+                  src={"/image/" + job.images[0]}
+                  alt="What the favour looks like"
+                />
+            }
           </div>
           <div className = "job-text-container">
             <div className = "job-header">
@@ -72,8 +78,12 @@ class JobPage extends Component {
         </div>
         <div className = "user-container">
           <div className = "job-owner">
-            <div className = "profile-picture">
-            </div>
+            <Link to={"/user/" + job.ownerName} className = "profile-picture">
+              <img
+                alt="automated robot profile"
+                src={"https://robohash.org/" + job.ownerName}
+              />
+            </Link>
             {/*<div className = "owner-name">
               {job.ownerName}
             </div>*/}

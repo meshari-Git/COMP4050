@@ -60,11 +60,13 @@
 }
 
 
-.job-pictures {
+.job-pictures Img {
   /*border-color:blueviolet;    /*debug*/
-  height: 60%;
+  height: auto;
+  width: 100%;
   background-color: cornsilk; /*placeholder*/
 }
+
 
 
 .job-text-container {
@@ -133,9 +135,7 @@
 }
 
 
-.profile-picture {
-  /*border-color: blueviolet;   /*debug*/
-  background-color: cornsilk; /*placeholder*/
+.profile-picture Img {
   width: 50%;
   height: 100%;
 }

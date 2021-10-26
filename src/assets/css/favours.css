@@ -73,3 +73,7 @@
     max-width: 22vw;
   }
 }
+
+.card-img-top {
+  height: auto;
+}

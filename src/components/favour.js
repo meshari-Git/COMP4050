@@ -114,11 +114,21 @@ function Favour(filter) {
                   },
                 }}
               >
-                <img
+                {favour.images && favour.images.length > 0 &&
+                  <img
+                  class="card-img-top"
+                  src={"/image/" + favour.images[0]}
+                  alt="What the favour looks like"
+                />
+                }
+                {!favour.images || !(favour.images.length > 0) &&
+                  <img
                   class="card-img-top"
                   src={imageNotFound}
                   alt="What the favour looks like"
                 />
+                }
+                
                 <div className="card-body">
                   <tr>
                     <td>

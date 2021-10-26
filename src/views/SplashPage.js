@@ -14,7 +14,7 @@ import JonahStatic from "../assets/img/splash/JonahStatic.png";
 import MeshStatic from "../assets/img/splash/MeshStatic.png";
 import BenStatic from "../assets/img/splash/benStatic.png";
 
-import Leon from "../assets/img/splash/leon.gif";
+import Leon from "../assets/img/splash/Leon.gif";
 import Jonah from "../assets/img/splash/jonah.gif";
 import Malachi from "../assets/img/splash/Mal.png";
 import Meshari from "../assets/img/splash/Meshari.gif";

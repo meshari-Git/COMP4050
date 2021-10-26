@@ -521,6 +521,12 @@ apiRouter.put("/api/favours/:id" , async (req , res) =>{
     if(fav){
         if(fav.ownerName == user.username && fav.ownerID == user._id){
             if(fav.status == 0 && fav.operatorName == null && fav.operatorID == null){
+                const time = new Date()
+                const year = time.getFullYear()  
+                const month = time.getMonth() + 1 
+                const day = time.getDate()
+                const string = year + "-" + month + "-" + day + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
+                newFav.editTime = string
                 Favours.findByIdAndUpdate(req.params.id ,newFav, function(err , result){
                     if(err){
                         return res.status(404).json({error: "Error"})
@@ -570,6 +576,12 @@ apiRouter.post("/api/favours/complete/:id" , async (req , res) =>{
                         
                     }
                 })
+                const time = new Date()
+                const year = time.getFullYear()  
+                const month = time.getMonth() + 1 
+                const day = time.getDate()
+                const string = year + "-" + month + "-" + day + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
+                currFav.completionTime = string
                 currFav.save().then(result => {
                     return res.status(200).json(result)
                 })

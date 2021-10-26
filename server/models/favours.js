@@ -63,6 +63,14 @@ let favourSchema = new mongoose.Schema({
     long: {
         type: Number,
         required: true
+    },
+    completionTime: {
+        type: String,
+        required: false
+    },
+    editTime: {
+        type: String,
+        required: false
     }
 
 });

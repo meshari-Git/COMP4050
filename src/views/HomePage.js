@@ -21,7 +21,7 @@ class HomePage extends Component {
 
     this.state = {
       searchData: '',
-      order: 'a',
+      order: 'n',
       dropDownState: "Sort by "
     };
   }
@@ -102,7 +102,6 @@ class HomePage extends Component {
                   <Dropdown.Item href="#" onClick={this.handleAlphaReverse}>Z - A</Dropdown.Item>
                   <Dropdown.Item href="#" onClick={this.handlePriceLowHigh}>Lowest Price</Dropdown.Item>
                   <Dropdown.Item href="#" onClick={this.handlePriceHighLow}>Highest Price</Dropdown.Item>
-
                 </Dropdown.Menu>
               </Dropdown>
             </div>

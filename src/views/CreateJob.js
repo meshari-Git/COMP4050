@@ -13,6 +13,7 @@ import { Link, Redirect } from "react-router-dom";
 import Layout from "../components/Layout";
 import userService from "../services/user.js";
 import jobService from "../services/job.js";
+import geoCoder from "../services/geocoder.js"
 import Input from "../components/forms/Input";
 import TextArea from "../components/forms/TextArea";
 import FileUpload from "../components/forms/FileUpload";
@@ -66,6 +67,11 @@ const CreateJob = () => {
     event.preventDefault();
     setValues({ ...values, error: false });
     window.scrollTo(0, 0)
+
+    const address = streetAddress + ", " + postCode + " " + city 
+    console.log(address)
+    console.log("\n", typeof(address))
+    geoCoder.getLatLong(address)
 
     jobService
       .addJob(

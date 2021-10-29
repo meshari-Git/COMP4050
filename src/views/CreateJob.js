@@ -71,7 +71,7 @@ const CreateJob = () => {
     const address = streetAddress + ", " + postCode + " " + city 
     console.log(address)
     console.log("\n", typeof(address))
-    geoCoder.getLatLong(address)
+    geoCoder.getLatLong("2 Todman Avenue, Kensington, NSW, Australia")
 
     jobService
       .addJob(

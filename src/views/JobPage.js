@@ -101,6 +101,17 @@ class JobPage extends Component {
           </div>
           {isAuthenticated() ?
             user.id != job.ownerID ?
+              job.operatorName != null ?
+                job.operatorName != user.email ?
+                <p style={{paddingBottom: "10px"}}>
+                  This job is already being actioned
+                </p>
+                :
+                <p style={{paddingBottom: "10px"}}>
+                  You have been approved for this job! <br />
+                  Please contact the requester for more details.
+                </p>
+                :
               <div className="accept-job-container">
                 <form className="accept-job">
                   <input type="text" className="text-box">
@@ -120,14 +131,19 @@ class JobPage extends Component {
                     }}>
                       Accept Job
                     </Link> :
-                    <Link className="accept-job-button" onClick={(e) => jobService.cancelFavour(job, user.token)} to={{
-                      pathname: "/job",
-                      state: {
-                        job: job,
-                      },
-                    }}>
-                      Accepted
-                    </Link>
+                    <div>
+                      <p style={{paddingBottom: "10px"}}> 
+                        Your application job is penidng approval from the requester
+                      </p>
+                      <Link className="accept-job-button" onClick={(e) => jobService.cancelFavour(job, user.token)} to={{
+                        pathname: "/job",
+                        state: {
+                          job: job,
+                        },
+                      }}>
+                        Cancel application
+                      </Link>
+                    </div>
                   }
                 </form>
               </div> :
@@ -153,10 +169,10 @@ class JobPage extends Component {
           {isAuthenticated() ?
             user.id == job.ownerID ?
               job.operatorName != null ?
-                <p> Operated by {job.operatorName}</p>
+                <p style={{paddingBottom: "10px"}}> Operated by {job.operatorName}</p>
                 :
                 job.potentialOperators.length === 0 ?
-                  <p>No one has accepted this job yet</p>
+                  <p style={{paddingBottom: "10px"}} >No one has accepted this job yet</p>
                   :
             <div>
               <table className="op-table">
@@ -165,7 +181,6 @@ class JobPage extends Component {
                     <th>User</th>
                     <th>Accept</th>
                   </tr>
-
                 </thead>
                 <tbody>
                   {job.potentialOperators.map((op) => (
@@ -181,6 +196,7 @@ class JobPage extends Component {
                         <button className = "appr-button" onClick={(e) => jobService.approveFavour(job, user.token, op)}>X</button>
                       </td>
                     </tr>
+                    
                   ))}
                 </tbody>
               </table>

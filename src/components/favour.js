@@ -104,6 +104,7 @@ function Favour(filter) {
       <table className="table">
         <tbody>
           {filterFavours(favours).map((favour) => (
+          
             <div className="card favourCtr">
               <Link
                 to={{
@@ -115,14 +116,14 @@ function Favour(filter) {
               >
                 {(favour.images && favour.images.length > 0) &&
                   <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={"/image/" + favour.images[0]}
                   alt="What the favour looks like"
                 />
                 }
                 {(!favour.images || !(favour.images.length > 0)) &&
                   <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={imageNotFound}
                   alt="What the favour looks like"
                 />
@@ -146,6 +147,7 @@ function Favour(filter) {
                 </div>
               </Link>
             </div>
+           
           ))}
         </tbody>
       </table>

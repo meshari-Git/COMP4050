@@ -54,7 +54,7 @@ class JobPage extends Component {
           <div className="job-pictures">
             {job.images && job.images.length > 0 && (
               <img
-                class="card-img-top"
+                className="card-img-top"
                 src={"/image/" + job.images[0]}
                 alt="What the favour looks like"
               />

@@ -165,7 +165,7 @@ const Login = () => {
           </Layout>
           <Link className="link" to="/forgot">Forgot Password?</Link>
           <br></br>
-          <Link className="link" to="/Register">Need an account?</Link>
+          <Link className="link" to="/register">Need an account?</Link>
           
         </div>
       </div>

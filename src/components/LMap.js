@@ -38,7 +38,7 @@ const LMap = () => {
             />
             {jobs.map((job) => (
                 <div>
-                    {console.log(job, job.lat)}
+                    {/* {console.log(job, job.lat)} */}
                     <Marker position={[job.lat, job.long]}>
                         <Popup>
                             <Link

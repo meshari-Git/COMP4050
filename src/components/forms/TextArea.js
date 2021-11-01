@@ -11,7 +11,7 @@ import "../../assets/sass/pages/createJob/createJob.scss";
 function TextArea({ handler, type, label, value }) {
   return (
     <div>
-      <div class="form-floating ">
+      <div className="form-floating ">
         <textarea
           onChange={handler}
           type={type}

@@ -1,9 +1,9 @@
 /** @license 4050 Boyz
-  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
-  *
-  * Authors: @J5kinner @Ben450
-  * 
-  */
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @J5kinner @Ben450
+ *
+ */
 import React, { useEffect } from "react";
 import "../assets/sass/components/navbar.scss";
 import { Link, withRouter, useLocation } from "react-router-dom";
@@ -11,10 +11,10 @@ import $ from "jquery";
 import userService from "../services/user.js";
 
 const NavBar = ({ history }) => {
-  const location = useLocation()
- 
+  const location = useLocation();
+
   /**
-   * 
+   *
    * @param {Object} newTabAnimate
    * @param {Object} activeTabAnimate - Finds the currently selected Tab which has the ".active" keyword
    * @param {Object} activeTabNewWidth - Currently selected Tab box width
@@ -56,29 +56,34 @@ const NavBar = ({ history }) => {
     });
   }
   /**
-   * Now the animation is looking for the "active" tab 
+   * Now the animation is looking for the "active" tab
    * The if statements give the active class based on the current URL
    * @param location returns the location of the current page including URL path
    * @returns {animation} Returns the animation per refresh/click
    */
 
   useEffect(() => {
-    $(document).ready(function(e){
-      if(location.pathname === "/"){
-          $(".nav-item-1").addClass("active");
-          animation()
+    $(document).ready(function (e) {
+      if (location.pathname === "/") {
+        $(".nav-item-1").addClass("active");
+        animation();
       }
-      if(location.pathname === "/profile"){
+      if (location.pathname === "/profile") {
         $(".nav-item-2").addClass("active");
-        animation()
+        animation();
       }
-      if(location.pathname === "/job/new"){
+      if (location.pathname === "/job/new") {
         $(".nav-item-3").addClass("active");
-        animation()
+        animation();
       }
-      if(location.pathname !== "/job/new" || location.pathname !== "/profile"  || location.pathname !== "/" || location.pathname !== "/job"){
+      if (
+        location.pathname !== "/job/new" ||
+        location.pathname !== "/profile" ||
+        location.pathname !== "/" ||
+        location.pathname !== "/job"
+      ) {
         $(".nav-item").addClass("active");
-        animation()
+        animation();
       }
     });
     $("#navbarSupportedContent ul li").removeClass("active");
@@ -122,27 +127,25 @@ const NavBar = ({ history }) => {
             <div className="left"></div>
             <div className="right"></div>
           </div>
-         
+
           <li className="nav-item-1 active" data-toggle="tab">
-            <Link className="nav-link" to="/" >
+            <Link className="nav-link" to="/">
               <i className="fas fa-home"></i>Home
               <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li className="nav-item-2"  data-toggle="tab">
-            <Link className="nav-link" to="/profile" >
+          <li className="nav-item-2" data-toggle="tab">
+            <Link className="nav-link" to="/profile">
               <i className="far fa-address-book"></i>My Profile
             </Link>
           </li>
           <li className="nav-item-3" data-toggle="tab">
-            <Link className="nav-link" to="/job/new" >
+            <Link className="nav-link" to="/job/new">
               <i className="fas fa-thumbs-up"></i>Need a Favour?
             </Link>
           </li>
           <div className="extra-item">
-          <li className="nav-item" data-toggle="tab">
-          
-          </li>
+            <li className="nav-item" data-toggle="tab"></li>
           </div>
         </ul>
       </div>
@@ -185,7 +188,6 @@ const NavBar = ({ history }) => {
             }
           >
             <button
-            
               className=" navbtn btn btn-light my-2 my-sm-0 border border-dark"
               type="submit"
             >

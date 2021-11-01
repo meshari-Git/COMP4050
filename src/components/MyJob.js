@@ -32,7 +32,7 @@ class MyJob extends Component {
     return (
       <div className="container">
         <div className="card">
-          <div class="row no-gutters">
+          <div className="row no-gutters">
             <div className="col-md-4">
               <img
                 className="jobImage card-img-top"
@@ -76,7 +76,7 @@ class MyJob extends Component {
                           width="20px"
                           height="20px"
                           viewBox="0 0 16 16"
-                          class="bi bi-star-fill"
+                          className="bi bi-star-fill"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -92,7 +92,7 @@ class MyJob extends Component {
           </div>
 
           <div
-            class="btn-toolbar"
+            className="btn-toolbar"
             role="toolbar"
             aria-label="Toolbar with button groups"
           >

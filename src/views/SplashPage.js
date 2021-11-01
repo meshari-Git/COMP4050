@@ -64,7 +64,7 @@ function SplashPage() {
         <div className="right-content">
           <div className="right-text">
             <h1>
-              <italics>A Favour for a Favour</italics>
+              <strong>A Favour for a Favour</strong>
             </h1>
             <p>
               The coolest part. Advanced favour transaction systems allow users
@@ -89,12 +89,12 @@ function SplashPage() {
             <div className="profile ">
               <div>
                 <img
-                  class="static"
+                  className="static"
                   src={JonahStatic}
                   alt="One frame of Jonah's Gif"
                 />
                 <img
-                  class="active"
+                  className="active"
                   src={Jonah}
                   alt="animating Jonah bit emoji"
                 />
@@ -108,11 +108,11 @@ function SplashPage() {
             <div className="profile">
               <div>
                 <img
-                  class="static"
+                  className="static"
                   src={LeonStatic}
                   alt="One frame of Leon's Gif"
                 />
-                <img class="active" src={Leon} alt="animating Leon bit emoji" />
+                <img className="active" src={Leon} alt="animating Leon bit emoji" />
               </div>
               <div>
                 <h5>Leon Johan-Mosi</h5>
@@ -123,12 +123,12 @@ function SplashPage() {
             <div className="profile">
               <div>
                 <img
-                  class="static"
+                  className="static"
                   src={MeshStatic}
                   alt="One frame of Meshari's Gif"
                 />
                 <img
-                  class="active"
+                  className="active"
                   src={Meshari}
                   alt="animating Meshari bit emoji"
                 />
@@ -142,11 +142,11 @@ function SplashPage() {
             <div className="profile">
               <div>
                 <img
-                  class="static"
+                  className="static"
                   src={BenStatic}
                   alt="One frame of Ben's Gif"
                 />
-                <img class="active" src={Ben} alt="animating Ben bit emoji" />
+                <img className="active" src={Ben} alt="animating Ben bit emoji" />
               </div>
               <div>
                 <h5>Ben Fricke</h5>
@@ -156,7 +156,7 @@ function SplashPage() {
             <div className="profile">
               <div>
                 <img
-                  class="active"
+                  className="active"
                   src={Malachi}
                   alt="Malachi bit emoji"
                 />

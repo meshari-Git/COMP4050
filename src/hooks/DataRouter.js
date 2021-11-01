@@ -24,7 +24,6 @@ import PrivateRoute from "./PrivateRoute";
 import jobService from "../services/job";
 import SplashPage from "../views/SplashPage";
 
-
 class DataRouter extends Component {
   constructor(props) {
     super(props);
@@ -70,6 +69,7 @@ class DataRouter extends Component {
               <DataFill />
             </Route>
             <Route path="/splash" exact component={SplashPage} />
+            <Route path="/" exact component={HomePage} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
             <PrivateRoute

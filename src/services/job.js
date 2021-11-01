@@ -68,9 +68,10 @@ const acceptFavour = (favour , token) => {
     .catch(e => null)
 }
 
-const approveFavour = (favour , token, operator) => {
+const approveFavour = (favour, token, operator) => {
+    console.log(operator)
     const config = {headers: {authorization: "bearer " + token}}
-    axios.post(baseURL + "favours/approve/" + favour._id , operator , config)
+    axios.post(baseURL + "favours/approve/" + favour._id, {operator: operator}, config)
     .then(response => {
         response.data() 
     })

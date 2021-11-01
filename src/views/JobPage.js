@@ -10,6 +10,7 @@ import JobModal from "../components/JobEditModal"
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
 import jobService from "../services/job.js"
+import { Table } from "react-bootstrap"
 import userService from "../services/user.js"
 
 import { Link } from "react-router-dom";
@@ -45,41 +46,44 @@ class JobPage extends Component {
   render() {
     var job = this.state.job
     var user = this.state.userID;
-    
-    {/*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/}
+    if (job.potentialOperators == null) {
+      job.potentialOperators = []
+    }
+
+    {/*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/ }
     return (
-      <div className = "job-page">
-        <div className = "job-container">
-          <div className = "job-pictures">
+      <div className="job-page">
+        <div className="job-container">
+          <div className="job-pictures">
             {job.images && job.images.length > 0 &&
-                  <img
-                  class="card-img-top"
-                  src={"/image/" + job.images[0]}
-                  alt="What the favour looks like"
-                />
+              <img
+                class="card-img-top"
+                src={"/image/" + job.images[0]}
+                alt="What the favour looks like"
+              />
             }
           </div>
-          <div className = "job-text-container">
-            <div className = "job-header">
-              <div className = "job-title">
+          <div className="job-text-container">
+            <div className="job-header">
+              <div className="job-title">
                 {job.title}
               </div>
-              <div className = "job-cost">
+              <div className="job-cost">
                 {job.cost} Token(s)
               </div>
-              <div className = "job-location">
+              <div className="job-location">
                 {/*A symbol here? (See figma)*/}
                 {job.city}
               </div>
             </div>
-            <div className = "job-description">
+            <div className="job-description">
               {job.description}
             </div>
           </div>
         </div>
-        <div className = "user-container">
-          <div className = "job-owner">
-            <Link to={"/user/" + job.ownerName} className = "profile-picture">
+        <div className="user-container">
+          <div className="job-owner">
+            <Link to={"/user/" + job.ownerName} className="profile-picture">
               <img
                 alt="automated robot profile"
                 src={"https://robohash.org/" + job.ownerName}
@@ -88,7 +92,7 @@ class JobPage extends Component {
             {/*<div className = "owner-name">
               {job.ownerName}
             </div>*/}
-            <Link className = "owner-name" to = {{
+            <Link className="owner-name" to={{
               pathname: "/user/" + job.ownerName,
 
             }}>
@@ -97,9 +101,9 @@ class JobPage extends Component {
           </div>
           {isAuthenticated() ?
             user.id != job.ownerID ?
-              <div className = "accept-job-container">
-                <form className = "accept-job">
-                  <input type = "text" className = "text-box">
+              <div className="accept-job-container">
+                <form className="accept-job">
+                  <input type="text" className="text-box">
                   </input>
                   {/*{job.operatorID ?
                     <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
@@ -108,7 +112,7 @@ class JobPage extends Component {
                     </input>
                   }*/}
                   {job.potentialOperators.includes(user.email) == false ?
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
+                    <Link className="accept-job-button" onClick={(e) => jobService.acceptFavour(job, user.token)} to={{
                       pathname: "/job",
                       state: {
                         job: job,
@@ -116,7 +120,7 @@ class JobPage extends Component {
                     }}>
                       Accept Job
                     </Link> :
-                    <Link className = "accept-job-button" onClick = {(e) => jobService.cancelFavour(job, user.token)} to = {{
+                    <Link className="accept-job-button" onClick={(e) => jobService.cancelFavour(job, user.token)} to={{
                       pathname: "/job",
                       state: {
                         job: job,
@@ -127,31 +131,64 @@ class JobPage extends Component {
                   }
                 </form>
               </div> :
-              <div className = "edit-job-container">
-                <JobModal job={this.state.job} user={user}/>
-                <Link className = "delete-job-button" onClick = {(e) => jobService.delFavour(job, user.token)} to={{
+              <div className="edit-job-container">
+                <JobModal job={this.state.job} user={user} />
+                <Link className="delete-job-button" onClick={(e) => jobService.delFavour(job, user.token)} to={{
                   pathname: "/"
                 }}>
                   Delete Job
                 </Link>
-                <div>
-                  <table>
-                    {job.potentialOperators.map((op) => (
-                      <tr>
-                        <p>{op}</p>
-                     </tr>
-                    ))}
-                  </table>
-                </div>
-              </div> 
+
+              </div>
+
             :
-            <div className = "login-container">
-              <Link className = "login-job-button" to={{
-                  pathname: "/login"
-                }}>
-                  Login
+            <div className="login-container">
+              <Link className="login-job-button" to={{
+                pathname: "/login"
+              }}>
+                Login
               </Link>
             </div>
+          }
+          {isAuthenticated() ?
+            user.id == job.ownerID ?
+              job.operatorName != null ?
+                <p> Operated by {job.operatorName}</p>
+                :
+                job.potentialOperators.length === 0 ?
+                  <p>No one has accepted this job yet</p>
+                  :
+            <div>
+              <table className="op-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Accept</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  {job.potentialOperators.map((op) => (
+                    <tr className="op-row">
+                      <td>
+                        <Link className="owner-name2" to={{
+                          pathname: "/user/" + op,
+                        }}>
+                          <p>{op}</p>
+                        </Link>
+                      </td>
+                      <td>
+                        <button className = "appr-button" onClick={(e) => jobService.approveFavour(job, user.token, op)}>X</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            :
+            <div></div>
+            :
+            <div></div>
           }
         </div>
       </div>

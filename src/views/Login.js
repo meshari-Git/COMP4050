@@ -19,7 +19,7 @@ import userService from "../services/user.js";
 import Robot from "../assets/img/robo.svg";
 import ProfilePic from "../assets/img/profilePic.svg";
 import Wave from "../assets/img/wave.png";
-import "../assets/css/login.css";
+import "../assets/scss/login.scss";
 
 const Login = () => {
   const [values, setValues] = useState({

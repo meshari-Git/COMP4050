@@ -5,7 +5,7 @@
  *
  */
 import React, { Component } from "react";
-import "../assets/css/homepage.css";
+import "../assets/scss/homepage.scss";
 import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";

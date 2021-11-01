@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/css/changeinfo.css";
+import "../../assets/scss/changeinfo.scss";
 import { Link } from "react-router-dom";
 import { Component } from "react";
 

@@ -8,6 +8,7 @@
 import React from "react";
 import "../assets/sass/pages/splash/splash.scss";
 import map from "../assets/img/splash/map.png";
+import togetherimg from "../assets/img/splash/togetherimg.jpg";
 
 import LeonStatic from "../assets/img/splash/LeonStatic.png";
 import JonahStatic from "../assets/img/splash/JonahStatic.png";
@@ -74,7 +75,7 @@ function SplashPage() {
             </p>
           </div>
           <div className="map-img-left">
-            <img src={map} alt="A Map of Macquarie/Ryde area" />
+            <img src={togetherimg} alt="People puting their hands together" />
           </div>
         </div>
       </section>

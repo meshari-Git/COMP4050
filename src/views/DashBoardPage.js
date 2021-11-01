@@ -7,7 +7,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import "../assets/css/dashboard.css";
+import "../assets/scss/dashboard.scss";
 
 import ActiveListings from "../components/ActiveListings";
 import CurrentJobs from "../components/CurrentJobs";

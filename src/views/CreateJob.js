@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../assets/sass/pages/createJob/createJob.scss";
-import "../assets/css/login.css";
+import "../assets/scss/login.scss";
 
 import { Link, Redirect } from "react-router-dom";
 import Layout from "../components/Layout";

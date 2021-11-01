@@ -9,9 +9,9 @@ import "../assets/sass/pages/profilePage/profile.scss";
 
 // @ts-ignore
 // import profilePic from '../../resources/userProfile/default-user.jpg'
-import "../assets/css/sidebar.css";
-import "../assets/css/sidebarnav.css";
-import "../assets/css/userinfo.css";
+import "../assets/scss/sidebar.scss";
+import "../assets/scss/sidebarnav.scss";
+import "../assets/scss/userinfo.scss";
 // import userService from '../services/user.js';
 import { Redirect, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";

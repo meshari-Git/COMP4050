@@ -5,7 +5,7 @@
   * 
   */
 import React from "react";
-import "../assets/css/textinput.css";
+import "../assets/scss/textinput.scss";
 
 const TextInput = ({ type = "text", label, onChange, value }) => {
   return (

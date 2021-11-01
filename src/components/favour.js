@@ -7,7 +7,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
 import jobService from "../services/job";
-import "../assets/css/favours.css";
+import "../assets/scss/favours.scss";
 import { Link } from "react-router-dom";
 import imageNotFound from "../assets/img/image-not-found.png";
 

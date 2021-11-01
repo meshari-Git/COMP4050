@@ -20,7 +20,7 @@ import { Redirect } from "react-router-dom";
 //image + svg + css
 import Fatherhood from "../assets/img/fatherhood.svg";
 import Wave from "../assets/img/wave.png";
-import "../assets/css/register.css";
+import "../assets/scss/register.scss";
 
 const Register = () => {
   const [values, setValues] = useState({

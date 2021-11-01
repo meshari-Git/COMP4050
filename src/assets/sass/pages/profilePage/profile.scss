@@ -7,6 +7,9 @@
 
 .profile-page {
   background-color: rgb(236, 243, 247);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile {
@@ -18,7 +21,6 @@
   @media only screen and (min-width: 650px) {
     width: 60vw;
   }
-
 }
 
 .profile-info {
@@ -66,7 +68,6 @@
 }
 
 .profile-details {
-  width: min-content;
   padding-top: 2.5vh;
 }
 

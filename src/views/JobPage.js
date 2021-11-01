@@ -20,6 +20,7 @@ class JobPage extends Component {
     this.state = {
       userID: this.props.userID,
       job: this.props.location.state.job,
+      user: ""
     };
     const userAuthenticated = isAuthenticated()
     if (userAuthenticated) {
@@ -106,7 +107,7 @@ class JobPage extends Component {
                     <input type = "submit" className = "accept-job-button" value = "Accepted" onClick = {(e) => jobService.cancelFavour(job, user.token)}>
                     </input>
                   }*/}
-                  {job.operatorID == null ?
+                  {job.potentialOperators.includes(user.email) == false ?
                     <Link className = "accept-job-button" onClick = {(e) => jobService.acceptFavour(job, user.token)} to = {{
                       pathname: "/job",
                       state: {
@@ -133,6 +134,15 @@ class JobPage extends Component {
                 }}>
                   Delete Job
                 </Link>
+                <div>
+                  <table>
+                    {job.potentialOperators.map((op) => (
+                      <tr>
+                        <p>{op}</p>
+                     </tr>
+                    ))}
+                  </table>
+                </div>
               </div> 
             :
             <div className = "login-container">

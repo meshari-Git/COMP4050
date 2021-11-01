@@ -226,14 +226,22 @@ function Profile() {
                 </Link>
               ))}
               {user.operatedFavours.map((favour) => (
-                <tr onClick={showJob(favour)}>
-                  <td>{favour.title}</td>
-                  <td>{favour.cost + " Tokens"}</td>
-                  <td>{favour.status}</td>
-                  <td>{favour.ownerID}</td>
-                  <td>{favour.operatorID}</td>
-                  <td>{"03/09/21"}</td>
-                </tr>
+                <Link
+                  to={{
+                    pathname: "/job",
+                    state: {
+                      job: favour,
+                    },
+                  }}>
+                  <tr>
+                    <td>{favour.title}</td>
+                    <td>{favour.cost + " Tokens"}</td>
+                    <td>{favour.status}</td>
+                    <td>{favour.ownerName}</td>
+                    <td>{favour.operatorName}</td>
+                    <td>{favour.timestamp}</td>
+                  </tr>
+                </Link>
               ))}
             </tbody>
           </Table>

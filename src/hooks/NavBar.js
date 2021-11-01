@@ -4,7 +4,7 @@
   * Authors: @J5kinner @Ben450
   * 
   */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../assets/sass/components/navbar.scss";
 import { Link, withRouter, useLocation } from "react-router-dom";
 import $ from "jquery";

@@ -4,7 +4,7 @@
  * Authors: @J5kinner @LeonJM
  *
  */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../assets/sass/pages/createJob/createJob.scss";
 import "../assets/css/login.css";
@@ -13,11 +13,11 @@ import { Link, Redirect } from "react-router-dom";
 import Layout from "../components/Layout";
 import userService from "../services/user.js";
 import jobService from "../services/job.js";
-import geoCoder from "../services/geocoder.js"
+import geoCoder from "../services/geocoder.js";
 import Input from "../components/forms/Input";
 import TextArea from "../components/forms/TextArea";
 import FileUpload from "../components/forms/FileUpload";
-import axios from 'axios'
+import axios from "axios";
 
 const CreateJob = () => {
   const user = userService.isAuthenticated();
@@ -26,13 +26,16 @@ const CreateJob = () => {
   const updateUploadedFiles = (files) => {
     var formData = new FormData();
     formData.append("file", files[0]);
-    axios.post('upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-      .then(response => {
-        var newImages = values.images
-        newImages.push(response.data.file_name)
-        setValues({ ...values, images: newImages })
+    axios
+      .post("upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       })
-  }
+      .then((response) => {
+        var newImages = values.images;
+        newImages.push(response.data.file_name);
+        setValues({ ...values, images: newImages });
+      });
+  };
 
   const [values, setValues] = useState({
     title: "",
@@ -58,21 +61,20 @@ const CreateJob = () => {
     error,
   } = values;
 
-
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
-
 
   const clickSubmit = (event) => {
     // prevent browser from reloading
     event.preventDefault();
     setValues({ ...values, error: false });
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
 
-    const address = streetAddress + ", " + postCode + " " + city
-    geoCoder.getLatLong(address)
-      .then(response => {
+    const address = streetAddress + ", " + postCode + " " + city;
+    geoCoder
+      .getLatLong(address)
+      .then((response) => {
         const coordinateLat = response.data.data[0].latitude;
         const coordinateLong = response.data.data[0].longitude;
 
@@ -86,7 +88,7 @@ const CreateJob = () => {
               streetAddress: streetAddress,
               lat: coordinateLat,
               long: coordinateLong,
-              images: images
+              images: images,
             },
             user.token
           )
@@ -106,7 +108,8 @@ const CreateJob = () => {
               });
             }
           });
-      }).catch(error => {
+      })
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -192,15 +195,9 @@ const CreateJob = () => {
 
   const showError = () => {
     if (error) {
-      return (
-        <div
-          className="alert alert-danger"
-        >
-          {error}
-        </div>
-      )
+      return <div className="alert alert-danger">{error}</div>;
     }
-  }
+  };
 
   const showSuccess = () => (
     <div

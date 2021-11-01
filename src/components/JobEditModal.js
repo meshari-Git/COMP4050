@@ -11,7 +11,7 @@ import jobService from '../services/job'
 
 
 function JobModal({job, user}) {
-    const [modalDisplay, setModalDisplay] = useState('none')
+    // const [modalDisplay, setModalDisplay] = useState('none')
 
     const [show, setShow] = useState(false);
     const handleClose = () => {
@@ -19,18 +19,18 @@ function JobModal({job, user}) {
     }
     const handleShow = () => setShow(true);
 
-    const showEdit = (e) => {
-        e.preventDefault()
-        console.log('showEdit Click')
-        setModalDisplay('block')
-    }
+    // const showEdit = (e) => {
+    //     e.preventDefault()
+    //     console.log('showEdit Click')
+    //     setModalDisplay('block')
+    // }
 
-    //can be moved elsewhere and redone as a component.
-    const closeEdit = (e) => {
-        e.preventDefault()
-        console.log('closeEdit Click')
-        setModalDisplay('none')
-    }
+    // //can be moved elsewhere and redone as a component.
+    // const closeEdit = (e) => {
+    //     e.preventDefault()
+    //     console.log('closeEdit Click')
+    //     setModalDisplay('none')
+    // }
 
 
     const [updatedJob, setUpdatedJob] = useState({

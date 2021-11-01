@@ -1,11 +1,10 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @Ben450
   * 
   */
 import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import jobService from "../services/job";
 import "../assets/css/favours.css";
@@ -67,7 +66,7 @@ function Favour(filter) {
     return list.sort(function (x, y) {
       let a = x.title.toUpperCase(),
           b = y.title.toUpperCase();
-      return a == b ? 0 : a > b ? 1 : -1;
+      return a === b ? 0 : a > b ? 1 : -1;
     });
   }
 
@@ -75,7 +74,7 @@ function Favour(filter) {
     return list.sort(function (y, x) {
       let a = x.title.toUpperCase(),
           b = y.title.toUpperCase();
-      return a == b ? 0 : a > b ? 1 : -1;
+      return a === b ? 0 : a > b ? 1 : -1;
     });
   }
 
@@ -114,14 +113,14 @@ function Favour(filter) {
                   },
                 }}
               >
-                {favour.images && favour.images.length > 0 &&
+                {(favour.images && favour.images.length > 0) &&
                   <img
                   class="card-img-top"
                   src={"/image/" + favour.images[0]}
                   alt="What the favour looks like"
                 />
                 }
-                {!favour.images || !(favour.images.length > 0) &&
+                {(!favour.images || !(favour.images.length > 0)) &&
                   <img
                   class="card-img-top"
                   src={imageNotFound}

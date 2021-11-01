@@ -24,7 +24,6 @@ import PrivateRoute from "./PrivateRoute";
 import jobService from "../services/job";
 import SplashPage from "../views/SplashPage";
 
-import userService from "../services/user.js";
 
 class DataRouter extends Component {
   constructor(props) {

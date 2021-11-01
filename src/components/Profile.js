@@ -7,16 +7,14 @@
 import React from "react";
 import "../assets/sass/pages/profilePage/profile.scss";
 import "bootstrap/dist/css/bootstrap.css";
-// import profilePic from '../../resources/userProfile/default-user.jpg'
-// import userService from '../services/user.js';
 import { Redirect, Link } from "react-router-dom";
-import { Row, Col, Table, Modal, Form, Button } from "react-bootstrap";
+import { Table, Modal, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import userService from "../services/user.js";
 
 function Profile() {
   //this is used to set the display style of job-card-modal
-  const [modalDisplay, setModalDisplay] = useState("none");
+  // const [ setModalDisplay] = useState("none");
 
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -90,7 +88,7 @@ function Profile() {
     var r = window.confirm(
       "Are you sure you want to delete your account, this cannot be undone!"
     );
-    if (r == true) {
+    if (r === true) {
       userService.account_terminate().then((respons) => {
         if (respons.email === user.email) {
           userService.logout(() => {
@@ -104,33 +102,31 @@ function Profile() {
   };
 
   //can be moved elsewhere and redone as a component.
-  const showJob = (job) => {
-    //e.preventDefault();
-    console.log("showJob Click");
+  // const showJob = (job) => {
+  //   //e.preventDefault();
+  //   console.log("showJob Click");
 
-    (
-      <Link
-        to={{
-          pathname: "/job",
-          state: {
-            job: job,
-          },
-        }}>
-      </Link>
-    );
-  };
+  //   <Link
+  //     to={{
+  //       pathname: "/job",
+  //       state: {
+  //         job: job,
+  //       },
+  //     }}
+  //   ></Link>;
+  // };
 
   //can be moved elsewhere and redone as a component.
-  const closeJob = (e) => {
-    e.preventDefault();
-    console.log("closeJob Click");
-    setModalDisplay("none");
-  };
+  // const closeJob = (e) => {
+  //   e.preventDefault();
+  //   console.log("closeJob Click");
+  //   setModalDisplay("none");
+  // };
 
   //test redirect to job page
-  const goToJob = (e) => {
-    e.preventDefault();
-  };
+  // const goToJob = (e) => {
+  //   e.preventDefault();
+  // };
 
   if (!userService.isAuthenticated()) {
     return <Redirect to="/login"></Redirect>;
@@ -166,16 +162,12 @@ function Profile() {
             <Table responsive bordered>
               <thead>
                 <tr>
-                  {/* <th>Skills</th> */}
                   <th>Bio</th>
-                  {/* <th>Stats</th> */}
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  {/* <td>This is some text about the users skills</td> */}
                   <td>{user.user.bio}</td>
-                  {/* <td>This is some text about the user Stats</td> */}
                 </tr>
               </tbody>
             </Table>
@@ -208,40 +200,46 @@ function Profile() {
             </thead>
             <tbody>
               {user.ownedFavours.map((favour) => (
-                <Link
-                  to={{
-                    pathname: "/job",
-                    state: {
-                      job: favour,
-                    },
-                  }}>
-                  <tr>
-                    <td>{favour.title}</td>
-                    <td>{favour.cost + " Tokens"}</td>
-                    <td>{favour.status}</td>
-                    <td>{favour.ownerName}</td>
-                    <td>{favour.operatorName}</td>
-                    <td>{favour.timestamp}</td>
-                  </tr>
-                </Link>
+                <tr>
+                  <td>
+                    <Link
+                      to={{
+                        pathname: "/job",
+                        state: {
+                          job: favour,
+                        },
+                      }}
+                    >
+                      {favour.title}
+                    </Link>
+                  </td>
+                  <td>{favour.cost + " Tokens"}</td>
+                  <td>{favour.status}</td>
+                  <td>{favour.ownerName}</td>
+                  <td>{favour.operatorName}</td>
+                  <td>{favour.timestamp}</td>
+                </tr>
               ))}
               {user.operatedFavours.map((favour) => (
-                <Link
-                  to={{
-                    pathname: "/job",
-                    state: {
-                      job: favour,
-                    },
-                  }}>
-                  <tr>
-                    <td>{favour.title}</td>
-                    <td>{favour.cost + " Tokens"}</td>
-                    <td>{favour.status}</td>
-                    <td>{favour.ownerName}</td>
-                    <td>{favour.operatorName}</td>
-                    <td>{favour.timestamp}</td>
-                  </tr>
-                </Link>
+                <tr>
+                  <td>
+                    <Link
+                      to={{
+                        pathname: "/job",
+                        state: {
+                          job: favour,
+                        },
+                      }}
+                    >
+                      {favour.title}{" "}
+                    </Link>
+                  </td>
+                  <td>{favour.cost + " Tokens"}</td>
+                  <td>{favour.status}</td>
+                  <td>{favour.ownerName}</td>
+                  <td>{favour.operatorName}</td>
+                  <td>{favour.timestamp}</td>
+                </tr>
               ))}
             </tbody>
           </Table>
@@ -361,7 +359,7 @@ function Profile() {
             </Button>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

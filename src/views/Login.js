@@ -31,7 +31,7 @@ const Login = () => {
   });
 
   const { email, password, loading, error, redirectToReferrer } = values;
-  const { user } = userService.isAuthenticated();
+  // const { user } = userService.isAuthenticated();
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });

@@ -1,17 +1,15 @@
 /** @license 4050 Boyz
-  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
-  *
-  * Authors: @LeonJM
-  * 
-  */
+ * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+ *
+ * Authors: @LeonJM
+ *
+ */
 import React, { Component } from "react";
 import "../assets/css/jobpage.css";
-import JobModal from "../components/JobEditModal"
+import JobModal from "../components/JobEditModal";
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
-import jobService from "../services/job.js"
-import { Table } from "react-bootstrap"
-import userService from "../services/user.js"
+import jobService from "../services/job.js";
 
 import { Link } from "react-router-dom";
 
@@ -21,64 +19,57 @@ class JobPage extends Component {
     this.state = {
       userID: this.props.userID,
       job: this.props.location.state.job,
-      user: ""
+      user: "",
     };
-    const userAuthenticated = isAuthenticated()
+    const userAuthenticated = isAuthenticated();
     if (userAuthenticated) {
-      this.state.userID = userAuthenticated
+      this.state.userID = userAuthenticated;
     }
 
-    jobService.getFavour(this.state.job._id).then(res => {
+    jobService.getFavour(this.state.job._id).then((res) => {
       this.setState({
         job: res.data,
       });
-    })
+    });
   }
 
   componentDidUpdate() {
-    jobService.getFavour(this.state.job._id).then(res => {
+    jobService.getFavour(this.state.job._id).then((res) => {
       this.setState({
         job: res.data,
       });
-    })
+    });
   }
 
   render() {
-    var job = this.state.job
+    var job = this.state.job;
     var user = this.state.userID;
     if (job.potentialOperators == null) {
-      job.potentialOperators = []
+      job.potentialOperators = [];
     }
-
-    {/*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/ }
+    /*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/
     return (
       <div className="job-page">
         <div className="job-container">
           <div className="job-pictures">
-            {job.images && job.images.length > 0 &&
+            {job.images && job.images.length > 0 && (
               <img
                 class="card-img-top"
                 src={"/image/" + job.images[0]}
                 alt="What the favour looks like"
               />
-            }
+            )}
           </div>
           <div className="job-text-container">
             <div className="job-header">
-              <div className="job-title">
-                {job.title}
-              </div>
-              <div className="job-cost">
-                {job.cost} Token(s)
-              </div>
+              <div className="job-title">{job.title}</div>
+              <div className="job-cost">{job.cost} Token(s)</div>
               <div className="job-location">
                 {/*A symbol here? (See figma)*/}
                 {job.city}
               </div>
             </div>
-            <div className="job-description">
-              {job.description}
-            </div>
+            <div className="job-description">{job.description}</div>
           </div>
         </div>
         <div className="user-container">
@@ -92,490 +83,159 @@ class JobPage extends Component {
             {/*<div className = "owner-name">
               {job.ownerName}
             </div>*/}
-            <Link className="owner-name" to={{
-              pathname: "/user/" + job.ownerName,
-
-            }}>
+            <Link
+              className="owner-name"
+              to={{
+                pathname: "/user/" + job.ownerName,
+              }}
+            >
               {job.ownerName}
             </Link>
           </div>
-          {isAuthenticated() ?
-            user.id != job.ownerID ?
-              job.operatorName != null ?
-                job.operatorName != user.email ?
-                <p style={{paddingBottom: "10px"}}>
-                  This job is already being actioned
-                </p>
-                :
-                <p style={{paddingBottom: "10px"}}>
-                  You have been approved for this job! <br />
-                  Please contact the requester for more details.
-                </p>
-                :
-              <div className="accept-job-container">
-                <form className="accept-job">
-                  <input type="text" className="text-box">
-                  </input>
-                  {/*{job.operatorID ?
+          {isAuthenticated() ? (
+            user.id !== job.ownerID ? (
+              job.operatorName != null ? (
+                job.operatorName !== user.email ? (
+                  <p style={{ paddingBottom: "10px" }}>
+                    This job is already being actioned
+                  </p>
+                ) : (
+                  <p style={{ paddingBottom: "10px" }}>
+                    You have been approved for this job! <br />
+                    Please contact the requester for more details.
+                  </p>
+                )
+              ) : (
+                <div className="accept-job-container">
+                  <form className="accept-job">
+                    <input type="text" className="text-box"></input>
+                    {/*{job.operatorID ?
                     <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
                     </input> :
                     <input type = "submit" className = "accept-job-button" value = "Accepted" onClick = {(e) => jobService.cancelFavour(job, user.token)}>
                     </input>
                   }*/}
-                  {job.potentialOperators.includes(user.email) == false ?
-                    <Link className="accept-job-button" onClick={(e) => jobService.acceptFavour(job, user.token)} to={{
-                      pathname: "/job",
-                      state: {
-                        job: job,
-                      },
-                    }}>
-                      Accept Job
-                    </Link> :
-                    <div>
-                      <p style={{paddingBottom: "10px"}}> 
-                        Your application job is penidng approval from the requester
-                      </p>
-                      <Link className="accept-job-button" onClick={(e) => jobService.cancelFavour(job, user.token)} to={{
-                        pathname: "/job",
-                        state: {
-                          job: job,
-                        },
-                      }}>
-                        Cancel application
+                    {job.potentialOperators.includes(user.email) === false ? (
+                      <Link
+                        className="accept-job-button"
+                        onClick={(e) =>
+                          jobService.acceptFavour(job, user.token)
+                        }
+                        to={{
+                          pathname: "/job",
+                          state: {
+                            job: job,
+                          },
+                        }}
+                      >
+                        Accept Job
                       </Link>
-                    </div>
-                  }
-                </form>
-              </div> :
+                    ) : (
+                      <div>
+                        <p style={{ paddingBottom: "10px" }}>
+                          Your application job is penidng approval from the
+                          requester
+                        </p>
+                        <Link
+                          className="accept-job-button"
+                          onClick={(e) =>
+                            jobService.cancelFavour(job, user.token)
+                          }
+                          to={{
+                            pathname: "/job",
+                            state: {
+                              job: job,
+                            },
+                          }}
+                        >
+                          Cancel application
+                        </Link>
+                      </div>
+                    )}
+                  </form>
+                </div>
+              )
+            ) : (
               <div className="edit-job-container">
                 <JobModal job={this.state.job} user={user} />
-                <Link className="delete-job-button" onClick={(e) => jobService.delFavour(job, user.token)} to={{
-                  pathname: "/"
-                }}>
+                <Link
+                  className="delete-job-button"
+                  onClick={(e) => jobService.delFavour(job, user.token)}
+                  to={{
+                    pathname: "/",
+                  }}
+                >
                   Delete Job
                 </Link>
-
               </div>
-
-            :
+            )
+          ) : (
             <div className="login-container">
-              <Link className="login-job-button" to={{
-                pathname: "/login"
-              }}>
+              <Link
+                className="login-job-button"
+                to={{
+                  pathname: "/login",
+                }}
+              >
                 Login
               </Link>
             </div>
-          }
-          {isAuthenticated() ?
-            user.id == job.ownerID ?
-              job.operatorName != null ?
-                <p style={{paddingBottom: "10px"}}> Operated by {job.operatorName}</p>
-                :
-                job.potentialOperators.length === 0 ?
-                  <p style={{paddingBottom: "10px"}} >No one has accepted this job yet</p>
-                  :
-            <div>
-              <table className="op-table">
-                <thead>
-                  <tr>
-                    <th>User</th>
-                    <th>Accept</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {job.potentialOperators.map((op) => (
-                    <tr className="op-row">
-                      <td>
-                        <Link className="owner-name2" to={{
-                          pathname: "/user/" + op,
-                        }}>
-                          <p>{op}</p>
-                        </Link>
-                      </td>
-                      <td>
-                        <button className = "appr-button" onClick={(e) => jobService.approveFavour(job, user.token, op)}>X</button>
-                      </td>
-                    </tr>
-                    
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            :
-            <div></div>
-            :
-            <div></div>
-          }
-        </div>
-      </div>
-    )
-  }
-}
-
-export default JobPage
-
-/**
- * Original code.
- * Super messy, commenting it out for now.
- */
-
-/*
-class JobPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userID: this.props.userID,
-      job: this.props.location.state.job,
-    };
-  }
-
-  applyForJob(event) {
-    event.preventDefault();
-    this.updateVariables();
-
-    var job = this.state.job;
-    job.jobStatus = 2;
-    job.chosenUserID = this.state.userID;
-
-    let url = new URL("http://localhost:3000/jobs?replace=true");
-
-    url.searchParams.set("replaceID", job._id);
-    url.searchParams.set("userID", job.userID);
-    url.searchParams.set("jobStatus", 2);
-    url.searchParams.set("chosenUserID", job.chosenUserID);
-    url.searchParams.set("title", job.title);
-    url.searchParams.set("description", job.desc);
-    url.searchParams.set("price", job.price);
-    url.searchParams.set("location", job.location);
-
-    fetch(url.href).then(() => {
-      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({
-            job: data,
-          });
-        });
-    });
-  }
-
-  acceptChosenUser(event) {
-    event.preventDefault();
-    this.updateVariables();
-
-    var job = this.state.job;
-    job.jobStatus = 3;
-
-    let url = new URL("http://localhost:3000/jobs?replace=true");
-
-    url.searchParams.set("replaceID", job._id);
-    url.searchParams.set("userID", job.userID);
-    url.searchParams.set("jobStatus", 3);
-    url.searchParams.set("chosenUserID", job.chosenUserID);
-    url.searchParams.set("title", job.title);
-    url.searchParams.set("description", job.desc);
-    url.searchParams.set("price", job.price);
-    url.searchParams.set("location", job.location);
-
-    fetch(url.href).then(() => {
-      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({
-            job: data,
-          });
-        });
-    });
-  }
-
-  declineChosenUser(event) {
-    event.preventDefault();
-    this.updateVariables();
-
-    var job = this.state.job;
-    job.jobStatus = 1;
-    job.chosenUserID = " ";
-
-    let url = new URL("http://localhost:3000/jobs?replace=true");
-
-    url.searchParams.set("replaceID", job._id);
-    url.searchParams.set("userID", job.userID);
-    url.searchParams.set("jobStatus", 1);
-    url.searchParams.set("chosenUserID", job.chosenUserID);
-    url.searchParams.set("title", job.title);
-    url.searchParams.set("description", job.desc);
-    url.searchParams.set("price", job.price);
-    url.searchParams.set("location", job.location);
-
-    fetch(url.href).then(() => {
-      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({
-            job: data,
-          });
-        });
-    });
-  }
-
-  markAsCompleted(event) {
-    event.preventDefault();
-    this.updateVariables();
-    //http://localhost:3000/rating?rating=true&userID=5f728f406d252648c48c303e&chosenUserID=5f728f406d252648c48c303e&jobID=5f728f406d252648c48c303e&rating=-1
-
-    var job = this.state.job;
-    job.jobStatus = 4;
-
-    let url = new URL("http://localhost:3000/jobs?replace=true");
-
-    url.searchParams.set("replaceID", job._id);
-    url.searchParams.set("userID", job.userID);
-    url.searchParams.set("jobStatus", 4);
-    url.searchParams.set("chosenUserID", job.chosenUserID);
-    url.searchParams.set("title", job.title);
-    url.searchParams.set("description", job.desc);
-    url.searchParams.set("price", job.price);
-    url.searchParams.set("location", job.location);
-
-    fetch(url.href).then(() => {
-      fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({
-            job: data,
-          });
-
-          url = new URL("http://localhost:3000/rating?add=true");
-
-          url.searchParams.set("userID", job.userID);
-          url.searchParams.set("chosenUserID", job.chosenUserID);
-          url.searchParams.set("jobID", job._id);
-          url.searchParams.set("rating", 1);
-
-          fetch(url.href).then(() => {
-            fetch("http://localhost:3000/jobs?fetch=true&_id=" + job._id)
-              .then((resp) => resp.json())
-              .then((data) => {
-                this.setState({
-                  job: data,
-                });
-              });
-          });
-        });
-    });
-  }
-
-  componentDidMount() {
-    fetch(
-      "http://localhost:3000/users?fetch=true&_id=" +
-        this.props.location.state.job.userID
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.setState({ name: data[0].name });
-      });
-
-    fetch(
-      "http://localhost:3000/rating?total=true&chosenUserID=" +
-        this.props.location.state.job.userID
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.setState({ rating: data.total });
-      });
-
-    fetch(
-      "http://localhost:3000/users?fetch=true&_id=" +
-        this.props.location.state.job.chosenUserID
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.setState({
-          chosenName: data[0].name,
-          chosenEmail: data[0].email,
-          chosenPicture: data[0].picture,
-        });
-      });
-
-    fetch(
-      "http://localhost:3000/rating?total=true&chosenUserID=" +
-        this.props.location.state.job.chosenUserID
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        this.setState({ chosenRating: data.total });
-      });
-  }
-
-  render() {
-    const job = this.props.location.state.job;
-    //const seller = job.seller;
-    return (
-      <div className="container">
-        <div className="card">
-          <div class="row no-gutters">
-            <div className="col-md-4">
-              <img
-                className="jobImage card-img-top"
-                src={
-                  "https://picsum.photos/seed/" +
-                  this.state.job._id +
-                  "/400/400"
-                }
-                alt="Removing errors in alternative text"
-                />
-            </div>
-
-            <div className="col-md-8">
-              <div className="card-body">
-                <div className="descriptionContainer">
-                  <div>
-                    <h3 className="card-title">{job.title}</h3>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Location: {job.location}
-                    </h6>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Value: {job.price}
-                      <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 16 16"
-                        className="userCoinsIcon"
-                        fill="#17a2b8"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z"
-                        />
-                      </svg>
-                    </h6>
-                    <p className="card-text">{job.description}</p>
-                    <p className="card-text">
-                      Job Status: {job.jobStatus === 1 && "Listed Job"}
-                      {job.jobStatus === 2 && "Applied"}
-                      {job.jobStatus === 3 && "Active"}
-                      {job.jobStatus === 4 && "Completed"}
-                    </p>
-                    <div className="sellerDetails">
-                      <h6 className="sellerName text-muted">
-                        {"Listing by: " + this.state.name}
-                      </h6>
-                      <div className="ratingContainer">
-                        <svg
-                          width="20px"
-                          height="20px"
-                          viewBox="0 0 16 16"
-                          class="bi bi-star-fill"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        <h6 className="sellerRating text-muted">
-                          {" "}
-                          {this.state.rating}
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
+          )}
+          {isAuthenticated() ? (
+            user.id === job.ownerID ? (
+              job.operatorName != null ? (
+                <p style={{ paddingBottom: "10px" }}>
+                  {" "}
+                  Operated by {job.operatorName}
+                </p>
+              ) : job.potentialOperators.length === 0 ? (
+                <p style={{ paddingBottom: "10px" }}>
+                  No one has accepted this job yet
+                </p>
+              ) : (
+                <div>
+                  <table className="op-table">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Accept</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {job.potentialOperators.map((op) => (
+                        <tr className="op-row">
+                          <td>
+                            <Link
+                              className="owner-name2"
+                              to={{
+                                pathname: "/user/" + op,
+                              }}
+                            >
+                              <p>{op}</p>
+                            </Link>
+                          </td>
+                          <td>
+                            <button
+                              className="appr-button"
+                              onClick={(e) =>
+                                jobService.approveFavour(job, user.token, op)
+                              }
+                            >
+                              X
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="btn-toolbar"
-            role="toolbar"
-            aria-label="Toolbar with button groups"
-          >
-            <Link to={this.props.location.state.prevLocation}>
-              <button className="btn btn-danger btn-lg active">Go Back</button>
-            </Link>
-
-            {job.userID === this.state.userID &&
-              job.jobStatus !== 3 &&
-              job.jobStatus !== 4 && (
-                <Link to={{ pathname: "/edit", state: { job: job } }}>
-                  <button className="btn btn-primary btn-lg active">
-                    Edit
-                  </button>
-                </Link>
-              )}
-
-            {job.jobStatus === 1 &&
-              isAuthenticated() &&
-              job.userID !== this.state.userID && (
-                <Link
-                  onClick={(e) => {
-                    this.applyForJob(e);
-                  }}
-                >
-                  <button className="btn btn-primary btn-lg active">
-                    Apply for Job
-                  </button>
-                </Link>
-              )}
-
-            {job.jobStatus === 3 && job.userID === this.state.userID && (
-              <Link
-                onClick={(e) => {
-                  this.markAsCompleted(e);
-                }}
-              >
-                <button className="btn btn-success btn-lg active">
-                  Completed
-                </button>
-              </Link>
-            )}
-          </div>
-
-          <div
-            class="btn-toolbar"
-            role="toolbar"
-            aria-label="Toolbar with button groups"
-          >
-            {job.jobStatus === 2 &&
-              job.userID === this.state.userID &&
-              this.state.chosenName !== null && (
-                <div class="card border-dark mb-3 dash-card">
-                  <div class="card-body text-dark dash-card-body">
-                    <h5 class="card-title">
-                      {this.state.chosenName} Has Applied for this Job
-                    </h5>
-                    <p class="card-text">Email: {this.state.chosenEmail}</p>
-                    <p class="card-text">Rating: {this.state.chosenRating}</p>
-                    <img
-                      className="chosenImage card-img-top"
-                      src={this.state.chosenPicture}
-                      alt="Removing errors in alternative text"
-
-                    />
-                  </div>
-                  <div class="card-footer bg-transparent border-dark">
-                    <Link
-                      onClick={(e) => {
-                        this.acceptChosenUser(e);
-                      }}
-                    >
-                      <button className="btn btn-success btn-lg active">
-                        Accept
-                      </button>
-                    </Link>
-
-                    <Link
-                      onClick={(e) => {
-                        this.declineChosenUser(e);
-                      }}
-                    >
-                      <button className="btn btn-danger btn-lg active">
-                        Decline
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              )}
-          </div>
+              )
+            ) : (
+              <div></div>
+            )
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     );
@@ -583,5 +243,3 @@ class JobPage extends Component {
 }
 
 export default JobPage;
-*/
-

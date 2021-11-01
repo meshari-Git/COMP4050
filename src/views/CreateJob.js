@@ -4,7 +4,7 @@
  * Authors: @J5kinner
  *
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../assets/sass/pages/createJob/createJob.scss";
 import "../assets/css/login.css";
@@ -26,12 +26,12 @@ const CreateJob = () => {
   const updateUploadedFiles = (files) => {
     var formData = new FormData();
     formData.append("file", files[0]);
-    axios.post('upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
-    .then(response =>{ 
-      var newImages = values.images
-      newImages.push(response.data.file_name)
-      setValues({ ...values, images: newImages})
-    })
+    axios.post('upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      .then(response => {
+        var newImages = values.images
+        newImages.push(response.data.file_name)
+        setValues({ ...values, images: newImages })
+      })
   }
 
   const [values, setValues] = useState({
@@ -58,9 +58,11 @@ const CreateJob = () => {
     error,
   } = values;
 
+
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
+
 
   const clickSubmit = (event) => {
     // prevent browser from reloading
@@ -68,40 +70,44 @@ const CreateJob = () => {
     setValues({ ...values, error: false });
     window.scrollTo(0, 0)
 
-    const address = streetAddress + ", " + postCode + " " + city 
-    console.log(address)
-    console.log("\n", typeof(address))
-    geoCoder.getLatLong("2 Todman Avenue, Kensington, NSW, Australia")
+    const address = streetAddress + ", " + postCode + " " + city
+    geoCoder.getLatLong(address)
+      .then(response => {
+        const coordinateLat = response.data.data[0].latitude;
+        const coordinateLong = response.data.data[0].longitude;
 
-    jobService
-      .addJob(
-        {
-          title: title,
-          description: description,
-          cost: cost,
-          city: city,
-          streetAddress: streetAddress,
-          lat: 0.0, //CHANGE THIS
-          long: 0.0, //CHANGE THIS
-          images: images
-        },
-        user.token
-      )
-      .then((response) => {
-        if (response.error) {
-          setValues({ ...values, error: response.error, success: false });
-        } else {
-          setValues({
-            ...values,
-            title: "",
-            description: "",
-            cost: 0,
-            city: "",
-            streetAddress: "",
-            error: "",
-            success: true,
+        jobService
+          .addJob(
+            {
+              title: title,
+              description: description,
+              cost: cost,
+              city: city,
+              streetAddress: streetAddress,
+              lat: coordinateLat,
+              long: coordinateLong,
+              images: images
+            },
+            user.token
+          )
+          .then((response) => {
+            if (response.error) {
+              setValues({ ...values, error: response.error, success: false });
+            } else {
+              setValues({
+                ...values,
+                title: "",
+                description: "",
+                cost: 0,
+                city: "",
+                streetAddress: "",
+                error: "",
+                success: true,
+              });
+            }
           });
-        }
+      }).catch(error => {
+        console.log(error);
       });
   };
 
@@ -176,24 +182,24 @@ const CreateJob = () => {
         multiple
         fileCallBackUpdate={updateUploadedFiles}
       />
-  <div className="spacer">
-      <button onClick={clickSubmit} className="login-btn btn-favour">
-        Submit
-      </button>
+      <div className="spacer">
+        <button onClick={clickSubmit} className="login-btn btn-favour">
+          Submit
+        </button>
       </div>
     </div>
   );
 
   const showError = () => {
-    if(error) {
-      return(
+    if (error) {
+      return (
         <div
           className="alert alert-danger"
         >
           {error}
         </div>
       )
-    } 
+    }
   }
 
   const showSuccess = () => (

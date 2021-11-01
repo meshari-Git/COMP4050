@@ -4,29 +4,63 @@
   * Authors: 
   * 
   */
-
-const axios = require('axios')
+import axios from 'axios'
+import { useState } from 'react'
 
 
 const access_key = "245cd88887690e5d6cb28f50757f068b"     //key owner: Leon
 const baseURL = "http://api.positionstack.com/v1/"
 
 
-const getLatLong = (query) => {
-    const params = {
-        access_key, query
-    }
-    return axios.get(baseURL + "forward", {params})
-    .then(response => {
-        console.log(response.data);
-      }).catch(error => {
-        console.log(error);
-      });
+// const getLatLong = async (query) => {
+//   const params = {
+//     access_key: access_key,
+//     query: query,
+//     country: "AU",
+//     limit: 1,
+//   }
+
+//   return axios.get(baseURL + "forward", { params })
+//     .then(response => {
+//       console.log(response.data);
+//     }).catch(error => {
+//       console.log(error);
+//     });
+// }
+
+
+// const getLatLong = async (query) => {
+//   const params = {
+//     access_key: access_key,
+//     query: query,
+//     country: "AU",
+//     limit: 1,
+//   }
+
+//   try {
+//     const response = await axios.get(baseURL + "forward", { params });
+//     console.log(response.data);
+//     return response.data;
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+
+
+const getLatLong = async (query) => {
+  const params = {
+    access_key: access_key,
+    query: query,
+    country: "AU",
+    limit: 1,
+  }
+
+  return await axios.get(baseURL + "forward", { params })
 }
 
 
 const exportedObject = {
-    getLatLong
+  getLatLong,
 };
 
 export default exportedObject;

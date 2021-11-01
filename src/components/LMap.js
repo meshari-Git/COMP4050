@@ -4,47 +4,52 @@
   * Authors: 
   * 
   */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import jobService from "../services/job";
 import "../assets/css/lmap.css"
 
+
+//Macquarie University Coordinates
 const center = {
     lat: -33.7738,
     lng: 151.1126
 };
 
+
 const LMap = () => {
+
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        jobService.getFavours()
+        .then(response => {
+            setJobs(response.data);
+        });
+    }, [jobs]);
+
+
     return (
         <MapContainer center={center} zoom={13} scrollWheelZoom={true} dragging={true} zoomControl={false}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[-33.7738, 151.1126]}>
-                <Popup>
-                    Billy Jane's Favour
-                </Popup>
-            </Marker>
-            <Marker position={[-33.7773, 151.1211]}>
-                <Popup>
-                    I have a problem with my couch
-                </Popup>
-            </Marker>
-            <Marker position={[-33.7746, 151.0788]}>
-                <Popup>
-                    jdfjhssf
-                </Popup>
-            </Marker>
-            <Marker position={[-33.7546, 151.1130]}>
-                <Popup>
-                    myJob
-                </Popup>
-            </Marker>
-            <Marker position={[-33.7495, 151.0646]}>
-                <Popup>
-                    Posting a New Job
-                </Popup>
-            </Marker>
+            {jobs.map((job) => (
+                <div>
+                    {console.log(job, job.lat)}
+                    <Marker position = {[job.lat, job.long]}>
+                        <Popup>
+                            <h1> 
+                                {job.title}
+                            </h1>
+                            <p>
+                                {job.description}
+                            </p>
+                        </Popup>
+                    </Marker>
+                </div>
+            ))}
         </MapContainer>
     )
 }

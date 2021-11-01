@@ -5,6 +5,7 @@
   * 
   */
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import jobService from "../services/job";
 import "../assets/css/lmap.css"
@@ -23,9 +24,9 @@ const LMap = () => {
 
     useEffect(() => {
         jobService.getFavours()
-        .then(response => {
-            setJobs(response.data);
-        });
+            .then(response => {
+                setJobs(response.data);
+            });
     }, [jobs]);
 
 
@@ -38,11 +39,19 @@ const LMap = () => {
             {jobs.map((job) => (
                 <div>
                     {console.log(job, job.lat)}
-                    <Marker position = {[job.lat, job.long]}>
+                    <Marker position={[job.lat, job.long]}>
                         <Popup>
-                            <h1> 
-                                {job.title}
-                            </h1>
+                            <Link
+                                to={{
+                                    pathname: "/job",
+                                    state: {
+                                        job: job,
+                                    },
+                                }}>
+                                <h1>
+                                    {job.title}
+                                </h1>
+                            </Link>
                             <p>
                                 {job.description}
                             </p>

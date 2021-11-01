@@ -112,7 +112,6 @@ class HomePage extends Component {
           <div><Favour filter={this.state.searchData} ord={this.state.order} /></div>
         </div>
         <div className="map">
-          {/*<GMap />*/}
           <LMap/>
         </div>
       </div>

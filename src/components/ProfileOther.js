@@ -16,7 +16,6 @@ import "../assets/css/userinfo.css";
 import { Redirect, Link, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Table, Modal, Form, Button } from 'react-bootstrap';
-import JobCard from './JobCard'
 import { useState, useEffect } from 'react'
 import userService from '../services/user.js';
 

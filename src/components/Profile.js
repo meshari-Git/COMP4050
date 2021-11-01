@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.css";
 // import userService from '../services/user.js';
 import { Redirect, Link } from "react-router-dom";
 import { Row, Col, Table, Modal, Form, Button } from "react-bootstrap";
-import JobCard from "./JobCard";
 import { useState, useEffect } from "react";
 import userService from "../services/user.js";
 
@@ -105,10 +104,20 @@ function Profile() {
   };
 
   //can be moved elsewhere and redone as a component.
-  const showJob = (e) => {
-    e.preventDefault();
+  const showJob = (job) => {
+    //e.preventDefault();
     console.log("showJob Click");
-    setModalDisplay("block");
+
+    (
+      <Link
+        to={{
+          pathname: "/job",
+          state: {
+            job: job,
+          },
+        }}>
+      </Link>
+    );
   };
 
   //can be moved elsewhere and redone as a component.
@@ -199,17 +208,25 @@ function Profile() {
             </thead>
             <tbody>
               {user.ownedFavours.map((favour) => (
-                <tr onClick={showJob}>
-                  <td>{favour.title}</td>
-                  <td>{favour.cost + " Tokens"}</td>
-                  <td>{favour.status}</td>
-                  <td>{favour.ownerName}</td>
-                  <td>{favour.operatorName}</td>
-                  <td>{favour.timestamp}</td>
-                </tr>
+                <Link
+                  to={{
+                    pathname: "/job",
+                    state: {
+                      job: favour,
+                    },
+                  }}>
+                  <tr>
+                    <td>{favour.title}</td>
+                    <td>{favour.cost + " Tokens"}</td>
+                    <td>{favour.status}</td>
+                    <td>{favour.ownerName}</td>
+                    <td>{favour.operatorName}</td>
+                    <td>{favour.timestamp}</td>
+                  </tr>
+                </Link>
               ))}
               {user.operatedFavours.map((favour) => (
-                <tr onClick={showJob}>
+                <tr onClick={showJob(favour)}>
                   <td>{favour.title}</td>
                   <td>{favour.cost + " Tokens"}</td>
                   <td>{favour.status}</td>
@@ -222,12 +239,6 @@ function Profile() {
           </Table>
           <br></br>
           <br></br>
-
-          {/* <div className = 'job-card-modal' style = {{
-             display: modalDisplay,
-            }}>
-             <JobCard jobID = {dummyJob} hideJob = {closeJob}/>
-                </div> */}
           <div>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header>
@@ -342,7 +353,7 @@ function Profile() {
             </Button>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

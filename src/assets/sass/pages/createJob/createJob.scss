@@ -176,8 +176,23 @@
   }
 }
 
-.spacer {
+.submit-btn {
+  display: block;
   width: 50%;
-  float: right;
-  padding: 1em;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right,#54c1fb, #6d71f9 , #6dd8f9);
+  background-size: 200%;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.submit-btn:hover {
+  background-position: right;
 }

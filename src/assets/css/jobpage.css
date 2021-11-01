@@ -47,7 +47,7 @@
 .job-page {
   display: flex;
   padding-top: 3%;
-  height: 500px;
+  height: 90%;
 }
 
 
@@ -146,6 +146,35 @@
   margin: 5em 0em;
 }
 
+.owner-name2 {
+  text-align: center;
+  color: black;
+}
+
+.op-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 97%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.appr-button {
+  background-color: #4CAF50; /* Green */
+  margin: 1px;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.op-row {
+  border-top: 1px solid black;
+}
 
 .accept-job-container {
 }

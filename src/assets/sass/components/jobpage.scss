@@ -1,0 +1,136 @@
+/** @license 4050 Boyz
+  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
+  *
+  * Authors: @LeonJm @J5kinner
+  * 
+  */
+
+.job-page {
+  display: flex;
+  padding-top: 3%;
+  width: 87%;
+}
+
+.job-container {
+  width: 70%;
+  padding-left: 15%;
+  padding-right: 5%;
+}
+
+.job-pictures img {
+  max-height: 600px;
+
+  width: 100%;
+  background-color: cornsilk; /*placeholder*/
+  border-radius: 15px;
+}
+
+.job-text-container {
+  height: 40%;
+}
+
+.job-text-container * {
+  text-align: left;
+}
+
+.job-header {
+  width: 100%;
+  padding: 10px 0px;
+  margin-top: 2em;
+  font-weight: bold;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.job-header * {
+  padding: 2px 0px;
+}
+
+.job-title {
+  font-size: 1.1em;
+}
+
+.job-cost {
+  font-size: 1.5em;
+}
+
+.job-location {
+  font-size: 1.3em;
+}
+
+.job-description {
+  height: 50%;
+  border-bottom: 2px solid black;
+}
+
+.user-container {
+  max-height: 600px;
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 13px;
+}
+
+.job-owner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.op-table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 97%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.appr-button {
+  background-color: #4caf50; /* Green */
+  margin: 1px;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.op-row {
+  border-top: 1px solid black;
+}
+
+.accept-job *,
+.edit-job-container * {
+  // display: list-item;
+  // list-style-type: none;
+  // width: 100%;
+  // margin: 10px 0px;
+}
+
+.accept-job {
+  width: 90%;
+  margin: 0% 5%;
+}
+
+.text-box {
+  height: 8em;
+}
+
+.accept-job-button,
+.edit-job-button,
+.delete-job-button,
+.login-job-button {
+  background-color: #363dfa;
+  color: white;
+  height: 50px;
+  width: 80%;
+  border-radius: 10px;
+  margin: 1em 2em;
+  text-align: center;
+  padding: 1em;
+}

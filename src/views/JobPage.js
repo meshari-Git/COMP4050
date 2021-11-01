@@ -5,12 +5,12 @@
  *
  */
 import React, { Component } from "react";
-import "../assets/css/jobpage.css";
+import "../assets/sass/components/jobpage.scss";
 import JobModal from "../components/JobEditModal";
 import "bootstrap/dist/css/bootstrap.css";
 import { isAuthenticated } from "../authentication/apiindex";
 import jobService from "../services/job.js";
-
+import { FloatingLabel, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class JobPage extends Component {
@@ -65,11 +65,14 @@ class JobPage extends Component {
               <div className="job-title">{job.title}</div>
               <div className="job-cost">{job.cost} Token(s)</div>
               <div className="job-location">
-                {/*A symbol here? (See figma)*/}
+                <i class="fas fa-map-marker-alt"></i>
                 {job.city}
               </div>
             </div>
-            <div className="job-description">{job.description}</div>
+            <div className="job-description">
+              <h4>Description</h4>
+              {job.description}
+            </div>
           </div>
         </div>
         <div className="user-container">
@@ -108,7 +111,16 @@ class JobPage extends Component {
               ) : (
                 <div className="accept-job-container">
                   <form className="accept-job">
-                    <input type="text" className="text-box"></input>
+                    <FloatingLabel
+                      controlId="floatingTextarea2"
+                      label="What skills can you provide?"
+                    >
+                      <Form.Control
+                        as="textarea"
+                        placeholder="Leave a comment here"
+                        style={{ height: "100px" }}
+                      />
+                    </FloatingLabel>
                     {/*{job.operatorID ?
                     <input type = "submit" className = "accept-job-button" value = "Accept Job" onClick = {(e) => jobService.acceptFavour(job, user.token)}>
                     </input> :

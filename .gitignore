@@ -25,6 +25,7 @@ yarn-error.log*
 
 .env
 secrets.env
+sendgrid.env
 
 httptest
 .vscode

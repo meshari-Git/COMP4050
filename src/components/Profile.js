@@ -15,7 +15,7 @@ import userService from "../services/user.js";
 function Profile() {
   //this is used to set the display style of job-card-modal
   // const [ setModalDisplay] = useState("none");
-
+  const [status, setStatus] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -99,6 +99,15 @@ function Profile() {
         }
       });
     }
+  };
+
+  //conditional rendering if statement
+  const IF = (props) => {
+    const condition = props.condition || false;
+    const positive = props.then || null;
+    const negative = props.else || null;
+
+    return condition ? positive : negative;
   };
 
   //can be moved elsewhere and redone as a component.
@@ -214,7 +223,17 @@ function Profile() {
                     </Link>
                   </td>
                   <td>{favour.cost + " Tokens"}</td>
-                  <td>{favour.status}</td>
+                  <td>
+                    <IF
+                      condition={favour.status === 0}
+                      then={<p>Incomplete</p>}
+                    />
+                    <IF condition={favour.status === 1} then={<p>Active</p>} />
+                    <IF
+                      condition={favour.status === 2}
+                      then={<p>Complete</p>}
+                    />
+                  </td>
                   <td>{favour.ownerName}</td>
                   <td>{favour.operatorName}</td>
                   <td>{favour.timestamp}</td>

@@ -1,7 +1,7 @@
 /** @license 4050 Boyz
   * Copyright (c) 4050 Boyz, Inc. and its affiliates.
   *
-  * Authors: 
+  * Authors: @Ner0theHer0
   * 
   */
 import React, { Component } from "react";

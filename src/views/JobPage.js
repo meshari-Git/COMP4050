@@ -1,7 +1,7 @@
 /** @license 4050 Boyz
  * Copyright (c) 4050 Boyz, Inc. and its affiliates.
  *
- * Authors: @LeonJM
+ * Authors: @LeonJM @Ner0theHer0
  *
  */
 import React, { Component } from "react";
@@ -103,10 +103,26 @@ class JobPage extends Component {
                     This job is already being actioned
                   </p>
                 ) : (
-                  <p style={{ paddingBottom: "10px" }}>
-                    You have been approved for this job! <br />
-                    Please contact the requester for more details.
-                  </p>
+                  job.status === 2 ? (
+                    <p style={{ paddingBottom: "10px" }}>
+                      You've completed this job and your balance has been updated.
+                    </p>
+                  ) : (
+                    <div>
+                      <p style={{ paddingBottom: "10px" }}>
+                        You have been approved for this job! <br />
+                        Click the button below to let the requester know that you're done
+                      </p>
+                      <button
+                        className="accept-job-button"
+                        onClick={(e) =>
+                          jobService.completeFavour(job, user.token)
+                        }
+                      >
+                        I've completed this job
+                      </button>
+                    </div>
+                  )
                 )
               ) : (
                 <div className="accept-job-container">
@@ -168,7 +184,8 @@ class JobPage extends Component {
                 </div>
               )
             ) : (
-              <div className="edit-job-container">
+              job.status !== 2 ? (
+                <div className="edit-job-container">
                 <JobModal job={this.state.job} user={user} />
                 <Link
                   className="delete-job-button"
@@ -180,6 +197,17 @@ class JobPage extends Component {
                   Delete Job
                 </Link>
               </div>
+              ) : (
+                <Link
+                  className="delete-job-button"
+                  onClick={(e) => jobService.delFavour(job, user.token)}
+                  to={{
+                    pathname: "/",
+                  }}
+                >
+                  Delete Job
+                </Link>
+              )
             )
           ) : (
             <div className="login-container">
@@ -196,10 +224,14 @@ class JobPage extends Component {
           {isAuthenticated() ? (
             user.id === job.ownerID ? (
               job.operatorName != null ? (
-                <p style={{ paddingBottom: "10px" }}>
+                job.status === 2 ? (
+                  <p>{job.operatorName} has marked this favour as complete</p>
+                ) : (
+                  <p style={{ paddingBottom: "10px" }}>
                   {" "}
                   Operated by {job.operatorName}
                 </p>
+                )
               ) : job.potentialOperators.length === 0 ? (
                 <p style={{ paddingBottom: "10px" }}>
                   No one has accepted this job yet
@@ -233,7 +265,7 @@ class JobPage extends Component {
                                 jobService.approveFavour(job, user.token, op)
                               }
                             >
-                              X
+                              ✓
                             </button>
                           </td>
                         </tr>

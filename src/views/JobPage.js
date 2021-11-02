@@ -161,7 +161,7 @@ class JobPage extends Component {
                     ) : (
                       <div>
                         <p style={{ paddingBottom: "10px" }}>
-                          Your application job is penidng approval from the
+                          Your application job is pending approval from the
                           requester
                         </p>
                         <Link

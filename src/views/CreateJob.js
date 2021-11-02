@@ -185,11 +185,10 @@ const CreateJob = () => {
         multiple
         fileCallBackUpdate={updateUploadedFiles}
       />
-      <div className="spacer">
+      <br/>
         <button onClick={clickSubmit} className="submit-btn btn-favour">
           Submit
         </button>
-      </div>
     </div>
   );
 

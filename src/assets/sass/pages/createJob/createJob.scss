@@ -4,9 +4,15 @@
   * Authors: @J5kinner
   * 
   */
-
+  
 .form-inputs {
-  height: 120vh;
+  height: 130vh;
+
+
+  @media only screen and (max-width: 500px) {
+    height: 140vh;
+  }
+
 }
 .new-favour-form {
   width: 75vw;
@@ -135,6 +141,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 0;
+  padding-top: 0;
 
   @media only screen and (max-width: 400px) {
     flex-direction: column;

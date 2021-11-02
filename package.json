@@ -42,7 +42,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "server/server.js",
+    "server": "nodemon server/server.js",
     "build:ui": "rm -f build && npm run build",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m && npm run deploy",

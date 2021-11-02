@@ -119,7 +119,7 @@ const CreateJob = () => {
   }
 
   const createJobForm = () => (
-    <div className="form-inputs">
+    <div className="form-input">
       <h2>Title</h2>
       <Input
         handler={handleChange("title")}

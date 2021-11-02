@@ -7,6 +7,7 @@
   
 .form-inputs {
   height: 130vh;
+  width: 60vw;
 
 
   @media only screen and (max-width: 500px) {
@@ -15,12 +16,14 @@
 
 }
 .new-favour-form {
-  width: 75vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
   position: absolute;
-  left: 12%;
 }
 .row {
-  width: 77vw;
+  width: 62vw;
 }
 
 .left-form {

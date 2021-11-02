@@ -37,15 +37,16 @@
     "web-vitals": "^1.0.1"
   },
   "proxy": "http://localhost:3001",
-  "homepage": "http://mehsari-git.github.io/COMP4050",
   "scripts": {
     "start": "cross-env PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon server/server.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build:ui": "rm -f build && npm run build",
+    "deploy": "git push heroku main",
+    "deploy:full": "npm run build:ui && git add . && git commit -m && npm run deploy",
+    "log:prod": "heroku log --tail"
   },
   "eslintConfig": {
     "extends": [

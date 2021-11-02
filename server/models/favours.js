@@ -77,4 +77,4 @@ let favourSchema = new mongoose.Schema({
     }
 
 });
-module.exports = mongoose.model("Favour", favourSchema, "favour");
+module.exports = mongoose.model("favour", favourSchema, "favour");

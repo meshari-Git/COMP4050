@@ -12,12 +12,10 @@ const Favour = database.FavourSchema;
 const getGFS = database.getGFS;
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken");
-const favours = require('../models/Favours');
 const users = require('../models/users');
 const Token = require("../models/token");
 const mongoose = require('mongoose');
-const Favours = require('../models/Favours');
-
+const Favours = require('../models/favours');
 const multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');

@@ -34,7 +34,7 @@ mongoose.connection
 .on("error", (err) => console.log(err));
 
 const UserSchema = require("./models/users");
-const FavourSchema = require("./models/Favours");
+const FavourSchema = require("./models/favours");
 
 const getGFS = () => {
   return gfs

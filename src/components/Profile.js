@@ -165,6 +165,11 @@ function Profile() {
                 <i>{user.user.address}</i>
               </p>
               <p>{user.user.email}</p>
+              <br></br>
+              <br></br>
+              <p>
+                Your Balance Is <strong>{user.user.balance}</strong> Tokens
+              </p>
             </div>
           </div>
           <div className="bio">

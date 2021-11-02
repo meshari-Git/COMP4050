@@ -575,6 +575,9 @@ apiRouter.post("/api/favours/complete/:id" , async (req , res) =>{
         else if(currFav.operaterName != user.username && currFav.operatorID != user._id){
             return res.status(403).json({error: "Cannot complete favour operated by someone else"})
         }
+        else if(currFav.status == 2){
+            return res.status(403).json({error: "Cannot complete a completed favour"})
+        }
         else{
             const owner = await getUserID(currFav.ownerID)
             const newOwnerBalance = owner.balance - currFav.cost

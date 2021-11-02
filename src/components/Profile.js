@@ -226,9 +226,9 @@ function Profile() {
                   <td>
                     <IF
                       condition={favour.status === 0}
-                      then={<p>Incomplete</p>}
+                      then={<p>Available</p>}
                     />
-                    <IF condition={favour.status === 1} then={<p>Active</p>} />
+                    <IF condition={favour.status === 1} then={<p>Progressing</p>} />
                     <IF
                       condition={favour.status === 2}
                       then={<p>Complete</p>}

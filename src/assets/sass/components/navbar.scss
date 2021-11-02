@@ -32,7 +32,30 @@ i {
 /* temporary fix holding button to one size */
 .navbtn {
   width: 127px;
+  
+    display: block;
+    height: 40px;
+    border-radius: 2px;
+    outline: none;
+    border: 0.5px solid black;
+    box-shadow: 5px 5px;
+
+    background-image: linear-gradient(to right,#54c1fb, #6d71f9 , #6dd8f9);
+    background-size: 200%;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: 0.5s;
 }
+  .navbtn:hover {
+    background-position: right;
+    &:hover,
+    &:focus {
+      box-shadow: 
+        0 0 0 0 var(--hover),
+        inset 6em 3.5em 0 0 var(--hover);
+    }
+  }
 
 #navbarSupportedContent {
   overflow: hidden;
@@ -177,40 +200,6 @@ i {
   font-size: 0.7rem;
 }
 
-/* .userCoinsIcon {
-  margin: -2px 3px 0 5px;
-  height: 100%;
-  width: 18px;
-}
 
-.userProfileIcon {
-  margin: 0 10px 0 10px;
-  height: 3vh;
-  width: 3vh;
-  color: #1e2124;
-}
-
-.userProfileIcon:hover {
-  fill: #17a2b8;
-  cursor: pointer;
-} */
-
-
-
-/* .coinContainer {
-  margin: 0 20px 0 20px;
-}
-
-.coinsText {
-  margin: 0 5px 0 0px;
-} */
-
-/* .login-button .logout-button .register-button {
-  margin: 0 5px 0 0px;
-} */
-
-/* .mainLogo {
-  margin: 0 10px 0 10px;
-} */
 
 

@@ -168,7 +168,7 @@ const NavBar = ({ history }) => {
         <div>
           <Link className="nav-link" to="/login">
             <button
-              className="navbtn btn btn-light my-2 my-sm-0 border border-dark"
+              className="navbtn "
               type="submit"
             >
               Sign-in / Join

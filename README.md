@@ -99,6 +99,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Deployment to Heroku 
 
-### `git push heroku master`
+### `git push heroku main`
 
 Pushes the current code base to Heroku to be built and hosted. 

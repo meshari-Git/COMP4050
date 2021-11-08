@@ -98,7 +98,7 @@ const NavBar = ({ history }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="logoDiv">
-        <a className="navbar-logo navbar-brand" to="/splash">
+        <a className="navbar-logo navbar-brand" href="https://group-3-4050.herokuapp.com/splash">
           <i className="fas fa-retweet"></i>
           SwapStreet
         </a>

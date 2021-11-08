@@ -38,7 +38,7 @@ export const login = (user) => {
       return response.json();
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 };
 
@@ -57,7 +57,7 @@ export const logout = (next) => {
       method: "GET",
     })
       .then((response) => {
-        console.log("signout", response);
+        // console.log("signout", response);
       })
       .catch((err) => console.log(err));
   }

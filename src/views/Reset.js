@@ -57,7 +57,7 @@ const Reset = () => {
         setValues({ ...values, redirectToReferrer: true }); //Update the redirect value to true
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setValues({
           ...values,
           error: "Invalid Email",

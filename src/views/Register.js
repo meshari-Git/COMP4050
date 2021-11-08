@@ -76,7 +76,7 @@ const Register = () => {
         bio
       )
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         if (!response || response === null) {
           setValues({
             ...values,
@@ -105,7 +105,7 @@ const Register = () => {
           });
         }
       }).catch((e) => {
-          console.log("Error: ", e)
+          // console.log("Error: ", e)
           setValues({ ...values, error: e.error, success: false });
       });
   };

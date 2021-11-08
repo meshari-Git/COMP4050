@@ -53,7 +53,7 @@ const Login = () => {
           });
           return;
         }
-        console.log(response);
+        // console.log(response);
 
         //Stores the user object in local storage
         userService.authenticate(response, () => {
@@ -61,7 +61,7 @@ const Login = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setValues({
           ...values,
           error: err.error

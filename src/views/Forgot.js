@@ -50,13 +50,13 @@ const Forgot = () => {
           });
           return;
         }
-        console.log(response);
+        // console.log(response);
 
         //Success -> Redirect To Login
         setValues({ ...values, redirectToReferrer: true }); //Update the redirect value to true
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setValues({
           ...values,
           error: "Invalid Email",

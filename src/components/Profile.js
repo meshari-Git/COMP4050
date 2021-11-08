@@ -15,7 +15,6 @@ import userService from "../services/user.js";
 function Profile() {
   //this is used to set the display style of job-card-modal
   // const [ setModalDisplay] = useState("none");
-  const [status, setStatus] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -41,11 +40,11 @@ function Profile() {
 
   useEffect(() => {
     userService.profile().then((objects) => {
-      console.log(objects);
+      // console.log(objects);
       setUser(objects);
       if (objects) {
         setUpdatedUser(objects.user);
-        console.log("ID: ", userService.isAuthenticated().id);
+        // console.log("ID: ", userService.isAuthenticated().id);
       }
     });
   }, [setUser]);
@@ -53,14 +52,14 @@ function Profile() {
   const updateProfile = () => {
     userService.account_update(updatedUser).then((updated) => {
       handleClose();
-      console.log("UPDATED: ", updated);
-      console.log("USER: ", user);
+      // console.log("UPDATED: ", updated);
+      // console.log("USER: ", user);
       setUser({
         user: updated.updatedUser,
         ownedFavours: user.ownedFavours,
         operatedFavours: user.operatedFavours,
       });
-      console.log(user);
+      // console.log(user);
     });
   };
 

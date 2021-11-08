@@ -7,12 +7,7 @@
 import React from "react";
 import "../assets/sass/pages/profilePage/profile.scss";
 
-// @ts-ignore
-// import profilePic from '../../resources/userProfile/default-user.jpg'
 import "../assets/scss/sidebar.scss";
-import "../assets/scss/sidebarnav.scss";
-import "../assets/scss/userinfo.scss";
-// import userService from '../services/user.js';
 import { Redirect, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Row, Col, Table } from "react-bootstrap";
@@ -50,34 +45,21 @@ function ProfileOther() {
     });
   }, [setUser, usernameToView]);
 
-  console.log("USER: ", user);
+  // console.log("USER: ", user);
 
   //can be moved elsewhere and redone as a component.
   const showJob = (e) => {
     e.preventDefault();
-    console.log("showJob Click");
+    // console.log("showJob Click");
     // setModalDisplay('block')
   };
-
-  //can be moved elsewhere and redone as a component.
-  // const closeJob = (e) => {
-  //   e.preventDefault()
-  //   console.log('closeJob Click')
-  //   // setModalDisplay('none')
-  // }
-
-  //test redirect to job page
-  // const goToJob = (e) => {
-  //   e.preventDefault()
-
-  // }
 
   if (!userService.isAuthenticated()) {
     return <Redirect to="/login"></Redirect>;
   }
 
   if (notFound) {
-    console.log("NOT FOUND");
+    // console.log("NOT FOUND");
     return <h1>User Not Found</h1>;
   }
 

@@ -27,7 +27,7 @@ mongoose.connect(URI, {
   
 mongoose.connection
 .once("open", () => {
-  console.log("Connected to database: ", URI)
+  // console.log("Connected to database: ", URI)
   gfs = Grid(mongoose.connection.db, mongoose.mongo);
   gfs.collection('uploads');
 })

@@ -15,7 +15,7 @@ const baseURL = "/api/"
  */
 const addJob = (job, token) => {
     const config = {headers: {Authorization: "bearer " + token}}
-    console.log("JOB IMAGES: ", job.images)
+    // console.log("JOB IMAGES: ", job.images)
     return axios.post(baseURL + 'new-favour', 
         {
             "title": job.title,
@@ -69,7 +69,7 @@ const acceptFavour = (favour , token) => {
 }
 
 const approveFavour = (favour, token, operator) => {
-    console.log(operator)
+    // console.log(operator)
     const config = {headers: {authorization: "bearer " + token}}
     axios.post(baseURL + "favours/approve/" + favour._id, {operator: operator}, config)
     .then(response => {

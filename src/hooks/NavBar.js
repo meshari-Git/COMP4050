@@ -149,21 +149,6 @@ const NavBar = ({ history }) => {
           </div>
         </ul>
       </div>
-
-      {/* {!userService.isAuthenticated() && (
-      <div >
-        <Link className="nav-link" to="/register">
-          <button
-            className="btn btn-light my-2 my-sm-0 border border-dark"
-            type="submit"
-          >
-            Register
-          </button>
-        </Link>
-        </div>
-     
-    )} */}
-
       {!userService.isAuthenticated() && (
         <div>
           <Link className="nav-link" to="/login">

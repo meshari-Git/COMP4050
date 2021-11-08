@@ -47,7 +47,6 @@ class JobPage extends Component {
     if (job.potentialOperators == null) {
       job.potentialOperators = [];
     }
-    /*console.log("job: ", job, "\njob._id: ", job._id, "\nuser: ", user, "\nuser.token: ", user.token); {/*debug*/
     return (
       <div className="job-page">
         <div className="job-container">

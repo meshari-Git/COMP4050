@@ -28,7 +28,7 @@ class HomePage extends Component {
   };
 
   MyFunction() {
-    console.log("lel");
+    // console.log("lel");
   }
 
   handleNewFirst = (e) => {

@@ -19,7 +19,7 @@ class DataFill extends Component {
   //let location = req.query.location;
 
   submitData(event) {
-    console.log(this.jobStatus.value);
+    // console.log(this.jobStatus.value);
 
     event.preventDefault();
 

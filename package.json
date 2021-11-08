@@ -1,8 +1,10 @@
 {
   "name": "swapstreet",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.0",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "@sendgrid/mail": "^7.4.6",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -45,7 +47,8 @@
     "build:ui": "rm -f build && npm run build",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m && npm run deploy",
-    "log:prod": "heroku log --tail"
+    "log:prod": "heroku log --tail",
+    "postbuild": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --output build/static/css"
   },
   "eslintConfig": {
     "extends": [

@@ -15,8 +15,6 @@ import { Link } from "react-router-dom";
 import userService from "../services/user.js";
 import { Redirect } from "react-router-dom";
 
-//import TextInput from "../components/TextInput";
-
 //image + svg + css
 import Fatherhood from "../assets/img/fatherhood.svg";
 import Wave from "../assets/img/wave.png";
@@ -142,9 +140,6 @@ const Register = () => {
                   <i className="fas fa-signature"></i>
                 </div>
                 <div className="div">
-                  {/* this is going to be the next phase input animator similar to twitter sign up form */}
-                  {/* <TextInput label="First Name" onChange={handleChange("firstName")} value={firstName}/> */}
-
                   <input
                     onChange={handleChange("firstName")}
                     type="text"

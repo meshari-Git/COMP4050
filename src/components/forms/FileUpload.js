@@ -8,7 +8,7 @@ import React, { useState, useRef } from "react";
 import "../../assets/sass/pages/createJob/createJob.scss";
 
 const kilo_bytes = 1000;
-const max_file_byte_size = 500000;
+const max_file_byte_size = 50000000;
 const convertNestedObjectToArray = (nestedObj) =>
   Object.keys(nestedObj).map((key) => nestedObj[key]);
 

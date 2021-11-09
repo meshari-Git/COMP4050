@@ -68,7 +68,7 @@ class DataRouter extends Component {
             <Route path="/datafill">
               <DataFill />
             </Route>
-            <Route path="/splash" exact component={SplashPage} />
+            <Route path="/splash" component={SplashPage} />
             <Route path="/" exact component={HomePage} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />

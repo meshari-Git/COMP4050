@@ -98,10 +98,11 @@ const NavBar = ({ history }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
       <div className="logoDiv">
-        <a className="navbar-logo navbar-brand" href="/splash">
+        
+        <Link className="navbar-logo navbar-brand" to="/splash">
           <i className="fas fa-retweet"></i>
           SwapStreet
-        </a>
+        </Link>
       </div>
 
       <button
@@ -171,6 +172,7 @@ const NavBar = ({ history }) => {
                 history.push("/");
               })
             }
+            to="/"
           >
             <button
               className=" navbtn btn btn-light my-2 my-sm-0 border border-dark"

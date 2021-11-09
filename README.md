@@ -12,7 +12,7 @@ The [Trello board](https://trello.com/b/40TmiuF2/4050-project) for this project.
 The [unit guide](https://unitguides.mq.edu.au/unit_offerings/129584/unit_guide) for COMP4050.
 
 # Deployment
-[4050-SwapStreet-group3](https://infinite-refuge-32502.herokuapp.com/)
+[4050-SwapStreet-group-3](https://infinite-refuge-32502.herokuapp.com/)
 
 # Technologies
 

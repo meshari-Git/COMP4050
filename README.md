@@ -1,4 +1,12 @@
-# Swap Street
+<h1> Swap Street </h1>
+
+<p>
+
+SwapStreet is a Web application that allows for people who live locally to swap favours. Members
+offer to do favours in exchange for other favours within a certain proximity to each other.
+The app is aimed for people to get to know their neighbours through those interactions. Thus, not
+only do they help each other, but also a happier local community is established.
+    </p>
 <p align="center">
     <img src="swapstreet.gif" alt="swapstreet"/>
 </p>
